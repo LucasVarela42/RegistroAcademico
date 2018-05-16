@@ -1,4 +1,4 @@
-package br.edu.ifsc.registro.model.vo;
+package br.edu.ifsc.registro.dominio;
 
 /**
  *
@@ -23,6 +23,10 @@ public class Aluno extends Pessoa {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+    
+    public void validar(){
+        
     }
 
 }

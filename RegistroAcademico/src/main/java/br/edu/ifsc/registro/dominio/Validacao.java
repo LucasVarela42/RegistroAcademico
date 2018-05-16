@@ -1,4 +1,4 @@
-package br.edu.ifsc.registro.model.vo;
+package br.edu.ifsc.registro.dominio;
 
 import java.time.LocalDateTime;
 
@@ -79,6 +79,10 @@ public class Validacao {
 
     public void setCoordeandor(Coordenador coordeandor) {
         this.coordeandor = coordeandor;
+    }
+    
+    public void validar(){
+        
     }
 
 }

@@ -1,4 +1,4 @@
-package br.edu.ifsc.registro.model.vo;
+package br.edu.ifsc.registro.dominio;
 
 import java.time.LocalDateTime;
 
@@ -6,9 +6,8 @@ import java.time.LocalDateTime;
  *
  * @author Edoardo Colares, Lucas Varela, Matheus de Medeiros
  */
-public class SegundaChamadaAtividadeAvaliativa {
+public class SegundaChamadaAtividadeAvaliativa extends Protocolo{
 
-    private int id;
     private String local;
     private String turno;
     private LocalDateTime dataPedido;
@@ -16,14 +15,8 @@ public class SegundaChamadaAtividadeAvaliativa {
     private LocalDateTime dataAvaliacao;
     private String justificativaProfessor;
     private String professorAplicadorProva;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private Aluno aluno;
+    private Coordenador coordenador;
 
     public String getLocal() {
         return local;
@@ -79,6 +72,26 @@ public class SegundaChamadaAtividadeAvaliativa {
 
     public void setProfessorAplicadorProva(String professorAplicadorProva) {
         this.professorAplicadorProva = professorAplicadorProva;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public Coordenador getCoordenador() {
+        return coordenador;
+    }
+
+    public void setCoordenador(Coordenador coordenador) {
+        this.coordenador = coordenador;
+    }
+    
+    public void validar(){
+        
     }
 
 }

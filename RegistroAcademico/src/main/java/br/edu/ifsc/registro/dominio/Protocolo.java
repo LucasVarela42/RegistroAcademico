@@ -1,13 +1,14 @@
-package br.edu.ifsc.registro.model.vo;
+package br.edu.ifsc.registro.dominio;
 
 /**
  *
  * @author Edoardo Colares, Lucas Varela, Matheus de Medeiros
  */
-public class Protocolo {
+public abstract class Protocolo {
 
     private int id;
     private int numero;
+    private Tipo tipoProtocolo;
 
     public int getId() {
         return id;
@@ -23,6 +24,10 @@ public class Protocolo {
 
     public void setNumero(int numero) {
         this.numero = numero;
+    }
+
+    public void validar() {
+
     }
 
 }

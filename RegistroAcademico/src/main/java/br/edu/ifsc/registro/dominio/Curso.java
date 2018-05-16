@@ -1,4 +1,4 @@
-package br.edu.ifsc.registro.model.vo;
+package br.edu.ifsc.registro.dominio;
 
 /**
  *
@@ -33,5 +33,7 @@ public class Curso {
         this.tipo = tipo;
     }
     
-    
+    public void validar(){
+        
+    }
 }

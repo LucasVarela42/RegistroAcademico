@@ -1,4 +1,4 @@
-package br.edu.ifsc.registro.model.vo;
+package br.edu.ifsc.registro.dominio;
 
 /**
  *
@@ -7,7 +7,7 @@ package br.edu.ifsc.registro.model.vo;
 public class Coordenador extends Pessoa {
 
     private int id;
-    private String coordenacao;
+    private Curso coordenacao;
 
     public int getId() {
         return id;
@@ -17,11 +17,15 @@ public class Coordenador extends Pessoa {
         this.id = id;
     }
 
-    public String getCoordenacao() {
+    public Curso getCoordenacao() {
         return coordenacao;
     }
 
-    public void setCoordenacao(String coordenacao) {
+    public void setCoordenacao(Curso coordenacao) {
         this.coordenacao = coordenacao;
+    }
+    
+    public void validar(){
+        
     }
 }

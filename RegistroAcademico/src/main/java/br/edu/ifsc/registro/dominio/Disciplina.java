@@ -1,4 +1,4 @@
-package br.edu.ifsc.registro.model.vo;
+package br.edu.ifsc.registro.dominio;
 
 /**
  *
@@ -8,7 +8,7 @@ public class Disciplina {
 
     private int id;
     private String nome;
-    private String cargaHoraria;
+    private int cargaHoraria;
     private String sigla;
     private Curso curso;
 
@@ -28,11 +28,11 @@ public class Disciplina {
         this.nome = nome;
     }
 
-    public String getCargaHoraria() {
+    public int getCargaHoraria() {
         return cargaHoraria;
     }
 
-    public void setCargaHoraria(String cargaHoraria) {
+    public void setCargaHoraria(int cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }
 
@@ -50,5 +50,9 @@ public class Disciplina {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+    
+    public void validar(){
+        
     }
 }
