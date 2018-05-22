@@ -1,12 +1,16 @@
 package br.edu.ifsc.registro.apresentacao;
 
-import br.edu.ifsc.registro.dominio.Aluno;
-import br.edu.ifsc.registro.dominio.Coordenador;
-import br.edu.ifsc.registro.dominio.Curso;
-import br.edu.ifsc.registro.dominio.Disciplina;
-import br.edu.ifsc.registro.dominio.Protocolo;
-import br.edu.ifsc.registro.dominio.SegundaChamadaAtividadeAvaliativa;
-import br.edu.ifsc.registro.dominio.Validacao;
+import br.edu.ifsc.registro.dominio.features.aluno.Aluno;
+import br.edu.ifsc.registro.dominio.features.coordenador.Coordenador;
+import br.edu.ifsc.registro.dominio.features.curso.Curso;
+import br.edu.ifsc.registro.dominio.features.curso.TipoCurso;
+import br.edu.ifsc.registro.dominio.features.disciplina.Disciplina;
+import br.edu.ifsc.registro.dominio.features.professor.Professor;
+import br.edu.ifsc.registro.dominio.features.segundaChamada.SegundaChamadaAtividadeAvaliativa;
+import br.edu.ifsc.registro.dominio.features.protocolo.TipoProtocolo;
+import br.edu.ifsc.registro.dominio.features.validacao.TipoValidacao;
+import br.edu.ifsc.registro.dominio.features.validacao.Validacao;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -19,6 +23,7 @@ public class TesteMain {
         Curso curso = new Curso();
         Disciplina disciplina = new Disciplina();
         Coordenador coordenador = new Coordenador();
+        Professor professor = new Professor();
         Aluno aluno = new Aluno();
         
         //Protocolos
@@ -28,7 +33,7 @@ public class TesteMain {
         //Atribuições base
         curso.setId(0);
         curso.setNome("Ciência da Computação");
-        curso.setTipo("Graduação");
+        curso.setTipoCurso(TipoCurso.GRADUACAO);
         
         disciplina.setId(0);
         disciplina.setNome("Laboratório de Programação");
@@ -42,14 +47,60 @@ public class TesteMain {
         coordenador.setTelefone("(99)9999-9999");
         coordenador.setCoordenacao(curso);
         
+        professor.setId(0);
+        professor.setNome("Dr. Fulano");
+        professor.setEmail("fu@fu.com");
+        professor.setTelefone("(49)7777-4444");
+        
         aluno.setId(0);
         aluno.setNome("Ciclano");
         aluno.setEmail("ci@ci.com");
         aluno.setTelefone("(49)9999-8888");
         aluno.setCurso(curso);
         
+        //Construindo protocolo - Reconhecimento de saberes
+        scaa.setId(0);
+        scaa.setNumero(123654789);
+        scaa.setTipoProtocolo(TipoProtocolo.RECONHECIMENTO_DE_SABERES);
         
+        scaa.setDataCadastro(LocalDateTime.now());
+        scaa.setAluno(aluno);
+        scaa.setCoordenador(coordenador);
+        scaa.setProfessorAplicadorProva(professor);
+        scaa.setJustificativaProfessor("");
         
+        scaa.setDataAvaliacao(LocalDateTime.now().plusDays(5));
+        scaa.setLocal("IFSC Lages");
+        scaa.setMotivoProva("Já tem experiencia na area");
+        scaa.setTurno("Noturno");
+        
+        //Construindo protocolo - Validação pelo ifsc
+        validacao.setId(0);
+        validacao.setNumero(987456321);
+        validacao.setTipoProtocolo(TipoProtocolo.VALIDACAO);
+        
+        validacao.setDataCadastro(LocalDateTime.now());
+        validacao.setAluno(aluno);
+        validacao.setCoordenador(coordenador);
+        validacao.setTipoValidacao(TipoValidacao.RECONHECIMENTO_DE_ESTUDOS_NO_IFSC);
+        
+        validacao.setDeferido(true);
+        validacao.setNota(6);
+        validacao.setObservacao("Tem conhecimentos suficientes, porém deve frequentar a aula");
+        
+        //Construindo protocolo - Validação por outra instituição
+        validacao.setId(2);
+        validacao.setNumero(456289731);
+        validacao.setTipoProtocolo(TipoProtocolo.VALIDACAO);
+        
+        validacao.setDataCadastro(LocalDateTime.now());
+        validacao.setAluno(aluno);
+        validacao.setCoordenador(coordenador);
+        validacao.setTipoValidacao(TipoValidacao.RECONHECIMENTO_DE_ESTUDOS_EM_OUTRA_INSTITUICAO);
+        
+        validacao.setDeferido(true);
+        validacao.setNota(9);
+        validacao.setObservacao("");
         
     }
 }

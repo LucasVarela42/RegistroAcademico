@@ -1,5 +1,5 @@
 
-package br.edu.ifsc.registro.dominio;
+package br.edu.ifsc.registro.dominio.features.validacao;
 
 /**
  *

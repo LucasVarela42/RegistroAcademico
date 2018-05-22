@@ -1,24 +1,18 @@
-package br.edu.ifsc.registro.dominio;
+package br.edu.ifsc.registro.dominio.features.disciplina;
+
+import br.edu.ifsc.registro.dominio.base.Entidade;
+import br.edu.ifsc.registro.dominio.features.curso.Curso;
 
 /**
  *
  * @author Edoardo Colares, Lucas Varela, Matheus de Medeiros
  */
-public class Disciplina {
+public class Disciplina extends Entidade{
 
-    private int id;
     private String nome;
     private int cargaHoraria;
     private String sigla;
     private Curso curso;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -51,8 +45,9 @@ public class Disciplina {
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
-    
-    public void validar(){
-        
+
+    @Override
+    public void validar() {
+        super.validar(); //To change body of generated methods, choose Tools | Templates.
     }
 }

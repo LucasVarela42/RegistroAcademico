@@ -1,14 +1,14 @@
-package br.edu.ifsc.registro.dominio;
+package br.edu.ifsc.registro.dominio.base;
 
 /**
  *
  * @author Edoardo Colares, Lucas Varela, Matheus de Medeiros
  */
-public abstract class Pessoa {
+public abstract class Pessoa extends Entidade {
 
-    protected String nome;
-    protected String telefone;
-    protected String email;
+    private String nome;
+    private String telefone;
+    private String email;
 
     public String getNome() {
         return nome;
@@ -32,6 +32,11 @@ public abstract class Pessoa {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public void validar() {
+        super.validar(); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

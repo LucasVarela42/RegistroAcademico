@@ -1,4 +1,7 @@
-package br.edu.ifsc.registro.dominio;
+package br.edu.ifsc.registro.dominio.features.coordenador;
+
+import br.edu.ifsc.registro.dominio.features.curso.Curso;
+import br.edu.ifsc.registro.dominio.base.Pessoa;
 
 /**
  *
@@ -6,16 +9,7 @@ package br.edu.ifsc.registro.dominio;
  */
 public class Coordenador extends Pessoa {
 
-    private int id;
     private Curso coordenacao;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public Curso getCoordenacao() {
         return coordenacao;
@@ -25,6 +19,7 @@ public class Coordenador extends Pessoa {
         this.coordenacao = coordenacao;
     }
     
+    @Override
     public void validar(){
         
     }
