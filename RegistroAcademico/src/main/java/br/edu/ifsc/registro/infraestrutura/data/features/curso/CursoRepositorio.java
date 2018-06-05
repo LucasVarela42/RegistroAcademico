@@ -22,7 +22,7 @@ public class CursoRepositorio implements ICursoRepositorio {
     @Override
     public Curso Save(Curso entidade){
         try {
-            entidade.setId(DataBase.insert(INSERT, entidade.getNome(), entidade.getTipoCurso().toString()));
+            entidade.setId(DataBase.inserir(INSERT, entidade.getNome(), entidade.getTipoCurso().toString()));
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

@@ -10,6 +10,19 @@ package br.edu.ifsc.registro.dominio.features.curso;
  * @author Edoardo Colares, Lucas Varela, Matheus de Medeiros
  */
 public enum TipoCurso {
-    GRADUACAO,
-    TECNICO
+    POS_GRADUACAO("Pós graduação"),
+    GRADUACAO("Graduação"),
+    TECNICO("Técnico");
+    
+    private String toString;
+
+    TipoCurso(String toString) {
+        this.toString = toString;
+    }
+
+    public String url() {
+        return toString;
+    }
+    
+
 }

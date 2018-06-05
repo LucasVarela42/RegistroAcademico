@@ -31,18 +31,19 @@ public class ConnectionDB {
         String url, user, pass;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            //URL MySQL localhost
+            //url = "jdbc:mysql://localhost:3306/RegistroAcademico?useTimezone=true&serverTimezone=UTC";
 
-            //URL localhost
-            url = "jdbc:mysql://localhost:3306/RegistroAcademico?useTimezone=true&serverTimezone=UTC";
-
-            user = "root";
-            pass = "root";
-            //pass = "aluno";
-
+            //URL POSTGRESQL localhost
+            url = "jdbc:postgresql://localhost:5432/RegistroAcademico?useTimezone=true&serverTimezone=UTC";
+            
+            //Mudar usuário
+            user = "postgres"; //User postgre = postgres | user mysql = root
+            pass = "aluno"; //Pass postgre = aluno | pass mysql = root/aluno
+            
             connection = DriverManager.getConnection(url, user, pass);
             connection.setAutoCommit(false);
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return connection;

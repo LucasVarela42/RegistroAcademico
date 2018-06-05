@@ -22,7 +22,7 @@ public final class DataBase {
         return conexao;
     }
 
-    public static int insert(String insertSql, Object... parametros) throws SQLException {
+    public static int inserir(String insertSql, Object... parametros) throws SQLException {
         int id = 0;
         try (PreparedStatement pstmt
                 = getConnection().prepareStatement(insertSql, PreparedStatement.RETURN_GENERATED_KEYS)) {

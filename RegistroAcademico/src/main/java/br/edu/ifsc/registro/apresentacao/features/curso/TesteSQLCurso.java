@@ -22,8 +22,8 @@ public class TesteSQLCurso {
         repositorio = new CursoRepositorio();
         
         Curso curso = new Curso();
-        curso.setNome("Laboratório");
-        curso.setTipoCurso(TipoCurso.GRADUACAO);
+        curso.setNome("Programação");
+        curso.setTipoCurso(TipoCurso.POS_GRADUACAO);
         
         try {
             repositorio.Save(curso);
