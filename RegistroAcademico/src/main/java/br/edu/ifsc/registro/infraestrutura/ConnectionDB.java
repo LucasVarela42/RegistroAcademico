@@ -31,10 +31,10 @@ public class ConnectionDB {
         String url, user, pass;
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
             //URL localhost
-            url = "jdbc:mysql://localhost:3306/<banco_aqui>";
+            url = "jdbc:mysql://localhost:3306/RegistroAcademico?useTimezone=true&serverTimezone=UTC";
 
             user = "root";
             pass = "root";

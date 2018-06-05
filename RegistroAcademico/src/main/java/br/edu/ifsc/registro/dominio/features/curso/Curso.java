@@ -6,7 +6,8 @@ import br.edu.ifsc.registro.dominio.base.Entidade;
  *
  * @author Edoardo Colares, Lucas Varela, Matheus de Medeiros
  */
-public class Curso extends Entidade{
+public class Curso extends Entidade {
+
     private String nome;
     private TipoCurso tipoCurso;
 
@@ -25,8 +26,13 @@ public class Curso extends Entidade{
     public void setTipoCurso(TipoCurso tipoCurso) {
         this.tipoCurso = tipoCurso;
     }
-    
-    public void validar(){
-        
+
+    public void validar() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "id=" + this.getId() + "nome=" + nome + ", tipoCurso=" + tipoCurso;
     }
 }
