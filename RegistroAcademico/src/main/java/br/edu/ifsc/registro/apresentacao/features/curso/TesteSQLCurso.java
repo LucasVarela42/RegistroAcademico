@@ -26,7 +26,14 @@ public class TesteSQLCurso {
         curso.setTipoCurso(TipoCurso.POS_GRADUACAO);
         
         try {
-            repositorio.Save(curso);
+            repositorio.save(curso);
+            
+            curso.setNome("Laboratório de programação");
+            
+            repositorio.update(curso);
+            
+            repositorio.delete(curso.getId());
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }

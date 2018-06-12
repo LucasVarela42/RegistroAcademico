@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -22,7 +24,7 @@ public final class DataBase {
         return conexao;
     }
 
-    public static int inserir(String insertSql, Object... parametros) throws SQLException {
+    public static int insert(String insertSql, Object... parametros) throws SQLException {
         int id = 0;
         try (PreparedStatement pstmt
                 = getConnection().prepareStatement(insertSql, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -40,30 +42,24 @@ public final class DataBase {
 
             getConnection().commit();
         } catch (SQLException ex) {
-            ex.printStackTrace();
             getConnection().rollback();
+            throw ex;
         }
         return id;
     }
 
-//    public static void update(String updateSql, Object id, Object... parametros) throws SQLException {
-//        try (PreparedStatement pstmt = getConnection().prepareStatement(updateSql)) {
-//            for (int i = 0; i < parametros.length; i++) {
-//                pstmt.setObject(i + 1, parametros[i]);
-//            }
-//            pstmt.setObject(parametros.length + 1, id);
-//            pstmt.execute();
-//            pstmt.close();
-//        }
-//    }
-//
-//    public static void delete(String deleteSql, Object... parametros) throws SQLException {
-//        PreparedStatement pstmt;
-//        pstmt = getConnection().prepareStatement(deleteSql);
-//        for (int i = 0; i < parametros.length; i++) {
-//            pstmt.setObject(i + 1, parametros[i]);
-//        }
-//        pstmt.execute();
-//        pstmt.close();
-//    }
+    public static int update(String updateSql, Object... parametros) throws SQLException {
+        return insert(updateSql, parametros);
+    }
+
+    public static void delete(String deleteSql, Integer id) throws SQLException {
+        try (PreparedStatement pstmt = getConnection().prepareStatement(deleteSql)) {
+            pstmt.setInt(1, id);
+            pstmt.execute();
+            getConnection().commit();
+        } catch (SQLException ex) {
+            getConnection().rollback();
+            throw ex;
+        }
+    }
 }

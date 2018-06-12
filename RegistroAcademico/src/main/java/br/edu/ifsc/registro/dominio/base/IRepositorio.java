@@ -5,6 +5,7 @@
  */
 package br.edu.ifsc.registro.dominio.base;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -13,14 +14,14 @@ import java.util.List;
  */
 public interface IRepositorio<E>{
 
-    E Save(E entidade);
+    E save(E entidade) throws SQLException;
 
-    E Update(E entidade);
+    E update(E entidade) throws SQLException;
 
-    void Delete(int Id);
+    List<E> getAll() throws SQLException;
 
-    List<E> GetAll();
+    E get(int id) throws SQLException;
 
-    E Get(int Id);
+    void delete(int id) throws SQLException;
 
 }
