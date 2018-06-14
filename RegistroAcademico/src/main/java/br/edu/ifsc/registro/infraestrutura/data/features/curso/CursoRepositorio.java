@@ -26,7 +26,7 @@ public class CursoRepositorio implements ICursoRepositorio {
     private final String UPDATE = "UPDATE Curso SET nome = ?, tipoCurso = ? WHERE id = ?";
     private final String GET_ALL = "SELECT * FROM Curso";
     private final String GET = "SELECT * FROM Curso WHERE id = ?";
-    private final String DELETE = "DELETE FROM Curso WHERE id = ?;";
+    private final String DELETE = "DELETE FROM Curso WHERE id = ?";
 
     @Override
     public Curso save(Curso entidade) throws SQLException {
@@ -42,7 +42,7 @@ public class CursoRepositorio implements ICursoRepositorio {
 
     @Override
     public void delete(int id) throws SQLException {
-        DataBase.update(DELETE, id);
+        DataBase.delete(DELETE, id);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class CursoRepositorio implements ICursoRepositorio {
 
             while (rs.next()) {
                 Curso c = new Curso();
-                c.setId(rs.getInt("Id"));
+                c.setId(rs.getInt("id"));
                 c.setNome(rs.getString("nome"));
                 c.setTipoCurso(TipoCurso.valueOf(rs.getString("tipoCurso")));
                 cursos.add(c);
@@ -76,7 +76,7 @@ public class CursoRepositorio implements ICursoRepositorio {
             
             while (rs.next()) {
                 curso = new Curso();
-                curso.setId(rs.getInt("Id"));
+                curso.setId(rs.getInt("id"));
                 curso.setNome(rs.getString("nome"));
                 curso.setTipoCurso(TipoCurso.valueOf(rs.getString("tipoCurso")));
             }

@@ -25,7 +25,6 @@ public final class DataBase {
     }
 
     public static int insert(String insertSql, Object... parametros) throws SQLException {
-        int id = 0;
         try (PreparedStatement pstmt
                 = getConnection().prepareStatement(insertSql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
@@ -36,20 +35,34 @@ public final class DataBase {
 
             ResultSet rs = pstmt.getGeneratedKeys();
 
+            int id = 0;
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-
             getConnection().commit();
+            return id;
         } catch (SQLException ex) {
             getConnection().rollback();
             throw ex;
         }
-        return id;
     }
 
     public static int update(String updateSql, Object... parametros) throws SQLException {
-        return insert(updateSql, parametros);
+        try (PreparedStatement pstmt
+                = getConnection().prepareStatement(updateSql)) {
+
+            for (int i = 0; i < parametros.length; i++) {
+                pstmt.setObject(i + 1, parametros[i]);
+            }
+            pstmt.execute();
+            
+            int id = (int)parametros[parametros.length - 1];
+            getConnection().commit();
+            return id;
+        } catch (SQLException ex) {
+            getConnection().rollback();
+            throw ex;
+        }
     }
 
     public static void delete(String deleteSql, Integer id) throws SQLException {
