@@ -20,7 +20,9 @@ public class Coordenador extends Pessoa {
     }
     
     @Override
-    public void validar(){
-        
+    public void validar() throws Exception{
+        if (coordenacao == null) {
+            throw new Exception("O coordenador deve ter vinculado a um curso");
+        }
     }
 }

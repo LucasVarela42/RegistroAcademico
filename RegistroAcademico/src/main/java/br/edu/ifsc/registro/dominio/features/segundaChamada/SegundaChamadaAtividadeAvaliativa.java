@@ -2,7 +2,7 @@ package br.edu.ifsc.registro.dominio.features.segundaChamada;
 
 import br.edu.ifsc.registro.dominio.features.coordenador.Coordenador;
 import br.edu.ifsc.registro.dominio.features.aluno.Aluno;
-import br.edu.ifsc.registro.dominio.features.professor.Professor;
+
 import br.edu.ifsc.registro.dominio.features.protocolo.Protocolo;
 import java.time.LocalDateTime;
 
@@ -17,7 +17,7 @@ public class SegundaChamadaAtividadeAvaliativa extends Protocolo{
     private String motivoProva;
     private LocalDateTime dataAvaliacao;
     private String justificativaProfessor;
-    private Professor professorAplicadorProva;
+    private String professorAplicadorProva;
 
     public String getLocal() {
         return local;
@@ -59,17 +59,18 @@ public class SegundaChamadaAtividadeAvaliativa extends Protocolo{
         this.justificativaProfessor = justificativaProfessor;
     }
 
-    public Professor getProfessorAplicadorProva() {
+    public String getProfessorAplicadorProva() {
         return professorAplicadorProva;
     }
 
-    public void setProfessorAplicadorProva(Professor professorAplicadorProva) {
+    public void setProfessorAplicadorProva(String professorAplicadorProva) {
         this.professorAplicadorProva = professorAplicadorProva;
     }
-    
-    @Override
-    public void validar(){
-        
-    }
 
+    @Override
+    public void validar() throws Exception {
+        super.validar(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+  
 }

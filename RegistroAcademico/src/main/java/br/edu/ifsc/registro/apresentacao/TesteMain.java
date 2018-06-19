@@ -5,7 +5,7 @@ import br.edu.ifsc.registro.dominio.features.coordenador.Coordenador;
 import br.edu.ifsc.registro.dominio.features.curso.Curso;
 import br.edu.ifsc.registro.dominio.features.curso.TipoCurso;
 import br.edu.ifsc.registro.dominio.features.disciplina.Disciplina;
-import br.edu.ifsc.registro.dominio.features.professor.Professor;
+
 import br.edu.ifsc.registro.dominio.features.segundaChamada.SegundaChamadaAtividadeAvaliativa;
 import br.edu.ifsc.registro.dominio.features.protocolo.TipoProtocolo;
 import br.edu.ifsc.registro.dominio.features.validacao.TipoValidacao;
@@ -23,7 +23,6 @@ public class TesteMain {
         Curso curso = new Curso();
         Disciplina disciplina = new Disciplina();
         Coordenador coordenador = new Coordenador();
-        Professor professor = new Professor();
         Aluno aluno = new Aluno();
         
         //Protocolos
@@ -47,10 +46,6 @@ public class TesteMain {
         coordenador.setTelefone("(99)9999-9999");
         coordenador.setCoordenacao(curso);
         
-        professor.setId(0);
-        professor.setNome("Dr. Fulano");
-        professor.setEmail("fu@fu.com");
-        professor.setTelefone("(49)7777-4444");
         
         aluno.setId(0);
         aluno.setNome("Ciclano");
@@ -66,7 +61,7 @@ public class TesteMain {
         scaa.setDataCadastro(LocalDateTime.now());
         scaa.setAluno(aluno);
         scaa.setCoordenador(coordenador);
-        scaa.setProfessorAplicadorProva(professor);
+        scaa.setProfessorAplicadorProva("João");
         scaa.setJustificativaProfessor("");
         
         scaa.setDataAvaliacao(LocalDateTime.now().plusDays(5));

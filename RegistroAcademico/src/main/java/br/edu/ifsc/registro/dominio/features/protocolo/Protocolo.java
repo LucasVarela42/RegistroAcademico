@@ -55,10 +55,12 @@ public abstract class Protocolo extends Entidade{
     public void setCoordenador(Coordenador coordenador) {
         this.coordenador = coordenador;
     }
-    
+
     @Override
-    public void validar() {
+    public void validar() throws Exception {
         super.validar(); //To change body of generated methods, choose Tools | Templates.
     }
+    
+  
 
 }

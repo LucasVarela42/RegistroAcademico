@@ -144,6 +144,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
         this.controller.Adicionar();
+        
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     /**

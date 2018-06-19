@@ -21,7 +21,7 @@ public abstract class Entidade {
         return "id: " + id;
     }
 
-    public void validar() {
+    public void validar()  throws Exception{
 
     }
 

@@ -12,5 +12,5 @@ import br.edu.ifsc.registro.dominio.base.IRepositorio;
  * @author Lucas
  */
 public interface ICursoRepositorio extends IRepositorio<Curso> {
-
+    
 }

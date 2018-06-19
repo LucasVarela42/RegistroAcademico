@@ -23,12 +23,12 @@ public abstract class Servico<T extends Entidade> {
         this.repositorio = repositorio;
     }
 
-    public T add(T entidade) throws SQLException {
+    public T add(T entidade) throws SQLException, Exception {
         entidade.validar();
         return repositorio.save(entidade);
     }
 
-    public T update(T entidade) throws SQLException {
+    public T update(T entidade) throws SQLException, Exception {
         entidade.validar();
         return repositorio.update(entidade);
     }

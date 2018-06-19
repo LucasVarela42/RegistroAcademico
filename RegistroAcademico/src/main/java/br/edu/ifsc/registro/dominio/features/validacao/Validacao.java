@@ -46,10 +46,11 @@ public class Validacao extends Protocolo{
     public void setTipoValidacao(TipoValidacao tipoValidacao) {
         this.tipoValidacao = tipoValidacao;
     }
-    
+
     @Override
-    public void validar(){
-        
+    public void validar() throws Exception {
+        super.validar(); //To change body of generated methods, choose Tools | Templates.
     }
+  
 
 }

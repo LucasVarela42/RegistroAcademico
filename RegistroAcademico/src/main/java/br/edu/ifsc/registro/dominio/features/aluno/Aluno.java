@@ -18,10 +18,12 @@ public class Aluno extends Pessoa {
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
-    
+
     @Override
-    public void validar(){
-        
+    public void validar() throws Exception {
+        super.validar(); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
 
 }

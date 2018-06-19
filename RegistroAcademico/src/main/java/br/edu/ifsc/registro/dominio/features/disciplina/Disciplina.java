@@ -47,7 +47,7 @@ public class Disciplina extends Entidade{
     }
 
     @Override
-    public void validar() {
+    public void validar() throws Exception{
         super.validar(); //To change body of generated methods, choose Tools | Templates.
     }
 }
