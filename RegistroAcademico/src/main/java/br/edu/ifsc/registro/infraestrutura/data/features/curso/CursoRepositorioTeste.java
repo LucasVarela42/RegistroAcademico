@@ -25,12 +25,12 @@ public class CursoRepositorioTeste {
         try {
             //INSERIR
             Curso curso = new Curso();
-            curso.setNome("Programação");
+            curso.setNome("Ciência da Computação");
             curso.setTipoCurso(TipoCurso.POS_GRADUACAO);
             curso = repositorio.save(curso);
 
             //ATUALIZAR
-            curso.setNome("Laboratório de programação");
+            curso.setTipoCurso(TipoCurso.GRADUACAO);
             curso = repositorio.update(curso);
 
             //GETALL

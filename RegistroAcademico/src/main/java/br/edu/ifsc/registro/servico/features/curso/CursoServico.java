@@ -21,5 +21,4 @@ public class CursoServico extends Servico<Curso> {
         super(repositorio);
         this.repositorio = repositorio;
     }
-
 }

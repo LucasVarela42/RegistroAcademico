@@ -31,9 +31,7 @@ public class Curso extends Entidade {
     public void validar() throws Exception {
         super.validar(); //To change body of generated methods, choose Tools | Templates.
     }
-
     
-
     @Override
     public String toString() {
         return "id=" + this.getId() + ", nome=" + nome + ", tipoCurso=" + tipoCurso;
