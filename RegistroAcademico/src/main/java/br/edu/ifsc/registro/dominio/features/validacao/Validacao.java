@@ -1,25 +1,27 @@
 package br.edu.ifsc.registro.dominio.features.validacao;
 
-import br.edu.ifsc.registro.dominio.features.coordenador.Coordenador;
-import br.edu.ifsc.registro.dominio.features.aluno.Aluno;
 import br.edu.ifsc.registro.dominio.features.protocolo.Protocolo;
-import java.time.LocalDateTime;
+import br.edu.ifsc.registro.dominio.features.protocolo.TipoProtocolo;
 
 /**
  *
  * @author Edoardo Colares, Lucas Varela, Matheus de Medeiros
  */
 public class Validacao extends Protocolo{
-    private float nota;
+    private double nota;
     private boolean deferido;
     private String observacao;
     private TipoValidacao tipoValidacao;
 
-    public float getNota() {
+    public Validacao() {
+        super.setTipoProtocolo(TipoProtocolo.VALIDACAO);
+    }
+    
+    public double getNota() {
         return nota;
     }
 
-    public void setNota(float nota) {
+    public void setNota(double nota) {
         this.nota = nota;
     }
 

@@ -1,8 +1,5 @@
 package br.edu.ifsc.registro.dominio.features.segundaChamada;
 
-import br.edu.ifsc.registro.dominio.features.coordenador.Coordenador;
-import br.edu.ifsc.registro.dominio.features.aluno.Aluno;
-
 import br.edu.ifsc.registro.dominio.features.protocolo.Protocolo;
 import java.time.LocalDateTime;
 

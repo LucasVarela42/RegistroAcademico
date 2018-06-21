@@ -10,17 +10,18 @@ import java.time.LocalDateTime;
  * @author Edoardo Colares, Lucas Varela, Matheus de Medeiros
  */
 public abstract class Protocolo extends Entidade{
-    private long numero;
+    private String numero;
     private TipoProtocolo tipoProtocolo;
     private LocalDateTime dataCadastro;
     private Aluno aluno;
     private Coordenador coordenador;
 
-    public long getNumero() {
+    
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(long numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -39,7 +40,7 @@ public abstract class Protocolo extends Entidade{
     public void setDataCadastro(LocalDateTime dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
-
+    
     public Aluno getAluno() {
         return aluno;
     }
