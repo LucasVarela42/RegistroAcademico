@@ -9,19 +9,19 @@ import br.edu.ifsc.registro.dominio.base.Pessoa;
  */
 public class Coordenador extends Pessoa {
 
-    private Curso coordenacao;
+    private Curso cursoCoordenacao;
 
-    public Curso getCoordenacao() {
-        return coordenacao;
+    public Curso getCursoCoordenacao() {
+        return cursoCoordenacao;
     }
 
-    public void setCoordenacao(Curso coordenacao) {
-        this.coordenacao = coordenacao;
+    public void setCursoCoordenacao(Curso cursoCoordenacao) {
+        this.cursoCoordenacao = cursoCoordenacao;
     }
     
     @Override
     public void validar() throws Exception{
-        if (coordenacao == null) {
+        if (cursoCoordenacao == null) {
             throw new Exception("O coordenador deve ter vinculado a um curso");
         }
     }

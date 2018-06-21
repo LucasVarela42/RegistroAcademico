@@ -44,7 +44,7 @@ public class TesteMain {
         coordenador.setNome("Coordenador");
         coordenador.setEmail("co@co.com");
         coordenador.setTelefone("(99)9999-9999");
-        coordenador.setCoordenacao(curso);
+        coordenador.setCursoCoordenacao(curso);
         
         
         aluno.setId(0);

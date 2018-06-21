@@ -14,11 +14,13 @@ import br.edu.ifsc.registro.servico.base.Servico;
  *
  * @author admin
  */
-public class CoordenadorServico extends Servico<Coordenador>{
+public class CoordenadorServico extends Servico<Coordenador> {
+
     ICoordenadorRepositorio repositorio;
+
     public CoordenadorServico(ICoordenadorRepositorio repositorio) {
         super(repositorio);
         this.repositorio = repositorio;
     }
-    
+
 }

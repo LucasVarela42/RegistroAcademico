@@ -94,7 +94,6 @@ public class DisciplinaRepositorio implements IDisciplinaRepositorio {
 
                 disciplinas.add(d);
             }
-
             ConnectionDB.getConnection().commit();
             return disciplinas;
         } catch (SQLException ex) {
@@ -125,7 +124,6 @@ public class DisciplinaRepositorio implements IDisciplinaRepositorio {
                 
                 disciplina = d;
             }
-
             ConnectionDB.getConnection().commit();
             return disciplina;
         } catch (SQLException ex) {

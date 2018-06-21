@@ -23,25 +23,55 @@ import java.util.List;
  */
 public class AlunoRepositorio implements IAlunoRepositorio {
 
-//    nome ;
-//    telefone ;
-//    email ;
-//    curso ;
-    private final String INSERT = "INSERT INTO Aluno(nome, telefone, email) VALUES(?,?)";
-    private final String UPDATE = "UPDATE Aluno SET nome = ?, telefone = ?, email = ?, WHERE id = ?";
-    private final String GET_ALL = "SELECT * FROM Aluno";
-    private final String GET = "SELECT * FROM Aluno WHERE id = ?";
+    private final String INSERT = "INSERT INTO Aluno(nome, telefone, email, cursoId) VALUES(?,?,?,?)";
+
+    private final String UPDATE = "UPDATE Aluno SET nome = ?, telefone = ?, email = ?, cursoId = ? WHERE id = ?";
+
+    private final String GET_ALL = "SELECT "
+            + "a.id, "
+            + "a.nome, "
+            + "a.telefone, "
+            + "a.email, "
+            + "a.cursoId, "
+            + "c.nome, "
+            + "c.tipoCurso "
+            + "FROM aluno as a "
+            + "INNER JOIN curso as c ON c.id = a.cursoId";
+
+    private final String GET = "SELECT "
+            + "a.id, "
+            + "a.nome, "
+            + "a.telefone, "
+            + "a.email, "
+            + "a.cursoId, "
+            + "c.nome, "
+            + "c.tipoCurso "
+            + "FROM aluno as a "
+            + "INNER JOIN curso as c ON c.id = a.cursoId "
+            + "WHERE a.id = ?";
+
     private final String DELETE = "DELETE FROM Aluno WHERE id = ?";
 
     @Override
     public Aluno save(Aluno entidade) throws SQLException {
-        entidade.setId(DataBase.insert(INSERT, entidade.getNome(), entidade.getTelefone(), entidade.getEmail()));
+        entidade.setId(DataBase.insert(INSERT,
+                entidade.getNome(),
+                entidade.getTelefone(),
+                entidade.getEmail(),
+                entidade.getCurso().getId()
+        ));
         return entidade;
     }
 
     @Override
     public Aluno update(Aluno entidade) throws SQLException {
-        entidade.setId(DataBase.insert(UPDATE, entidade.getNome(), entidade.getTelefone(), entidade.getEmail(), entidade.getId()));
+        entidade.setId(DataBase.update(UPDATE,
+                entidade.getNome(),
+                entidade.getTelefone(),
+                entidade.getEmail(),
+                entidade.getCurso().getId(),
+                entidade.getId()
+        ));
         return entidade;
     }
 
@@ -58,13 +88,14 @@ public class AlunoRepositorio implements IAlunoRepositorio {
                 a.setTelefone(rs.getString("telefone"));
                 a.setEmail(rs.getString("email"));
 
-                /*
-                a.setCurso(rs.getString("curso"));
-                VER COM A GALERA
-                 */
+                Curso c = new Curso();
+                c.setId(rs.getInt("cursoId"));
+                c.setNome(rs.getString("nome"));
+                c.setTipoCurso(TipoCurso.valueOf(rs.getString("tipoCurso")));
+                a.setCurso(c);
+
                 alunos.add(a);
             }
-
             ConnectionDB.getConnection().commit();
             return alunos;
         } catch (SQLException ex) {
@@ -87,12 +118,14 @@ public class AlunoRepositorio implements IAlunoRepositorio {
                 a.setTelefone(rs.getString("telefone"));
                 a.setEmail(rs.getString("email"));
 
-                /*
-                a.setCurso(rs.getString("curso"));
-                VER COM A GALERA
-                 */
-            }
+                Curso c = new Curso();
+                c.setId(rs.getInt("cursoId"));
+                c.setNome(rs.getString("nome"));
+                c.setTipoCurso(TipoCurso.valueOf(rs.getString("tipoCurso")));
+                a.setCurso(c);
 
+                aluno = a;
+            }
             ConnectionDB.getConnection().commit();
             return aluno;
         } catch (SQLException ex) {
