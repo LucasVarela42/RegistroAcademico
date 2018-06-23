@@ -1,21 +1,18 @@
 package br.edu.ifsc.registro.dominio.features.validacao;
 
+import br.edu.ifsc.registro.dominio.base.Entidade;
 import br.edu.ifsc.registro.dominio.features.protocolo.Protocolo;
-import br.edu.ifsc.registro.dominio.features.protocolo.TipoProtocolo;
 
 /**
  *
  * @author Edoardo Colares, Lucas Varela, Matheus de Medeiros
  */
-public class Validacao extends Protocolo{
+public class Validacao extends Entidade{
     private double nota;
     private boolean deferido;
     private String observacao;
     private TipoValidacao tipoValidacao;
-
-    public Validacao() {
-        super.setTipoProtocolo(TipoProtocolo.VALIDACAO);
-    }
+    private Protocolo protocolo;
     
     public double getNota() {
         return nota;

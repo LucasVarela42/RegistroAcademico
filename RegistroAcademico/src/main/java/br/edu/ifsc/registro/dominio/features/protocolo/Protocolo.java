@@ -3,19 +3,19 @@ package br.edu.ifsc.registro.dominio.features.protocolo;
 import br.edu.ifsc.registro.dominio.base.Entidade;
 import br.edu.ifsc.registro.dominio.features.aluno.Aluno;
 import br.edu.ifsc.registro.dominio.features.coordenador.Coordenador;
+import br.edu.ifsc.registro.dominio.features.validacao.Validacao;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author Edoardo Colares, Lucas Varela, Matheus de Medeiros
  */
-public abstract class Protocolo extends Entidade{
+public class Protocolo extends Entidade{
     private String numero;
     private TipoProtocolo tipoProtocolo;
     private LocalDateTime dataCadastro;
     private Aluno aluno;
     private Coordenador coordenador;
-
     
     public String getNumero() {
         return numero;
