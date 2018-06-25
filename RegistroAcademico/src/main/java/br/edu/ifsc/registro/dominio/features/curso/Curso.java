@@ -29,7 +29,12 @@ public class Curso extends Entidade {
 
     @Override
     public void validar() throws Exception {
-        super.validar(); //To change body of generated methods, choose Tools | Templates.
+        if (nome.isEmpty()|| nome.length() > 50) {
+            throw new Exception("O nome do curso não pode ser vazio ou maior que 50 caracteres.");
+        }
+        if (tipoCurso == null) {
+            throw new Exception("O tipo do curso não pode ser vazio.");
+        }
     }
     
     @Override
