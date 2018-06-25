@@ -42,7 +42,7 @@ public class CursoTest {
             assertThat(ex).doesNotThrowAnyException();
         }
     }
-    
+
     @Test
     public void dominio_curso_validacaoNomeVazio_deveFalhar() {
         //Organização
@@ -54,10 +54,10 @@ public class CursoTest {
             curso.validar();
         } catch (Exception ex) {
             //Verificação
-            assertThat(ex).hasMessageContaining("O nome do curso não pode ser vazio ou maior que 50 caracteres.");
+            assertThat(ex).hasMessageContaining("O nome do curso não pode ser vazio.");
         }
     }
-    
+
     @Test
     public void dominio_curso_validacaoTipoCursoVazio_deveFalhar() {
         //Organização
@@ -70,6 +70,21 @@ public class CursoTest {
         } catch (Exception ex) {
             //Verificação
             assertThat(ex).hasMessageContaining("O tipo do curso não pode ser vazio.");
+        }
+    }
+
+    @Test
+    public void dominio_curso_validacaoNomeMaior50_deveFalhar() {
+        //Organização
+        curso.setNome("testegkajslbd jlbasdjflbsjdklhfvjisodmhvfipdhfvjipmsahdjfivmshdjivpfhsjidmfjsipmhgvjipmdhfguipmvshdjipfvhsjdiphfvispdhgvipsdhiopahraphsdipuvgbjpaisfdvbgjipmhgvipa");
+        curso.setTipoCurso(TipoCurso.GRADUACAO);
+
+        try {
+            //Ação
+            curso.validar();
+        } catch (Exception ex) {
+            //Verificação
+            assertThat(ex).hasMessageContaining("O nome do curso não pode ter mais que 50 caracteres.");
         }
     }
 

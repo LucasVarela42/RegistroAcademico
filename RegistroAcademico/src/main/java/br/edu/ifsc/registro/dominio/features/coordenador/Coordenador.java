@@ -18,11 +18,12 @@ public class Coordenador extends Pessoa {
     public void setCursoCoordenacao(Curso cursoCoordenacao) {
         this.cursoCoordenacao = cursoCoordenacao;
     }
-    
+
     @Override
-    public void validar() throws Exception{
+    public void validar() throws Exception {
+        super.validar();
         if (cursoCoordenacao == null) {
-            throw new Exception("O coordenador deve ter vinculado a um curso");
+            throw new Exception("O coordenador deve ter vinculado a um curso.");
         }
     }
 }

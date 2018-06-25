@@ -36,7 +36,17 @@ public abstract class Pessoa extends Entidade {
 
     @Override
     public void validar() throws Exception {
-        super.validar(); //To change body of generated methods, choose Tools | Templates.
+        super.validar();
+        if (nome.isEmpty()) {
+            throw new Exception("O nome não pode ser vazio.");
+        }
+        if (telefone.isEmpty()) {
+            throw new Exception("O telefone não pode ser vazio.");
+        }
+        if (email.isEmpty()) {
+            throw new Exception("O email não pode ser vazio.");
+        }
+
     }
 
 }
