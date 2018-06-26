@@ -5,41 +5,106 @@
  */
 package br.edu.ifsc.registro.dominio.features.segundaChamadaTest;
 
-import org.junit.After;
-import org.junit.AfterClass;
+import br.edu.ifsc.registro.dominio.features.protocolo.Protocolo;
+import br.edu.ifsc.registro.dominio.features.segundaChamada.SegundaChamadaAtividadeAvaliativa;
+import br.edu.ifsc.registro.dominio.features.segundaChamada.TurnoEnum;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author Aluno
  */
 public class SegundaChamadaTest {
-    
-    public SegundaChamadaTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
+    private SegundaChamadaAtividadeAvaliativa scaa;
+
     @Before
     public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+        scaa = new SegundaChamadaAtividadeAvaliativa();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void dominio_segundaChamadaAtividadeAvaliativa_validacao_devePassar() {
+        //Organização
+        scaa.setDataAvaliacao(LocalDate.now().plusDays(10));
+        scaa.setId(1);
+        scaa.setJustificativaProfessor("Justificativa");
+        scaa.setLocalProva("Câmpus Lages");
+        scaa.setMotivoProva("Têm condições");
+        scaa.setProfessorAplicadorProva("Ailton Durigon");
+        scaa.setProtocolo(new Protocolo());
+        scaa.setTurno(TurnoEnum.NOTURNO);
+
+        //Ação
+        try {
+            scaa.validar();
+        } catch (Exception ex) {
+            assertThat(ex).doesNotThrowAnyException();
+        }
+    }
+
+    @Test
+    public void dominio_segundaChamadaAtividadeAvaliativa_validacaoDataErrada_deveFalhar() {
+        //Organização
+        scaa.setDataAvaliacao(LocalDate.now().plusDays(-10));
+        scaa.setId(1);
+        scaa.setJustificativaProfessor("Justificativa");
+        scaa.setLocalProva("Câmpus Lages");
+        scaa.setMotivoProva("Têm condições");
+        scaa.setProfessorAplicadorProva("Ailton Durigon");
+        scaa.setProtocolo(new Protocolo());
+        scaa.setTurno(TurnoEnum.NOTURNO);
+
+        //Ação
+        try {
+            scaa.validar();
+        } catch (Exception ex) {
+            assertThat(ex).hasMessageContaining("A data de avaliação não pode ser menor que a atual.");
+        }
+    }
+
+    @Test
+    public void dominio_segundaChamadaAtividadeAvaliativa_validacaoId0_deveFalhar() {
+        //Organização
+        scaa.setDataAvaliacao(LocalDate.now().plusDays(-10));
+        scaa.setId(0);
+        scaa.setJustificativaProfessor("Justificativa");
+        scaa.setLocalProva("Câmpus Lages");
+        scaa.setMotivoProva("Têm condições");
+        scaa.setProfessorAplicadorProva("Ailton Durigon");
+        scaa.setProtocolo(new Protocolo());
+        scaa.setTurno(TurnoEnum.NOTURNO);
+
+        //Ação
+        try {
+            scaa.validar();
+        } catch (Exception ex) {
+            assertThat(ex).hasMessageContaining("Id indefinido.");
+        }
+    }
+
+    @Test
+    public void dominio_segundaChamadaAtividadeAvaliativa_validacaoJustificativaVazia_deveFalhar() {
+        //Organização
+        scaa.setDataAvaliacao(LocalDate.now().plusDays(10));
+        scaa.setId(1);
+        scaa.setJustificativaProfessor("");
+        scaa.setLocalProva("Câmpus Lages");
+        scaa.setMotivoProva("Têm condições");
+        scaa.setProfessorAplicadorProva("Ailton Durigon");
+        scaa.setProtocolo(new Protocolo());
+        scaa.setTurno(TurnoEnum.NOTURNO);
+
+        //Ação
+        try {
+            scaa.validar();
+        } catch (Exception ex) {
+            assertThat(ex).hasMessageContaining("A justificativa do professor não pode ser vazia.");
+        }
+    }
 }
