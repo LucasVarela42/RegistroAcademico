@@ -28,6 +28,7 @@ public class CoordenadorTest {
     @Test
     public void dominio_coordenador_validacao_devePassar() {
         //Organizacao
+        c.setId(1);
         c.setEmail("coordenador@teste");
         c.setNome("Teste");
         c.setTelefone("123456789");
@@ -44,6 +45,7 @@ public class CoordenadorTest {
     @Test
     public void dominio_coordenador_validacaoCursoNull_deveFalhar() {
         //Organizacao
+        c.setId(1);
         c.setEmail("coordenador@teste");
         c.setNome("Teste");
         c.setTelefone("123456789");
@@ -52,7 +54,7 @@ public class CoordenadorTest {
         try {
             c.validar();
         } catch (Exception ex) {
-            assertThat(ex).hasMessageContaining("O coordenador deve ter vinculado a um curso.");
+            assertThat(ex).hasMessageContaining("O coordenador deve ser vinculado a um curso.");
         }
 
     }
@@ -60,6 +62,7 @@ public class CoordenadorTest {
     @Test
     public void dominio_coordenador_validacaoNomeNull_deveFalhar() {
         //Organizacao
+        c.setId(1);
         c.setEmail("coordenador@teste");
         c.setNome("");
         c.setTelefone("123456789");
@@ -76,6 +79,7 @@ public class CoordenadorTest {
     @Test
     public void dominio_coordenador_validacaoTelefoneNull_deveFalhar() {
         //Organizacao
+        c.setId(1);
         c.setEmail("coordenador@teste");
         c.setNome("teste");
         c.setTelefone("");
@@ -93,6 +97,7 @@ public class CoordenadorTest {
      @Test
     public void dominio_coordenador_validacaoEmailNull_deveFalhar() {
         //Organizacao
+        c.setId(1);
         c.setEmail("");
         c.setNome("teste");
         c.setTelefone("123456789");
