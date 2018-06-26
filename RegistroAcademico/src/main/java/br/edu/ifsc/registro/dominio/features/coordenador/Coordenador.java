@@ -23,7 +23,7 @@ public class Coordenador extends Pessoa {
     public void validar() throws Exception {
         super.validar();
         if (cursoCoordenacao == null) {
-            throw new Exception("O coordenador deve ter vinculado a um curso.");
+            throw new Exception("O coordenador deve ser vinculado a um curso.");
         }
     }
 }

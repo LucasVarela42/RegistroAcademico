@@ -5,6 +5,7 @@
  */
 package br.edu.ifsc.registro.infraestrutura.data.features.validacao;
 
+import br.edu.ifsc.registro.dominio.features.protocolo.Protocolo;
 import br.edu.ifsc.registro.dominio.features.validacao.IValidacaoRepositorio;
 import br.edu.ifsc.registro.dominio.features.validacao.TipoValidacao;
 import br.edu.ifsc.registro.dominio.features.validacao.Validacao;
@@ -23,60 +24,58 @@ import java.util.List;
 public class ValidacaoRepositorio implements IValidacaoRepositorio {
 
     private final String INSERT = "INSERT INTO validacao("
-            +"nota, deferido, observacao, tipoValidacao) "
-            + "VALUES(?,?,?,?,?,?,?,?,?)";
+            +"nota, deferido, observacao, tipoValidacao, protocoloId) "
+            + "VALUES(?,?,?,?,?)";
     
     private final String UPDATE = "UPDATE validacao SET "
-            + "numero = ?, "
-            + "tipoProtocolo = ?, "
-            + "dataCadastro = ?, "
-            + "alunoId = ?, "
-            + "coordenadorId = ?, "
             + "nota = ?, "
             + "deferido = ?, "
             + "observacao = ?, "
             + "tipoValidacao = ? "
+            + "protocoloId = ? "
             + "WHERE id = ?";
     
     private final String GET_ALL = "SELECT "
-            + "v.id, "
-            + "v.nota, "
-            + "v.deferido, "
-            + "v.observacao, "
-            + "v.tipoValidacao "
-            + "FROM validacao as v";
+            + "id, "
+            + "nota, "
+            + "deferido, "
+            + "observacao, "
+            + "tipoValidacao, "
+            + "protocoloId "
+            + "FROM validacao";
     
     private final String GET = "SELECT "
-            + "v.id, "
-            + "v.nota, "
-            + "v.deferido, "
-            + "v.observacao, "
-            + "v.tipoValidacao "
-            + "FROM validacao as v "
-            + "WHERE v.id = ?";
+            + "id, "
+            + "nota, "
+            + "deferido, "
+            + "observacao, "
+            + "tipoValidacao, "
+            + "protocoloId "
+            + "FROM validacao "
+            + "WHERE id = ?";
     
     private final String DELETE = "DELETE FROM validacao WHERE id = ?";
 
     @Override
     public Validacao save(Validacao entidade) throws SQLException {
         entidade.setId(DataBase.insert(INSERT,
-               
                 entidade.getNota(),
                 entidade.isDeferido(),
                 entidade.getObservacao(),
-                entidade.getTipoValidacao()
+                entidade.getTipoValidacao(),
+                entidade.getProtocolo().getId()
         ));
         return entidade;
     }
 
     @Override
     public Validacao update(Validacao entidade) throws SQLException {
-        entidade.setId(DataBase.insert(UPDATE, 
-                
+        entidade.setId(DataBase.insert(UPDATE,
                 entidade.getNota(),
                 entidade.isDeferido(),
                 entidade.getObservacao(),
                 entidade.getTipoValidacao(),
+                entidade.getProtocolo().getId(),
                 entidade.getId()
         ));
         return entidade;
@@ -95,6 +94,10 @@ public class ValidacaoRepositorio implements IValidacaoRepositorio {
                 v.setDeferido(rs.getBoolean("deferido"));
                 v.setObservacao(rs.getString("observacao"));
                 v.setTipoValidacao(TipoValidacao.valueOf(rs.getString("tipoValidacao")));
+                
+                Protocolo p = new Protocolo();
+                p.setId(rs.getInt("protocoloId"));
+                v.setProtocolo(p);
                 
                 validacaos.add(v);
             }
@@ -120,6 +123,10 @@ public class ValidacaoRepositorio implements IValidacaoRepositorio {
                 v.setDeferido(rs.getBoolean("deferido"));
                 v.setObservacao(rs.getString("observacao"));
                 v.setTipoValidacao(TipoValidacao.valueOf(rs.getString("tipoValidacao")));
+                
+                Protocolo p = new Protocolo();
+                p.setId(rs.getInt("protocoloId"));
+                v.setProtocolo(p);
                 
                 validacao = v;
             }

@@ -35,7 +35,6 @@ public class Curso extends Entidade {
         if (nome.length() > 50) {
             throw new Exception("O nome do curso não pode ter mais que 50 caracteres.");
         }
-
         if (tipoCurso == null) {
             throw new Exception("O tipo do curso não pode ser vazio.");
         }

@@ -4,6 +4,7 @@ import br.edu.ifsc.registro.dominio.base.Entidade;
 import br.edu.ifsc.registro.dominio.features.aluno.Aluno;
 import br.edu.ifsc.registro.dominio.features.coordenador.Coordenador;
 import br.edu.ifsc.registro.dominio.features.validacao.Validacao;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 public class Protocolo extends Entidade{
     private String numero;
     private TipoProtocolo tipoProtocolo;
-    private LocalDateTime dataCadastro;
+    private LocalDate dataCadastro;
     private Aluno aluno;
     private Coordenador coordenador;
     
@@ -33,11 +34,11 @@ public class Protocolo extends Entidade{
         this.tipoProtocolo = tipoProtocolo;
     }
 
-    public LocalDateTime getDataCadastro() {
+    public LocalDate getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(LocalDateTime dataCadastro) {
+    public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
     
@@ -59,9 +60,21 @@ public class Protocolo extends Entidade{
 
     @Override
     public void validar() throws Exception {
-        super.validar(); //To change body of generated methods, choose Tools | Templates.
+        super.validar(); 
+        if (numero.isEmpty()) {
+            throw new Exception("O numero do protocolo não pode ser vazio.");
+        }
+        if (tipoProtocolo == null) {
+            throw new Exception("O tipo do protocolo não pode ser vazio.");
+        }
+        if (dataCadastro.isAfter(LocalDate.now())) {
+            throw new Exception("A data de cadastro não pode ser maior que a atual.");
+        }
+        if (aluno == null) {
+            throw new Exception("O protocolo deve ser vinculado a um aluno.");
+        }
+        if (aluno == null) {
+            throw new Exception("O protocolo deve ser vinculado a um coordenador.");
+        }
     }
-    
-  
-
 }

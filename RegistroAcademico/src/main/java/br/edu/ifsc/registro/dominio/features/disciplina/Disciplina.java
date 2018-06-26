@@ -8,7 +8,6 @@ import br.edu.ifsc.registro.dominio.features.curso.Curso;
  * @author Edoardo Colares, Lucas Varela, Matheus de Medeiros
  */
 public class Disciplina extends Entidade{
-
     private String nome;
     private int cargaHoraria;
     private String sigla;
@@ -49,5 +48,20 @@ public class Disciplina extends Entidade{
     @Override
     public void validar() throws Exception{
         super.validar(); //To change body of generated methods, choose Tools | Templates.
+        if (nome.isEmpty()) {
+            throw new Exception("O nome da disciplina não pode ser vazia.");
+        }
+        if (nome.length() > 50) {
+            throw new Exception("O nome da disciplina não pode ter mais que 50 caracteres.");
+        }
+        if (cargaHoraria == 0) {
+            throw new Exception("A carga horaria não pode ser zero.");
+        }
+        if (sigla.isEmpty()) {
+            throw new Exception("A sigla da disciplina não pode ser vazia.");
+        }
+        if (curso == null) {
+            throw new Exception("A disciplina deve ser vinculada a um curso.");
+        }
     }
 }
