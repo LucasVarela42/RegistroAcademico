@@ -7,13 +7,8 @@ package br.edu.ifsc.registro.dominio.features.cursoTest;
 
 import br.edu.ifsc.registro.dominio.features.curso.Curso;
 import br.edu.ifsc.registro.dominio.features.curso.TipoCurso;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.junit.After;
-import org.junit.AfterClass;
 import static org.assertj.core.api.Assertions.*;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -32,6 +27,7 @@ public class CursoTest {
     @Test
     public void dominio_curso_validacao_devePassar() {
         //Organização
+        curso.setId(1);
         curso.setNome("Ciencia Da Computacação");
         curso.setTipoCurso(TipoCurso.GRADUACAO);
         try {
@@ -46,6 +42,7 @@ public class CursoTest {
     @Test
     public void dominio_curso_validacaoNomeVazio_deveFalhar() {
         //Organização
+        curso.setId(1);
         curso.setNome("");
         curso.setTipoCurso(TipoCurso.TECNICO);
 
@@ -61,6 +58,7 @@ public class CursoTest {
     @Test
     public void dominio_curso_validacaoTipoCursoVazio_deveFalhar() {
         //Organização
+        curso.setId(1);
         curso.setNome("teste");
         curso.setTipoCurso(null);
 
@@ -76,6 +74,7 @@ public class CursoTest {
     @Test
     public void dominio_curso_validacaoNomeMaior50_deveFalhar() {
         //Organização
+        curso.setId(1);
         curso.setNome("testegkajslbd jlbasdjflbsjdklhfvjisodmhvfipdhfvjipmsahdjfivmshdjivpfhsjidmfjsipmhgvjipmdhfguipmvshdjipfvhsjdiphfvispdhgvipsdhiopahraphsdipuvgbjpaisfdvbgjipmhgvipa");
         curso.setTipoCurso(TipoCurso.GRADUACAO);
 

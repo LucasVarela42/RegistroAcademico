@@ -5,41 +5,94 @@
  */
 package br.edu.ifsc.registro.dominio.features.validacaoTest;
 
-import org.junit.After;
-import org.junit.AfterClass;
+import br.edu.ifsc.registro.dominio.features.aluno.Aluno;
+import br.edu.ifsc.registro.dominio.features.coordenador.Coordenador;
+import br.edu.ifsc.registro.dominio.features.protocolo.Protocolo;
+import br.edu.ifsc.registro.dominio.features.validacao.TipoValidacao;
+import br.edu.ifsc.registro.dominio.features.validacao.Validacao;
+import java.time.LocalDate;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  *
  * @author Aluno
  */
 public class ValidacaoTest {
-    
-    public ValidacaoTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
+    private Validacao validacao;
+
     @Before
     public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+        validacao = new Validacao();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void dominio_validacao_validar_devePassar() {
+        //Organização
+        validacao.setId(1);
+        validacao.setNota(10);
+        validacao.setObservacao("testestsetsetseste");
+        validacao.setTipoValidacao(TipoValidacao.RECONHECIMENTO_DE_ESTUDOS_NO_IFSC);
+        validacao.setProtocolo(new Protocolo());
+        try {
+            //Ação
+            validacao.validar();
+        } catch (Exception ex) {
+            //Verificação
+            assertThat(ex).doesNotThrowAnyException();
+        }
+    }
+    
+//    if (nota < 0) {
+//            throw new Exception("A nota da validação não pode ser menor que zero.");
+//        }
+//        if (observacao.isEmpty()) {
+//            throw new Exception("A observação da validação não pode ser vazia.");
+//        }
+//        if (tipoValidacao == null) {
+//            throw new Exception("O tipo da validação não pode ser nula.");
+//        }
+//        if (protocolo == null) {
+//            throw new Exception("O protocolo da validação não pode ser nula.");
+//        }
+
+
+    @Test
+    public void dominio_validacao_validacaoNotaMenorQueZero_deveFalhar() {
+        //Organização
+        validacao.setId(1);
+        validacao.setNota(-10);
+        validacao.setObservacao("testestsetsetseste");
+        validacao.setTipoValidacao(TipoValidacao.RECONHECIMENTO_DE_ESTUDOS_NO_IFSC);
+        validacao.setProtocolo(new Protocolo());
+
+        try {
+            //Ação
+            validacao.validar();
+        } catch (Exception ex) {
+            //Verificação
+            assertThat(ex).hasMessageContaining("A nota da validação não pode ser menor que zero.");
+        }
+    }
+
+    @Test
+    public void dominio_validacao_validacaoObservacaoVazia_deveFalhar() {
+        //Organização
+        validacao.setId(1);
+        validacao.setNota(10);
+        validacao.setObservacao("");
+        validacao.setTipoValidacao(TipoValidacao.RECONHECIMENTO_DE_ESTUDOS_NO_IFSC);
+        validacao.setProtocolo(new Protocolo());
+
+        try {
+            //Ação
+            validacao.validar();
+        } catch (Exception ex) {
+            //Verificação
+            assertThat(ex).hasMessageContaining("A observação da validação não pode ser vazia.");
+        }
+    }
+
 }
