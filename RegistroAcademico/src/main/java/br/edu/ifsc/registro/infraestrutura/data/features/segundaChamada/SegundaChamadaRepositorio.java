@@ -24,12 +24,12 @@ import java.util.List;
 public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
 
     private final String INSERT = "INSERT INTO segundaChamada("
-            + "nota, deferido, observacao, tipoSegundaChamada) "
-            + "VALUES(?,?,?,?)";
+            + "localProva, turno, motivoProva, dataAvaliacao, justificativaProfessor, professorAplicadorProva, protocoloId) "
+            + "VALUES(?,?,?,?,?,?,?)";
 
 
     private final String UPDATE = "UPDATE segundaChamada SET "
-            + "local = ?, "
+            + "localProva = ?, "
             + "turno = ?, "
             + "motivoProva = ?, "
             + "dataAvaliacao = ? "
@@ -40,7 +40,7 @@ public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
 
     private final String GET_ALL = "SELECT "
             + "id, "
-            + "local, "
+            + "localProva, "
             + "turno, "
             + "motivoProva, "
             + "dataAvaliacao, "
@@ -51,7 +51,7 @@ public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
 
     private final String GET = "SELECT "
             + "id, "
-            + "local, "
+            + "localProva, "
             + "turno, "
             + "motivoProva, "
             + "dataAvaliacao, "
@@ -66,7 +66,7 @@ public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
     @Override
     public SegundaChamadaAtividadeAvaliativa save(SegundaChamadaAtividadeAvaliativa entidade) throws SQLException {
         entidade.setId(DataBase.insert(INSERT,
-                entidade.getLocal(),
+                entidade.getLocalProva(),
                 entidade.getTurno(),
                 entidade.getMotivoProva(),
                 entidade.getDataAvaliacao(),
@@ -80,7 +80,7 @@ public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
     @Override
     public SegundaChamadaAtividadeAvaliativa update(SegundaChamadaAtividadeAvaliativa entidade) throws SQLException {
         entidade.setId(DataBase.insert(UPDATE,
-                entidade.getLocal(),
+                entidade.getLocalProva(),
                 entidade.getTurno(),
                 entidade.getMotivoProva(),
                 entidade.getDataAvaliacao(),
@@ -101,7 +101,7 @@ public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
             while (rs.next()) {
                 SegundaChamadaAtividadeAvaliativa sc = new SegundaChamadaAtividadeAvaliativa();
                 sc.setId(rs.getInt("id"));
-                sc.setLocal(rs.getString("local"));
+                sc.setLocalProva(rs.getString("localProva"));
                 sc.setTurno(TurnoEnum.valueOf(rs.getString("turno")));
                 sc.setMotivoProva(rs.getString("motivoProva"));
                 sc.setDataAvaliacao(rs.getDate("dataAvaliacao").toLocalDate());
@@ -132,7 +132,7 @@ public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
             if (rs.next()) {
                 SegundaChamadaAtividadeAvaliativa sc = new SegundaChamadaAtividadeAvaliativa();
                 sc.setId(rs.getInt("id"));
-                sc.setLocal(rs.getString("local"));
+                sc.setLocalProva(rs.getString("localProva"));
                 sc.setTurno(TurnoEnum.valueOf(rs.getString("turno")));
                 sc.setMotivoProva(rs.getString("motivoProva"));
                 sc.setDataAvaliacao(rs.getDate("dataAvaliacao").toLocalDate());

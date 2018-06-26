@@ -10,7 +10,7 @@ import java.time.LocalDate;
  */
 public class SegundaChamadaAtividadeAvaliativa extends Entidade {
 
-    private String local;
+    private String localProva;
     private TurnoEnum turno;
     private String motivoProva;
     private LocalDate dataAvaliacao;
@@ -18,12 +18,12 @@ public class SegundaChamadaAtividadeAvaliativa extends Entidade {
     private String professorAplicadorProva;
     private Protocolo protocolo;
 
-    public String getLocal() {
-        return local;
+    public String getLocalProva() {
+        return localProva;
     }
 
-    public void setLocal(String local) {
-        this.local = local;
+    public void setLocalProva(String localProva) {
+        this.localProva = localProva;
     }
 
     public TurnoEnum getTurno() {
@@ -79,8 +79,8 @@ public class SegundaChamadaAtividadeAvaliativa extends Entidade {
     @Override
     public void validar() throws Exception {
         super.validar();
-        if (local.isEmpty()) {
-            throw new Exception("O local da segunda chamada não pode ser vazia.");
+        if (localProva.isEmpty()) {
+            throw new Exception("O local da Prova da segunda chamada não pode ser vazia.");
         }
         if (turno == null) {
             throw new Exception("O turno do protocolo não pode ser nulo.");

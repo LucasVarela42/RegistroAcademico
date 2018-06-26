@@ -3,9 +3,7 @@ package br.edu.ifsc.registro.dominio.features.protocolo;
 import br.edu.ifsc.registro.dominio.base.Entidade;
 import br.edu.ifsc.registro.dominio.features.aluno.Aluno;
 import br.edu.ifsc.registro.dominio.features.coordenador.Coordenador;
-import br.edu.ifsc.registro.dominio.features.validacao.Validacao;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  *

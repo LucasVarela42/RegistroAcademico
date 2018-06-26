@@ -59,7 +59,7 @@ public class TesteMain {
         scaa.setJustificativaProfessor("");
         
         scaa.setDataAvaliacao(LocalDate.now().plusDays(5));
-        scaa.setLocal("IFSC Lages");
+        scaa.setLocalProva("IFSC Lages");
         scaa.setMotivoProva("Já tem experiencia na area");
         scaa.setTurno(TurnoEnum.NOTURNO);
         
