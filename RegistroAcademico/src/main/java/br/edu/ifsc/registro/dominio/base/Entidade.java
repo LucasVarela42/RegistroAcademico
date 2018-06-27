@@ -20,9 +20,6 @@ public abstract class Entidade {
     public String toString() {
         return "id: " + id;
     }
-
-    public void validar()  throws Exception{
-
-    }
-
+    
+    public void validar() throws Exception{ }
 }

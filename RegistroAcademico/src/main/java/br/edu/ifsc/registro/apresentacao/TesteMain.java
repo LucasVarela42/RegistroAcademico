@@ -7,10 +7,10 @@ import br.edu.ifsc.registro.dominio.features.curso.TipoCurso;
 import br.edu.ifsc.registro.dominio.features.disciplina.Disciplina;
 
 import br.edu.ifsc.registro.dominio.features.segundaChamada.SegundaChamadaAtividadeAvaliativa;
-import br.edu.ifsc.registro.dominio.features.protocolo.TipoProtocolo;
+import br.edu.ifsc.registro.dominio.features.segundaChamada.TurnoEnum;
 import br.edu.ifsc.registro.dominio.features.validacao.TipoValidacao;
 import br.edu.ifsc.registro.dominio.features.validacao.Validacao;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  *
@@ -55,26 +55,17 @@ public class TesteMain {
         
         //Construindo protocolo - Reconhecimento de saberes
         scaa.setId(0);
-        scaa.setNumero("123654789");
-        scaa.setTipoProtocolo(TipoProtocolo.RECONHECIMENTO_DE_SABERES);
-        
-        scaa.setAluno(aluno);
-        scaa.setCoordenador(coordenador);
         scaa.setProfessorAplicadorProva("João");
         scaa.setJustificativaProfessor("");
         
-        scaa.setDataAvaliacao(LocalDateTime.now().plusDays(5));
-        scaa.setLocal("IFSC Lages");
+        scaa.setDataAvaliacao(LocalDate.now().plusDays(5));
+        scaa.setLocalProva("IFSC Lages");
         scaa.setMotivoProva("Já tem experiencia na area");
-        scaa.setTurno("Noturno");
+        scaa.setTurno(TurnoEnum.NOTURNO);
         
         //Construindo protocolo - Validação pelo ifsc
         validacao.setId(0);
-        validacao.setNumero("987456321");
-        validacao.setTipoProtocolo(TipoProtocolo.VALIDACAO);
-        
-        validacao.setAluno(aluno);
-        validacao.setCoordenador(coordenador);
+       
         validacao.setTipoValidacao(TipoValidacao.RECONHECIMENTO_DE_ESTUDOS_NO_IFSC);
         
         validacao.setDeferido(true);
@@ -83,11 +74,7 @@ public class TesteMain {
         
         //Construindo protocolo - Validação por outra instituição
         validacao.setId(2);
-        validacao.setNumero("456289731");
-        validacao.setTipoProtocolo(TipoProtocolo.VALIDACAO);
         
-        validacao.setAluno(aluno);
-        validacao.setCoordenador(coordenador);
         validacao.setTipoValidacao(TipoValidacao.RECONHECIMENTO_DE_ESTUDOS_EM_OUTRA_INSTITUICAO);
         
         validacao.setDeferido(true);

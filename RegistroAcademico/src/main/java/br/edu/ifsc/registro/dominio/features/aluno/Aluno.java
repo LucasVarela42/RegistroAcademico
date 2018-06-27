@@ -21,7 +21,10 @@ public class Aluno extends Pessoa {
 
     @Override
     public void validar() throws Exception {
-        super.validar(); //To change body of generated methods, choose Tools | Templates.
+        super.validar();
+        if (curso == null) {
+            throw new Exception("O aluno deve ser vinculado a um curso.");
+        }
     }
     
     
