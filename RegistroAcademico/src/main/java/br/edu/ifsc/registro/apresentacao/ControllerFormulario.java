@@ -5,6 +5,7 @@
  */
 package br.edu.ifsc.registro.apresentacao;
 
+import java.util.List;
 
 /**
  *
@@ -26,4 +27,7 @@ public abstract class ControllerFormulario {
      *
      */
     public abstract void Remover();
+
+    public abstract List carregarLista();
+
 }

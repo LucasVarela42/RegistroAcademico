@@ -8,6 +8,7 @@ package br.edu.ifsc.registro.apresentacao.features.disciplina;
 import br.edu.ifsc.registro.apresentacao.features.disciplina.*;
 import br.edu.ifsc.registro.apresentacao.ControllerFormulario;
 import br.edu.ifsc.registro.servico.features.disciplina.DisciplinaServico;
+import java.util.List;
 
 /**
  *
@@ -52,4 +53,9 @@ public class ControllerDisciplina extends ControllerFormulario {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List carregarLista() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

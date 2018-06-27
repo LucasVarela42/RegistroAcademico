@@ -9,6 +9,7 @@ import br.edu.ifsc.registro.apresentacao.features.aluno.*;
 import br.edu.ifsc.registro.apresentacao.features.coordenador.*;
 import br.edu.ifsc.registro.apresentacao.ControllerFormulario;
 import br.edu.ifsc.registro.servico.features.coordenador.CoordenadorServico;
+import java.util.List;
 
 /**
  *
@@ -50,6 +51,11 @@ public class ControllerCoordenador extends ControllerFormulario {
      */
     @Override
     public void Remover() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List carregarLista() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

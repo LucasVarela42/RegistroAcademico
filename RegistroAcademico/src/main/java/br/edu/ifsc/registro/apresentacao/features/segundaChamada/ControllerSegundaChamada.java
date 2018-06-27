@@ -8,6 +8,7 @@ package br.edu.ifsc.registro.apresentacao.features.segundaChamada;
 import br.edu.ifsc.registro.apresentacao.features.segundaChamada.*;
 import br.edu.ifsc.registro.apresentacao.ControllerFormulario;
 import br.edu.ifsc.registro.servico.features.segundaChamada.SegundaChamadaServico;
+import java.util.List;
 
 /**
  *
@@ -49,6 +50,11 @@ public class ControllerSegundaChamada extends ControllerFormulario {
      */
     @Override
     public void Remover() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List carregarLista() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

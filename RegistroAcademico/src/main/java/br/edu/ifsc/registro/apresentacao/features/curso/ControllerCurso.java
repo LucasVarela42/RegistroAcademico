@@ -7,6 +7,11 @@ package br.edu.ifsc.registro.apresentacao.features.curso;
 
 import br.edu.ifsc.registro.apresentacao.ControllerFormulario;
 import br.edu.ifsc.registro.servico.features.curso.CursoServico;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,6 +54,17 @@ public class ControllerCurso extends ControllerFormulario {
     @Override
     public void Remover() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List carregarLista() {
+        try {
+            return servico.getAll();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(cursoCadastro, ex.getMessage());
+        }
+        return null;
     }
 
 }

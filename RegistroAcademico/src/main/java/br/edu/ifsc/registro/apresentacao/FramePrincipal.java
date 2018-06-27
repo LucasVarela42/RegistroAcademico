@@ -32,6 +32,7 @@ import br.edu.ifsc.registro.servico.features.disciplina.DisciplinaServico;
 import br.edu.ifsc.registro.servico.features.protocolo.ProtocoloServico;
 import br.edu.ifsc.registro.servico.features.segundaChamada.SegundaChamadaServico;
 import br.edu.ifsc.registro.servico.features.validacao.ValidacaoServico;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -67,6 +68,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private ControllerCoordenador controllerCoordenador;
     private ControllerSegundaChamada controllerSegundaChamada;
     private ControllerValidacao controllerValidacao;
+    private DefaultListModel modelLista;
 
     /**
      * Creates new form FramePrincipal
@@ -97,8 +99,17 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     }
 
+    private void carregarListaPrincipal() {
+        modelLista = new DefaultListModel();
+        for (Object object : controller.carregarLista()) {
+            modelLista.addElement(object);
+        }
+        listPrincipal.setModel(modelLista);
+    }
+
     private void CarregarCadastro(ControllerFormulario controller) {
         this.controller = controller;
+        carregarListaPrincipal();
         btnAdicionar.setEnabled(true);
         btnEditar.setEnabled(true);
         btnRemover.setEnabled(true);
@@ -131,6 +142,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         menuItemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jToolBarCadastros.setFloatable(false);
 
@@ -315,6 +331,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_menuItemSairActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        if (modelLista != null) {
+            carregarListaPrincipal();
+        }
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
