@@ -67,26 +67,6 @@ public class SegundaChamadaTest {
     }
 
     @Test
-    public void dominio_segundaChamadaAtividadeAvaliativa_validacaoIdZero_deveFalhar() {
-        //Organização
-        scaa.setDataAvaliacao(LocalDate.now().plusDays(-10));
-        scaa.setId(0);
-        scaa.setJustificativaProfessor("Justificativa");
-        scaa.setLocalProva("Câmpus Lages");
-        scaa.setMotivoProva("Têm condições");
-        scaa.setProfessorAplicadorProva("Ailton Durigon");
-        scaa.setProtocolo(new Protocolo());
-        scaa.setTurno(TurnoEnum.NOTURNO);
-
-        //Ação
-        try {
-            scaa.validar();
-        } catch (Exception ex) {
-            assertThat(ex).hasMessageContaining("Id indefinido.");
-        }
-    }
-
-    @Test
     public void dominio_segundaChamadaAtividadeAvaliativa_validacaoJustificativaVazia_deveFalhar() {
         //Organização
         scaa.setDataAvaliacao(LocalDate.now().plusDays(10));

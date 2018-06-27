@@ -50,7 +50,7 @@ public class SegundaChamadaIntegrationTest {
         segundaChamada.setMotivoProva("Têm condições");
         segundaChamada.setProfessorAplicadorProva("Ailton Durigon");
         segundaChamada.setTurno(TurnoEnum.NOTURNO);
-        p.setId(2);
+        p.setId(1);
         segundaChamada.setProtocolo(p);
         //Action
         SegundaChamadaAtividadeAvaliativa resultado;
@@ -75,7 +75,7 @@ public class SegundaChamadaIntegrationTest {
         segundaChamada.setMotivoProva("Têm condições");
         segundaChamada.setProfessorAplicadorProva("Ailton Durigon");
         segundaChamada.setTurno(TurnoEnum.NOTURNO);
-        p.setId(2);
+        p.setId(1);
         segundaChamada.setProtocolo(p);
         //Action
         SegundaChamadaAtividadeAvaliativa resultado;
@@ -98,7 +98,7 @@ public class SegundaChamadaIntegrationTest {
         segundaChamada.setMotivoProva("Possui experiencia na area");
         segundaChamada.setProfessorAplicadorProva("Ailton Durigon");
         segundaChamada.setTurno(TurnoEnum.NOTURNO);
-        p.setId(2);
+        p.setId(1);
         segundaChamada.setProtocolo(p);
         //Action
         SegundaChamadaAtividadeAvaliativa resultado;
@@ -121,7 +121,7 @@ public class SegundaChamadaIntegrationTest {
         segundaChamada.setLocalProva("Câmpus Lages");
         segundaChamada.setProfessorAplicadorProva("Ailton Durigon");
         segundaChamada.setTurno(TurnoEnum.NOTURNO);
-        p.setId(2);
+        p.setId(1);
         segundaChamada.setProtocolo(p);
         //Action
         SegundaChamadaAtividadeAvaliativa resultado;

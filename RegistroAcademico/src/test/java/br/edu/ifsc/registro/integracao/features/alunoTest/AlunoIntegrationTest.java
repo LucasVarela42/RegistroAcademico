@@ -64,7 +64,7 @@ public class AlunoIntegrationTest {
         //Arrange
         aluno.setNome("Lucas");
         aluno.setTelefone("987654321");
-        c.setId(3);
+        c.setId(1);
         aluno.setCurso(c);
         //Action
         Aluno resultado;
@@ -80,11 +80,11 @@ public class AlunoIntegrationTest {
     @Test
     public void Integration_Aluno_AtualizarCorretamente_DevePassar() {
         //Arrange
-        aluno.setId(5);
+        aluno.setId(1);
         aluno.setEmail("lucas@lucas");
         aluno.setNome("Lucas Varela");
         aluno.setTelefone("987654321");
-        c.setId(3);
+        c.setId(1);
         aluno.setCurso(c);
         //Action
         Aluno resultado;
@@ -100,10 +100,10 @@ public class AlunoIntegrationTest {
 
     @Test
     public void Integration_Aluno_AtualizarInvalido_DeveFalhar() {
-        aluno.setId(5);
+        aluno.setId(1);
         aluno.setEmail("lucas@lucas");
         aluno.setTelefone("987654321");
-        c.setId(3);
+        c.setId(1);
         aluno.setCurso(c);
         //Action
         Aluno resultado;
@@ -145,13 +145,13 @@ public class AlunoIntegrationTest {
     @Test
     public void Integration_Aluno_ExcluirCorretamente_DevePassar() {
         //Arrange
-        aluno.setId(4);
+        aluno.setId(1);
         //Action
         Aluno resultado;
         try {
             servico.delete(aluno);
             //Verify
-            resultado = servico.get(4);
+            resultado = servico.get(1);
             assertThat(resultado).isNull();
         } catch (Exception ex) {
             assertThat(ex).doesNotThrowAnyException();

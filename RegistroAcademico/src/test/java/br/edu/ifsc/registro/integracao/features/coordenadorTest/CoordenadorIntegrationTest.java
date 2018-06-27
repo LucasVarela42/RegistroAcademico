@@ -44,7 +44,7 @@ public class CoordenadorIntegrationTest {
         coordenador.setEmail("Juliano@Juliano");
         coordenador.setNome("Juliano");
         coordenador.setTelefone("987654321");
-        c.setId(3);
+        c.setId(1);
         coordenador.setCursoCoordenacao(c);
         //Action
         Coordenador resultado;
@@ -64,7 +64,7 @@ public class CoordenadorIntegrationTest {
         //Arrange
         coordenador.setNome("Juliano");
         coordenador.setTelefone("987654321");
-        c.setId(3);
+        c.setId(1);
         coordenador.setCursoCoordenacao(c);
         //Action
         Coordenador resultado;
@@ -84,7 +84,7 @@ public class CoordenadorIntegrationTest {
         coordenador.setEmail("lucas@lucas");
         coordenador.setNome("Joao Varela");
         coordenador.setTelefone("987654321");
-        c.setId(3);
+        c.setId(1);
         coordenador.setCursoCoordenacao(c);
         //Action
         Coordenador resultado;
@@ -103,7 +103,7 @@ public class CoordenadorIntegrationTest {
         coordenador.setId(1);
         coordenador.setEmail("lucas@lucas");
         coordenador.setTelefone("987654321");
-        c.setId(3);
+        c.setId(1);
         coordenador.setCursoCoordenacao(c);
         //Action
         Coordenador resultado;

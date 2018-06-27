@@ -48,7 +48,7 @@ public class ValidacaoIntegrationTest {
         validacao.setObservacao("testestsetsetseste");
         validacao.setDeferido(false);
         validacao.setTipoValidacao(TipoValidacao.RECONHECIMENTO_DE_ESTUDOS_NO_IFSC);
-        p.setId(1);
+        p.setId(2);
         validacao.setProtocolo(p);
         //Action
         Validacao resultado;
@@ -70,7 +70,7 @@ public class ValidacaoIntegrationTest {
         validacao.setNota(-10);
         validacao.setObservacao("testestsetsetseste");
         validacao.setTipoValidacao(TipoValidacao.RECONHECIMENTO_DE_ESTUDOS_NO_IFSC);
-        p.setId(1);
+        p.setId(2);
         validacao.setProtocolo(p);
 
         //Action
@@ -92,7 +92,7 @@ public class ValidacaoIntegrationTest {
         validacao.setDeferido(true);
         validacao.setObservacao("É um excelente aluno!");
         validacao.setTipoValidacao(TipoValidacao.RECONHECIMENTO_DE_ESTUDOS_NO_IFSC);
-        p.setId(1);
+        p.setId(2);
         validacao.setProtocolo(p);
         //Action
         Validacao resultado;
@@ -112,7 +112,7 @@ public class ValidacaoIntegrationTest {
         validacao.setId(1);
         validacao.setNota(10);
         validacao.setTipoValidacao(TipoValidacao.RECONHECIMENTO_DE_ESTUDOS_NO_IFSC);
-        p.setId(1);
+        p.setId(2);
         validacao.setProtocolo(p);
         //Action
         Validacao resultado;
