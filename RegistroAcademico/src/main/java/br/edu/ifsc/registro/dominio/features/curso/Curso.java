@@ -11,22 +11,42 @@ public class Curso extends Entidade {
     private String nome;
     private TipoCurso tipoCurso;
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     *
+     * @return
+     */
     public TipoCurso getTipoCurso() {
         return tipoCurso;
     }
 
+    /**
+     *
+     * @param tipoCurso
+     */
     public void setTipoCurso(TipoCurso tipoCurso) {
         this.tipoCurso = tipoCurso;
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Override
     public void validar() throws Exception {
         if (nome == null || nome.isEmpty() ) {

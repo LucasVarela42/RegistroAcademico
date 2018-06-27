@@ -21,12 +21,23 @@ public class ValidacaoServico extends Servico<Validacao> {
     IValidacaoRepositorio repositorio;
     IProtocoloRepositorio protocoloRepositorio;
 
+    /**
+     *
+     * @param repositorio
+     * @param protocoloRepositorio
+     */
     public ValidacaoServico(IValidacaoRepositorio repositorio, IProtocoloRepositorio protocoloRepositorio) {
         super(repositorio);
         this.repositorio = repositorio;
         this.protocoloRepositorio = protocoloRepositorio;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Validacao get(int id) throws SQLException {
         Validacao validacao = super.get(id);
@@ -37,6 +48,11 @@ public class ValidacaoServico extends Servico<Validacao> {
         return validacao;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Validacao> getAll() throws SQLException {
         List<Validacao> validacaos = super.getAll();

@@ -52,6 +52,12 @@ public class CoordenadorRepositorio implements ICoordenadorRepositorio {
 
     private final String DELETE = "DELETE FROM Coordenador WHERE id = ?";
 
+    /**
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Coordenador save(Coordenador entidade) throws SQLException {
         entidade.setId(DataBase.insert(INSERT,
@@ -63,6 +69,12 @@ public class CoordenadorRepositorio implements ICoordenadorRepositorio {
         return entidade;
     }
 
+    /**
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Coordenador update(Coordenador entidade) throws SQLException {
         entidade.setId(DataBase.update(UPDATE,
@@ -75,6 +87,11 @@ public class CoordenadorRepositorio implements ICoordenadorRepositorio {
         return entidade;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Coordenador> getAll() throws SQLException {
         try (PreparedStatement pstmt = ConnectionDB.getConnection().prepareStatement(GET_ALL)) {
@@ -104,6 +121,12 @@ public class CoordenadorRepositorio implements ICoordenadorRepositorio {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Coordenador get(int id) throws SQLException {
         try (PreparedStatement pstmt = ConnectionDB.getConnection().prepareStatement(GET)) {
@@ -134,6 +157,11 @@ public class CoordenadorRepositorio implements ICoordenadorRepositorio {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
     @Override
     public void delete(int id) throws SQLException {
         DataBase.delete(DELETE, id);

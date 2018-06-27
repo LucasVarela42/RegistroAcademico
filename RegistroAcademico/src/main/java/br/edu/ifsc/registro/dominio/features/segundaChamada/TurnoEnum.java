@@ -10,8 +10,20 @@ package br.edu.ifsc.registro.dominio.features.segundaChamada;
  * @author Lucas
  */
 public enum TurnoEnum {
+
+    /**
+     *
+     */
     MATUTINO("Matutino"),
+
+    /**
+     *
+     */
     VESPERTINO("Vespertino"),
+
+    /**
+     *
+     */
     NOTURNO("Noturno");
     
     private String toString;
@@ -20,6 +32,10 @@ public enum TurnoEnum {
         this.toString = toString;
     }
 
+    /**
+     *
+     * @return
+     */
     public String url() {
         return toString;
     }

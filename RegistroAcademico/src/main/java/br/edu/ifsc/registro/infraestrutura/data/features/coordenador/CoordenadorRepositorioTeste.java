@@ -18,6 +18,10 @@ import java.util.List;
  */
 public class CoordenadorRepositorioTeste {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         ICoordenadorRepositorio repositorio;

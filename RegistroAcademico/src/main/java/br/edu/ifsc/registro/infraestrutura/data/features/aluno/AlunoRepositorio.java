@@ -52,6 +52,12 @@ public class AlunoRepositorio implements IAlunoRepositorio {
 
     private final String DELETE = "DELETE FROM Aluno WHERE id = ?";
 
+    /**
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Aluno save(Aluno entidade) throws SQLException {
         entidade.setId(DataBase.insert(INSERT,
@@ -63,6 +69,12 @@ public class AlunoRepositorio implements IAlunoRepositorio {
         return entidade;
     }
 
+    /**
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Aluno update(Aluno entidade) throws SQLException {
         entidade.setId(DataBase.update(UPDATE,
@@ -75,6 +87,11 @@ public class AlunoRepositorio implements IAlunoRepositorio {
         return entidade;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Aluno> getAll() throws SQLException {
         try (PreparedStatement pstmt = ConnectionDB.getConnection().prepareStatement(GET_ALL)) {
@@ -104,6 +121,12 @@ public class AlunoRepositorio implements IAlunoRepositorio {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Aluno get(int id) throws SQLException {
         try (PreparedStatement pstmt = ConnectionDB.getConnection().prepareStatement(GET)) {
@@ -134,6 +157,11 @@ public class AlunoRepositorio implements IAlunoRepositorio {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
     @Override
     public void delete(int id) throws SQLException {
         DataBase.delete(DELETE, id);

@@ -17,7 +17,12 @@ import java.util.List;
  * @author Lucas
  */
 public class DisciplinaRepositorioTeste {
-     public static void main(String[] args) {
+
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 
         IDisciplinaRepositorio repositorio;
         repositorio = new DisciplinaRepositorio();

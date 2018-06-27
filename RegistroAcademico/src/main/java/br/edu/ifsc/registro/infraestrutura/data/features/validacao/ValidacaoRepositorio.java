@@ -56,6 +56,12 @@ public class ValidacaoRepositorio implements IValidacaoRepositorio {
     
     private final String DELETE = "DELETE FROM validacao WHERE id = ?";
 
+    /**
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Validacao save(Validacao entidade) throws SQLException {
         entidade.setId(DataBase.insert(INSERT,
@@ -68,6 +74,12 @@ public class ValidacaoRepositorio implements IValidacaoRepositorio {
         return entidade;
     }
 
+    /**
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Validacao update(Validacao entidade) throws SQLException {
         entidade.setId(DataBase.update(UPDATE,
@@ -81,6 +93,11 @@ public class ValidacaoRepositorio implements IValidacaoRepositorio {
         return entidade;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Validacao> getAll() throws SQLException {
         try (PreparedStatement pstmt = ConnectionDB.getConnection().prepareStatement(GET_ALL)) {
@@ -109,6 +126,12 @@ public class ValidacaoRepositorio implements IValidacaoRepositorio {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Validacao get(int id) throws SQLException {
         try (PreparedStatement pstmt = ConnectionDB.getConnection().prepareStatement(GET)) {
@@ -138,6 +161,11 @@ public class ValidacaoRepositorio implements IValidacaoRepositorio {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
     @Override
     public void delete(int id) throws SQLException {
         DataBase.delete(DELETE, id);

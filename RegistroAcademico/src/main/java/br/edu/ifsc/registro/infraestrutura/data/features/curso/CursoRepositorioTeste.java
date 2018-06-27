@@ -17,6 +17,10 @@ import java.util.List;
  */
 public class CursoRepositorioTeste {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         ICursoRepositorio repositorio;

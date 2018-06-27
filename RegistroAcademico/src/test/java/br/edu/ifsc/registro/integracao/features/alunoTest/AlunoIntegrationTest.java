@@ -44,7 +44,7 @@ public class AlunoIntegrationTest {
         aluno.setEmail("lucas@lucas");
         aluno.setNome("Lucas");
         aluno.setTelefone("987654321");
-        c.setId(3);
+        c.setId(1);
         aluno.setCurso(c);
         //Action
         Aluno resultado;

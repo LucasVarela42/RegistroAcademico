@@ -16,46 +16,90 @@ public class Protocolo extends Entidade{
     private Aluno aluno;
     private Coordenador coordenador;
     
+    /**
+     *
+     * @return
+     */
     public String getNumero() {
         return numero;
     }
 
+    /**
+     *
+     * @param numero
+     */
     public void setNumero(String numero) {
         this.numero = numero;
     }
 
+    /**
+     *
+     * @return
+     */
     public TipoProtocolo getTipoProtocolo() {
         return tipoProtocolo;
     }
 
+    /**
+     *
+     * @param tipoProtocolo
+     */
     public void setTipoProtocolo(TipoProtocolo tipoProtocolo) {
         this.tipoProtocolo = tipoProtocolo;
     }
 
+    /**
+     *
+     * @return
+     */
     public LocalDate getDataCadastro() {
         return dataCadastro;
     }
 
+    /**
+     *
+     * @param dataCadastro
+     */
     public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
     
+    /**
+     *
+     * @return
+     */
     public Aluno getAluno() {
         return aluno;
     }
 
+    /**
+     *
+     * @param aluno
+     */
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
 
+    /**
+     *
+     * @return
+     */
     public Coordenador getCoordenador() {
         return coordenador;
     }
 
+    /**
+     *
+     * @param coordenador
+     */
     public void setCoordenador(Coordenador coordenador) {
         this.coordenador = coordenador;
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Override
     public void validar() throws Exception {
         super.validar(); 

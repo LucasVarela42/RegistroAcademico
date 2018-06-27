@@ -17,6 +17,11 @@ import java.util.List;
  * @author Lucas
  */
 public class AlunoRepositorioTeste {
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         IAlunoRepositorio repositorio;

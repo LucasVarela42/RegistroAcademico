@@ -24,6 +24,13 @@ public final class DataBase {
         return conexao;
     }
 
+    /**
+     *
+     * @param insertSql
+     * @param parametros
+     * @return
+     * @throws SQLException
+     */
     public static int insert(String insertSql, Object... parametros) throws SQLException {
         try (PreparedStatement pstmt
                 = getConnection().prepareStatement(insertSql, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -47,6 +54,13 @@ public final class DataBase {
         }
     }
 
+    /**
+     *
+     * @param updateSql
+     * @param parametros
+     * @return
+     * @throws SQLException
+     */
     public static int update(String updateSql, Object... parametros) throws SQLException {
         try (PreparedStatement pstmt
                 = getConnection().prepareStatement(updateSql)) {
@@ -65,6 +79,12 @@ public final class DataBase {
         }
     }
 
+    /**
+     *
+     * @param deleteSql
+     * @param id
+     * @throws SQLException
+     */
     public static void delete(String deleteSql, Integer id) throws SQLException {
         try (PreparedStatement pstmt = getConnection().prepareStatement(deleteSql)) {
             pstmt.setInt(1, id);

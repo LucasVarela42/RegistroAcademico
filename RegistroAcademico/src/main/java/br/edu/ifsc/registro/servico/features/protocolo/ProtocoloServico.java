@@ -23,6 +23,12 @@ public class ProtocoloServico extends Servico<Protocolo> {
     IAlunoRepositorio alunoRepositorio;
     ICoordenadorRepositorio coordenadorRepositorio;
 
+    /**
+     *
+     * @param repositorio
+     * @param alunoRepositorio
+     * @param coordenadorRepositorio
+     */
     public ProtocoloServico(IProtocoloRepositorio repositorio, IAlunoRepositorio alunoRepositorio, ICoordenadorRepositorio coordenadorRepositorio) {
         super(repositorio);
         this.repositorio = repositorio;
@@ -30,6 +36,12 @@ public class ProtocoloServico extends Servico<Protocolo> {
         this.coordenadorRepositorio = coordenadorRepositorio;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Protocolo get(int id) throws SQLException {
         Protocolo protocolo = super.get(id);
@@ -41,6 +53,11 @@ public class ProtocoloServico extends Servico<Protocolo> {
         return protocolo;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Protocolo> getAll() throws SQLException {
         List<Protocolo> protocolos = super.getAll();

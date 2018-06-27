@@ -13,38 +13,74 @@ public class Disciplina extends Entidade{
     private String sigla;
     private Curso curso;
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCargaHoraria() {
         return cargaHoraria;
     }
 
+    /**
+     *
+     * @param cargaHoraria
+     */
     public void setCargaHoraria(int cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSigla() {
         return sigla;
     }
 
+    /**
+     *
+     * @param sigla
+     */
     public void setSigla(String sigla) {
         this.sigla = sigla;
     }
 
+    /**
+     *
+     * @return
+     */
     public Curso getCurso() {
         return curso;
     }
 
+    /**
+     *
+     * @param curso
+     */
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Override
     public void validar() throws Exception{
         super.validar(); //To change body of generated methods, choose Tools | Templates.

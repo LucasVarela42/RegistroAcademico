@@ -21,12 +21,23 @@ public class AlunoServico extends Servico<Aluno> {
     IAlunoRepositorio repositorio;
     ICursoRepositorio cursoRepositorio;
 
+    /**
+     *
+     * @param repositorio
+     * @param cursoRepositorio
+     */
     public AlunoServico(IAlunoRepositorio repositorio, ICursoRepositorio cursoRepositorio) {
         super(repositorio);
         this.repositorio = repositorio;
         this.cursoRepositorio = cursoRepositorio;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Aluno get(int id) throws SQLException {
         Aluno aluno = super.get(id);
@@ -37,6 +48,11 @@ public class AlunoServico extends Servico<Aluno> {
         return aluno;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Aluno> getAll() throws SQLException {
         List<Aluno> alunos = super.getAll();

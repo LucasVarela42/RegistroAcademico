@@ -17,6 +17,10 @@ public class CursoServico extends Servico<Curso> {
 
     ICursoRepositorio repositorio;
 
+    /**
+     *
+     * @param repositorio
+     */
     public CursoServico(ICursoRepositorio repositorio) {
         super(repositorio);
         this.repositorio = repositorio;

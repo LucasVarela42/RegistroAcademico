@@ -19,10 +19,17 @@ public class ControllerCoordenador extends ControllerFormulario {
     private CoordenadorServico servico;
     private FrameCoordenadorCadastro coordenadorCadastro;
 
+    /**
+     *
+     * @param coordenadorServico
+     */
     public ControllerCoordenador(CoordenadorServico coordenadorServico) {
         this.servico = coordenadorServico;
     }
 
+    /**
+     *
+     */
     @Override
     public void Adicionar() {
         coordenadorCadastro = new FrameCoordenadorCadastro(servico);
@@ -30,11 +37,17 @@ public class ControllerCoordenador extends ControllerFormulario {
         System.out.println("Chegou no adicionar!!");
     }
 
+    /**
+     *
+     */
     @Override
     public void Editar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     */
     @Override
     public void Remover() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -17,6 +17,10 @@ public class DisciplinaServico extends Servico<Disciplina> {
 
     IDisciplinaRepositorio repositorio;
 
+    /**
+     *
+     * @param repositorio
+     */
     public DisciplinaServico(IDisciplinaRepositorio repositorio) {
         super(repositorio);
         this.repositorio = repositorio;

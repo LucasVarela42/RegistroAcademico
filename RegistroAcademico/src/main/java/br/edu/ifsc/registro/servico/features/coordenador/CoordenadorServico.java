@@ -21,12 +21,23 @@ public class CoordenadorServico extends Servico<Coordenador> {
     ICoordenadorRepositorio repositorio;
     ICursoRepositorio cursoRepositorio;
 
+    /**
+     *
+     * @param repositorio
+     * @param cursoRepositorio
+     */
     public CoordenadorServico(ICoordenadorRepositorio repositorio, ICursoRepositorio cursoRepositorio) {
         super(repositorio);
         this.repositorio = repositorio;
         this.cursoRepositorio = cursoRepositorio;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Coordenador get(int id) throws SQLException {
         Coordenador coordenador = super.get(id);
@@ -37,6 +48,11 @@ public class CoordenadorServico extends Servico<Coordenador> {
         return coordenador;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Coordenador> getAll() throws SQLException {
         List<Coordenador> coordenadors = super.getAll();

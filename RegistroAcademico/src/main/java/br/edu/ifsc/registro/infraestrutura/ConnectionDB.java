@@ -19,6 +19,10 @@ public class ConnectionDB {
 
     private static Connection connection;
 
+    /**
+     *
+     * @return
+     */
     public static Connection getConnection() {
         if (connection != null) {
             return connection;
@@ -39,7 +43,7 @@ public class ConnectionDB {
             
             //Mudar usuário
             user = "root"; //User postgre = postgres | user mysql = root
-            pass = "root"; //Pass postgre = aluno | pass mysql = root/aluno
+            pass = "aluno"; //Pass postgre = aluno | pass mysql = root/aluno
             
             connection = DriverManager.getConnection(url, user, pass);
             connection.setAutoCommit(false);
@@ -49,6 +53,9 @@ public class ConnectionDB {
         return connection;
     }
 
+    /**
+     *
+     */
     public static void close() {
         try {
             connection.close();
@@ -57,6 +64,9 @@ public class ConnectionDB {
         }
     }
 
+    /**
+     *
+     */
     public static void rollback() {
         try {
             connection.rollback();
@@ -65,6 +75,9 @@ public class ConnectionDB {
         }
     }
 
+    /**
+     *
+     */
     public static void commit() {
         try {
             connection.commit();

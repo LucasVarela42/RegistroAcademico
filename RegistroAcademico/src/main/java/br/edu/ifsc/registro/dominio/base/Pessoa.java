@@ -10,30 +10,58 @@ public abstract class Pessoa extends Entidade {
     private String telefone;
     private String email;
 
+    /**
+     *
+     * @return
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTelefone() {
         return telefone;
     }
 
+    /**
+     *
+     * @param telefone
+     */
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Override
     public void validar() throws Exception {
         super.validar();

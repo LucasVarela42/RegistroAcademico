@@ -17,10 +17,17 @@ public class ControllerCurso extends ControllerFormulario {
     private CursoServico servico;
     private FrameCursoCadastro cursoCadastro;
 
+    /**
+     *
+     * @param cursoServico
+     */
     public ControllerCurso(CursoServico cursoServico) {
         this.servico = cursoServico;
     }
 
+    /**
+     *
+     */
     @Override
     public void Adicionar() {
         cursoCadastro = new FrameCursoCadastro(servico);
@@ -28,11 +35,17 @@ public class ControllerCurso extends ControllerFormulario {
         System.out.println("Chegou no adicionar!!");
     }
 
+    /**
+     *
+     */
     @Override
     public void Editar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     */
     @Override
     public void Remover() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

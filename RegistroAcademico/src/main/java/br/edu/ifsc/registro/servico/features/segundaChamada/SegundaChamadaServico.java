@@ -21,12 +21,23 @@ public class SegundaChamadaServico extends Servico<SegundaChamadaAtividadeAvalia
     ISegundaChamadaRepositorio repositorio;
     IProtocoloRepositorio protocoloRepositorio;
 
+    /**
+     *
+     * @param repositorio
+     * @param protocoloRepositorio
+     */
     public SegundaChamadaServico(ISegundaChamadaRepositorio repositorio, IProtocoloRepositorio protocoloRepositorio) {
         super(repositorio);
         this.repositorio = repositorio;
         this.protocoloRepositorio = protocoloRepositorio;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public SegundaChamadaAtividadeAvaliativa get(int id) throws SQLException {
         SegundaChamadaAtividadeAvaliativa segundaChamada = super.get(id);
@@ -37,6 +48,11 @@ public class SegundaChamadaServico extends Servico<SegundaChamadaAtividadeAvalia
         return segundaChamada;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<SegundaChamadaAtividadeAvaliativa> getAll() throws SQLException {
         List<SegundaChamadaAtividadeAvaliativa> segundaChamadas = super.getAll();

@@ -18,6 +18,10 @@ import java.time.LocalDate;
  */
 public class TesteMain {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         //Base
         Curso curso = new Curso();

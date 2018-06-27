@@ -50,6 +50,12 @@ public class DisciplinaRepositorio implements IDisciplinaRepositorio {
     
     private final String DELETE = "DELETE FROM disciplina WHERE id = ?";
 
+    /**
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Disciplina save(Disciplina entidade) throws SQLException {
         entidade.setId(DataBase.insert(INSERT,
@@ -61,6 +67,12 @@ public class DisciplinaRepositorio implements IDisciplinaRepositorio {
         return entidade;
     }
 
+    /**
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Disciplina update(Disciplina entidade) throws SQLException {
         entidade.setId(DataBase.insert(UPDATE, 
@@ -73,6 +85,11 @@ public class DisciplinaRepositorio implements IDisciplinaRepositorio {
         return entidade;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Disciplina> getAll() throws SQLException {
         try (PreparedStatement pstmt = ConnectionDB.getConnection().prepareStatement(GET_ALL)) {
@@ -102,6 +119,12 @@ public class DisciplinaRepositorio implements IDisciplinaRepositorio {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Disciplina get(int id) throws SQLException {
         try (PreparedStatement pstmt = ConnectionDB.getConnection().prepareStatement(GET)) {
@@ -132,6 +155,11 @@ public class DisciplinaRepositorio implements IDisciplinaRepositorio {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
     @Override
     public void delete(int id) throws SQLException {
         DataBase.delete(DELETE, id);

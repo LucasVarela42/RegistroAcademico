@@ -28,23 +28,45 @@ public class CursoRepositorio implements ICursoRepositorio {
     private final String GET = "SELECT * FROM Curso WHERE id = ?";
     private final String DELETE = "DELETE FROM Curso WHERE id = ?";
 
+    /**
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Curso save(Curso entidade) throws SQLException {
         entidade.setId(DataBase.insert(INSERT, entidade.getNome(), entidade.getTipoCurso().toString()));
         return entidade;
     }
 
+    /**
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Curso update(Curso entidade) throws SQLException {
         entidade.setId(DataBase.update(UPDATE, entidade.getNome(), entidade.getTipoCurso().toString(), entidade.getId()));
         return entidade;
     }
 
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
     @Override
     public void delete(int id) throws SQLException {
         DataBase.delete(DELETE, id);
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Curso> getAll() throws SQLException {
         try (PreparedStatement pstmt = ConnectionDB.getConnection().prepareStatement(GET_ALL)) {
@@ -67,6 +89,12 @@ public class CursoRepositorio implements ICursoRepositorio {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Curso get(int id) throws SQLException {
         try (PreparedStatement pstmt = ConnectionDB.getConnection().prepareStatement(GET)) {

@@ -15,6 +15,10 @@ import java.sql.Connection;
 public class TesteConexao {
     private static final Connection conexao = ConnectionDB.getConnection();
     
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         
         try {

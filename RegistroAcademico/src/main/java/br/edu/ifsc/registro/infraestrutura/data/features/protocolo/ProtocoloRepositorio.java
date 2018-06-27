@@ -57,6 +57,12 @@ public class ProtocoloRepositorio implements IProtocoloRepositorio {
 
     private final String DELETE = "DELETE FROM protocolo WHERE id = ?";
 
+    /**
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Protocolo save(Protocolo entidade) throws SQLException {
         entidade.setId(DataBase.insert(INSERT,
@@ -69,6 +75,12 @@ public class ProtocoloRepositorio implements IProtocoloRepositorio {
         return entidade;
     }
 
+    /**
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Protocolo update(Protocolo entidade) throws SQLException {
         entidade.setId(DataBase.insert(UPDATE,
@@ -82,6 +94,11 @@ public class ProtocoloRepositorio implements IProtocoloRepositorio {
         return entidade;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Protocolo> getAll() throws SQLException {
         try (PreparedStatement pstmt = ConnectionDB.getConnection().prepareStatement(GET_ALL)) {
@@ -113,6 +130,12 @@ public class ProtocoloRepositorio implements IProtocoloRepositorio {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Protocolo get(int id) throws SQLException {
         try (PreparedStatement pstmt = ConnectionDB.getConnection().prepareStatement(GET)) {
@@ -145,6 +168,11 @@ public class ProtocoloRepositorio implements IProtocoloRepositorio {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
     @Override
     public void delete(int id) throws SQLException {
         DataBase.delete(DELETE, id);

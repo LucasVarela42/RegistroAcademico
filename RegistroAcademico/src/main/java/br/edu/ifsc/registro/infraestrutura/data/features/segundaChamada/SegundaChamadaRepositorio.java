@@ -63,6 +63,12 @@ public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
 
     private final String DELETE = "DELETE FROM segundaChamada WHERE id = ?";
 
+    /**
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
     public SegundaChamadaAtividadeAvaliativa save(SegundaChamadaAtividadeAvaliativa entidade) throws SQLException {
         entidade.setId(DataBase.insert(INSERT,
@@ -77,6 +83,12 @@ public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
         return entidade;
     }
 
+    /**
+     *
+     * @param entidade
+     * @return
+     * @throws SQLException
+     */
     @Override
     public SegundaChamadaAtividadeAvaliativa update(SegundaChamadaAtividadeAvaliativa entidade) throws SQLException {
         entidade.setId(DataBase.update(UPDATE,
@@ -92,6 +104,11 @@ public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
         return entidade;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<SegundaChamadaAtividadeAvaliativa> getAll() throws SQLException {
         try (PreparedStatement pstmt = ConnectionDB.getConnection().prepareStatement(GET_ALL)) {
@@ -122,6 +139,12 @@ public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public SegundaChamadaAtividadeAvaliativa get(int id) throws SQLException {
         try (PreparedStatement pstmt = ConnectionDB.getConnection().prepareStatement(GET)) {
@@ -153,6 +176,11 @@ public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
     @Override
     public void delete(int id) throws SQLException {
         DataBase.delete(DELETE, id);

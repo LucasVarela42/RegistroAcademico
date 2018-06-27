@@ -11,14 +11,26 @@ public class Aluno extends Pessoa {
 
     private Curso curso;
 
+    /**
+     *
+     * @return
+     */
     public Curso getCurso() {
         return curso;
     }
 
+    /**
+     *
+     * @param curso
+     */
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Override
     public void validar() throws Exception {
         super.validar();

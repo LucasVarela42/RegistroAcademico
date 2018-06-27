@@ -12,9 +12,18 @@ package br.edu.ifsc.registro.apresentacao;
  */
 public abstract class ControllerFormulario {
 
+    /**
+     *
+     */
     public abstract void Adicionar();
 
+    /**
+     *
+     */
     public abstract void Editar();
 
+    /**
+     *
+     */
     public abstract void Remover();
 }
