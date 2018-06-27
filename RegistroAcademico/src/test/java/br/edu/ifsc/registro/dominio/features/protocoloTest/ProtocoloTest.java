@@ -157,24 +157,5 @@ public class ProtocoloTest {
             assertThat(ex).hasMessageContaining("O protocolo deve ser vinculado a um coordenador.");
         }
     }
-    
-    @Test
-    public void dominio_protocolo_validacaoIdInvalido_deveFalhar() {
-        //Organização
-        protocolo.setId(0);
-        protocolo.setNumero("654987321");
-        protocolo.setTipoProtocolo(TipoProtocolo.VALIDACAO);
-        protocolo.setDataCadastro(LocalDate.now());
-        protocolo.setAluno(new Aluno());
-        protocolo.setCoordenador(new Coordenador());
-
-        try {
-            //Ação
-            protocolo.validar();
-        } catch (Exception ex) {
-            //Verificação
-            assertThat(ex).hasMessageContaining("Id indefinido.");
-        }
-    }
-
+   
 }

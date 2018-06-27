@@ -5,10 +5,33 @@
  */
 package br.edu.ifsc.registro.apresentacao;
 
+import br.edu.ifsc.registro.apresentacao.features.aluno.ControllerAluno;
+import br.edu.ifsc.registro.apresentacao.features.coordenador.ControllerCoordenador;
 import br.edu.ifsc.registro.apresentacao.features.curso.ControllerCurso;
+import br.edu.ifsc.registro.apresentacao.features.disciplina.ControllerDisciplina;
+import br.edu.ifsc.registro.apresentacao.features.segundaChamada.ControllerSegundaChamada;
+import br.edu.ifsc.registro.apresentacao.features.validacao.ControllerValidacao;
+import br.edu.ifsc.registro.dominio.features.aluno.IAlunoRepositorio;
+import br.edu.ifsc.registro.dominio.features.coordenador.ICoordenadorRepositorio;
 import br.edu.ifsc.registro.dominio.features.curso.ICursoRepositorio;
+import br.edu.ifsc.registro.dominio.features.disciplina.IDisciplinaRepositorio;
+import br.edu.ifsc.registro.dominio.features.protocolo.IProtocoloRepositorio;
+import br.edu.ifsc.registro.dominio.features.segundaChamada.ISegundaChamadaRepositorio;
+import br.edu.ifsc.registro.dominio.features.validacao.IValidacaoRepositorio;
+import br.edu.ifsc.registro.infraestrutura.data.features.aluno.AlunoRepositorio;
+import br.edu.ifsc.registro.infraestrutura.data.features.coordenador.CoordenadorRepositorio;
 import br.edu.ifsc.registro.infraestrutura.data.features.curso.CursoRepositorio;
+import br.edu.ifsc.registro.infraestrutura.data.features.disciplina.DisciplinaRepositorio;
+import br.edu.ifsc.registro.infraestrutura.data.features.protocolo.ProtocoloRepositorio;
+import br.edu.ifsc.registro.infraestrutura.data.features.segundaChamada.SegundaChamadaRepositorio;
+import br.edu.ifsc.registro.infraestrutura.data.features.validacao.ValidacaoRepositorio;
+import br.edu.ifsc.registro.servico.features.aluno.AlunoServico;
+import br.edu.ifsc.registro.servico.features.coordenador.CoordenadorServico;
 import br.edu.ifsc.registro.servico.features.curso.CursoServico;
+import br.edu.ifsc.registro.servico.features.disciplina.DisciplinaServico;
+import br.edu.ifsc.registro.servico.features.protocolo.ProtocoloServico;
+import br.edu.ifsc.registro.servico.features.segundaChamada.SegundaChamadaServico;
+import br.edu.ifsc.registro.servico.features.validacao.ValidacaoServico;
 
 /**
  *
@@ -19,8 +42,31 @@ public class FramePrincipal extends javax.swing.JFrame {
     private ICursoRepositorio cursoRepositorio;
     private CursoServico cursoServico;
 
+    private IDisciplinaRepositorio disciplinaRepositorio;
+    private DisciplinaServico disciplinaServico;
+
+    private IAlunoRepositorio alunoRepositorio;
+    private AlunoServico alunoServico;
+
+    private ICoordenadorRepositorio coordenadorRepositorio;
+    private CoordenadorServico coordenadorServico;
+
+    private IProtocoloRepositorio protocoloRepositorio;
+    private ProtocoloServico protocoloServico;
+
+    private ISegundaChamadaRepositorio segundaChamadaRepositorio;
+    private SegundaChamadaServico segundaChamadaServico;
+
+    private IValidacaoRepositorio validacaoRepositorio;
+    private ValidacaoServico validacaoServico;
+
     private ControllerFormulario controller;
     private ControllerCurso controllerCurso;
+    private ControllerDisciplina controllerDisciplina;
+    private ControllerAluno controllerAluno;
+    private ControllerCoordenador controllerCoordenador;
+    private ControllerSegundaChamada controllerSegundaChamada;
+    private ControllerValidacao controllerValidacao;
 
     /**
      * Creates new form FramePrincipal
@@ -30,6 +76,25 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         this.cursoRepositorio = new CursoRepositorio();
         this.cursoServico = new CursoServico(cursoRepositorio);
+
+        this.disciplinaRepositorio = new DisciplinaRepositorio();
+        this.disciplinaServico = new DisciplinaServico(disciplinaRepositorio);
+
+        this.alunoRepositorio = new AlunoRepositorio();
+        this.alunoServico = new AlunoServico(alunoRepositorio, cursoRepositorio);
+
+        this.coordenadorRepositorio = new CoordenadorRepositorio();
+        this.coordenadorServico = new CoordenadorServico(coordenadorRepositorio, cursoRepositorio);
+
+        this.protocoloRepositorio = new ProtocoloRepositorio();
+        this.protocoloServico = new ProtocoloServico(protocoloRepositorio, alunoRepositorio, coordenadorRepositorio);
+
+        this.segundaChamadaRepositorio = new SegundaChamadaRepositorio();
+        this.segundaChamadaServico = new SegundaChamadaServico(segundaChamadaRepositorio, protocoloRepositorio);
+
+        this.validacaoRepositorio = new ValidacaoRepositorio();
+        this.validacaoServico = new ValidacaoServico(validacaoRepositorio, protocoloRepositorio);
+
     }
 
     private void CarregarCadastro(ControllerFormulario controller) {
@@ -53,9 +118,17 @@ public class FramePrincipal extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         btnRemover = new javax.swing.JButton();
         panelPrincipal = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listPrincipal = new javax.swing.JList<>();
         jMenuBarPrincipal = new javax.swing.JMenuBar();
         jMenuCadastros = new javax.swing.JMenu();
         menuItemCurso = new javax.swing.JMenuItem();
+        menuItemDisciplina = new javax.swing.JMenuItem();
+        menuItemAluno = new javax.swing.JMenuItem();
+        menuItemCoordenador = new javax.swing.JMenuItem();
+        menuItemSegundaChamada = new javax.swing.JMenuItem();
+        menuItemValidacao = new javax.swing.JMenuItem();
+        menuItemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,15 +162,18 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         panelPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
+        listPrincipal.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(listPrincipal);
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 458, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
         );
 
         jMenuCadastros.setText("Cadastros");
@@ -109,6 +185,54 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
         });
         jMenuCadastros.add(menuItemCurso);
+
+        menuItemDisciplina.setText("Disciplina");
+        menuItemDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemDisciplinaActionPerformed(evt);
+            }
+        });
+        jMenuCadastros.add(menuItemDisciplina);
+
+        menuItemAluno.setText("Aluno");
+        menuItemAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemAlunoActionPerformed(evt);
+            }
+        });
+        jMenuCadastros.add(menuItemAluno);
+
+        menuItemCoordenador.setText("Coordenador");
+        menuItemCoordenador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCoordenadorActionPerformed(evt);
+            }
+        });
+        jMenuCadastros.add(menuItemCoordenador);
+
+        menuItemSegundaChamada.setText("Segunda Chamada Avaliativa");
+        menuItemSegundaChamada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSegundaChamadaActionPerformed(evt);
+            }
+        });
+        jMenuCadastros.add(menuItemSegundaChamada);
+
+        menuItemValidacao.setText("Validação");
+        menuItemValidacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemValidacaoActionPerformed(evt);
+            }
+        });
+        jMenuCadastros.add(menuItemValidacao);
+
+        menuItemSair.setText("Sair");
+        menuItemSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSairActionPerformed(evt);
+            }
+        });
+        jMenuCadastros.add(menuItemSair);
 
         jMenuBarPrincipal.add(jMenuCadastros);
 
@@ -144,8 +268,53 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
         this.controller.Adicionar();
-        
+
     }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void menuItemDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDisciplinaActionPerformed
+        // TODO add your handling code here:
+        if (controllerDisciplina == null) {
+            controllerDisciplina = new ControllerDisciplina(disciplinaServico);
+        }
+        CarregarCadastro(controllerDisciplina);
+    }//GEN-LAST:event_menuItemDisciplinaActionPerformed
+
+    private void menuItemAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAlunoActionPerformed
+        // TODO add your handling code here:
+        if (controllerAluno == null) {
+            controllerAluno = new ControllerAluno(alunoServico);
+        }
+        CarregarCadastro(controllerAluno);
+    }//GEN-LAST:event_menuItemAlunoActionPerformed
+
+    private void menuItemCoordenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCoordenadorActionPerformed
+        // TODO add your handling code here:
+        if (controllerCoordenador == null) {
+            controllerCoordenador = new ControllerCoordenador(coordenadorServico);
+        }
+        CarregarCadastro(controllerCoordenador);
+    }//GEN-LAST:event_menuItemCoordenadorActionPerformed
+
+    private void menuItemSegundaChamadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSegundaChamadaActionPerformed
+        // TODO add your handling code here:
+        if (controllerSegundaChamada == null) {
+            controllerSegundaChamada = new ControllerSegundaChamada(segundaChamadaServico);
+        }
+        CarregarCadastro(controllerSegundaChamada);
+    }//GEN-LAST:event_menuItemSegundaChamadaActionPerformed
+
+    private void menuItemValidacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemValidacaoActionPerformed
+        // TODO add your handling code here:
+        if (controllerValidacao == null) {
+            controllerValidacao = new ControllerValidacao(validacaoServico);
+        }
+        CarregarCadastro(controllerValidacao);
+    }//GEN-LAST:event_menuItemValidacaoActionPerformed
+
+    private void menuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSairActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_menuItemSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,8 +357,16 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnRemover;
     private javax.swing.JMenuBar jMenuBarPrincipal;
     private javax.swing.JMenu jMenuCadastros;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBarCadastros;
+    private javax.swing.JList<String> listPrincipal;
+    private javax.swing.JMenuItem menuItemAluno;
+    private javax.swing.JMenuItem menuItemCoordenador;
     private javax.swing.JMenuItem menuItemCurso;
+    private javax.swing.JMenuItem menuItemDisciplina;
+    private javax.swing.JMenuItem menuItemSair;
+    private javax.swing.JMenuItem menuItemSegundaChamada;
+    private javax.swing.JMenuItem menuItemValidacao;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
 }

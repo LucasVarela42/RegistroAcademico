@@ -90,8 +90,7 @@ public class CursoIntegrationTest {
     @Test
     public void Integration_Curso_AtualizarInvalido_DeveFalhar() {
         //Arrange
-        curso.setId(0);
-        curso.setNome("Mecatrônica");
+        curso.setId(1);
         curso.setTipoCurso(TipoCurso.TECNICO);
         //Action
         Curso resultado;
@@ -100,7 +99,7 @@ public class CursoIntegrationTest {
 
         } catch (Exception ex) {
             //Verify
-            assertThat(ex).hasMessageContaining("Id indefinido.");
+            assertThat(ex).hasMessageContaining("O nome do curso não pode ser vazio.");
         }
     }
 

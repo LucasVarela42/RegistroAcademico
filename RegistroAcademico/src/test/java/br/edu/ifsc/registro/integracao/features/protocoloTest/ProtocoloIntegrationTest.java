@@ -49,14 +49,38 @@ public class ProtocoloIntegrationTest {
     }
 
     @Test
-    public void Integration_Protocolo_AdicionarCorretamente_DevePassar() {
+    public void Integration_Protocolo_AdicionarCorretamenteReconhecimentoSaberes_DevePassar() {
         //Arrange
         protocolo.setNumero("987654321");
+        protocolo.setTipoProtocolo(TipoProtocolo.RECONHECIMENTO_DE_SABERES);
+        protocolo.setDataCadastro(LocalDate.now());
+        a.setId(1);
+        protocolo.setAluno(a);
+        c.setId(1);
+        protocolo.setCoordenador(c);
+        //Action
+        Protocolo resultado;
+        try {
+            resultado = servico.add(protocolo);
+            //Verify
+            assertThat(resultado).isNotNull();
+            assertThat(resultado.getNumero()).isEqualTo(protocolo.getNumero());
+            assertThat(resultado.getAluno().getId()).isEqualTo(a.getId());
+            assertThat(resultado.getCoordenador().getId()).isEqualTo(c.getId());
+        } catch (Exception ex) {
+            assertThat(ex).doesNotThrowAnyException();
+        }
+    }
+    
+    @Test
+    public void Integration_Protocolo_AdicionarCorretamenteValidacao_DevePassar() {
+        //Arrange
+        protocolo.setNumero("123654789");
         protocolo.setTipoProtocolo(TipoProtocolo.VALIDACAO);
         protocolo.setDataCadastro(LocalDate.now());
-        a.setId(5);
+        a.setId(1);
         protocolo.setAluno(a);
-        c.setId(2);
+        c.setId(1);
         protocolo.setCoordenador(c);
         //Action
         Protocolo resultado;
@@ -77,9 +101,9 @@ public class ProtocoloIntegrationTest {
         //Arrange
         protocolo.setTipoProtocolo(TipoProtocolo.RECONHECIMENTO_DE_SABERES);
         protocolo.setDataCadastro(LocalDate.now());
-        a.setId(5);
+        a.setId(1);
         protocolo.setAluno(a);
-        c.setId(2);
+        c.setId(1);
         protocolo.setCoordenador(c);
         //Action
         Protocolo resultado;
@@ -99,9 +123,9 @@ public class ProtocoloIntegrationTest {
         protocolo.setNumero("5555555555");
         protocolo.setTipoProtocolo(TipoProtocolo.RECONHECIMENTO_DE_SABERES);
         protocolo.setDataCadastro(LocalDate.now());
-        a.setId(5);
+        a.setId(1);
         protocolo.setAluno(a);
-        c.setId(2);
+        c.setId(1);
         protocolo.setCoordenador(c);
         //Action
         Protocolo resultado;
@@ -121,9 +145,9 @@ public class ProtocoloIntegrationTest {
         protocolo.setId(1);
         protocolo.setNumero("5555555555");
         protocolo.setDataCadastro(LocalDate.now());
-        a.setId(5);
+        a.setId(1);
         protocolo.setAluno(a);
-        c.setId(2);
+        c.setId(1);
         protocolo.setCoordenador(c);
         //Action
         Protocolo resultado;
