@@ -29,7 +29,7 @@ public class Curso extends Entidade {
 
     @Override
     public void validar() throws Exception {
-        if (nome.isEmpty()) {
+        if (nome == null || nome.isEmpty() ) {
             throw new Exception("O nome do curso não pode ser vazio.");
         }
         if (nome.length() > 50) {

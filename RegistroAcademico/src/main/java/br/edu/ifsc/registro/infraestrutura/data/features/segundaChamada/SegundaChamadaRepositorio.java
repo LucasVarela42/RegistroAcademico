@@ -32,9 +32,9 @@ public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
             + "localProva = ?, "
             + "turno = ?, "
             + "motivoProva = ?, "
-            + "dataAvaliacao = ? "
-            + "justificativaProfessor = ? "
-            + "professorAplicadorProva = ? "
+            + "dataAvaliacao = ?, "
+            + "justificativaProfessor = ?, "
+            + "professorAplicadorProva = ?, "
             + "protocoloId = ? "
             + "WHERE id = ?";
 
@@ -67,7 +67,7 @@ public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
     public SegundaChamadaAtividadeAvaliativa save(SegundaChamadaAtividadeAvaliativa entidade) throws SQLException {
         entidade.setId(DataBase.insert(INSERT,
                 entidade.getLocalProva(),
-                entidade.getTurno(),
+                entidade.getTurno().toString(),
                 entidade.getMotivoProva(),
                 entidade.getDataAvaliacao(),
                 entidade.getJustificativaProfessor(),
@@ -79,9 +79,9 @@ public class SegundaChamadaRepositorio implements ISegundaChamadaRepositorio {
 
     @Override
     public SegundaChamadaAtividadeAvaliativa update(SegundaChamadaAtividadeAvaliativa entidade) throws SQLException {
-        entidade.setId(DataBase.insert(UPDATE,
+        entidade.setId(DataBase.update(UPDATE,
                 entidade.getLocalProva(),
-                entidade.getTurno(),
+                entidade.getTurno().toString(),
                 entidade.getMotivoProva(),
                 entidade.getDataAvaliacao(),
                 entidade.getJustificativaProfessor(),

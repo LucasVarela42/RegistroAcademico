@@ -57,11 +57,14 @@ public class Validacao extends Entidade {
 
     @Override
     public void validar() throws Exception {
-        super.validar(); //To change body of generated methods, choose Tools | Templates.
+        super.validar(); 
         if (nota < 0) {
             throw new Exception("A nota da validação não pode ser menor que zero.");
         }
-        if (observacao.isEmpty()) {
+        if (nota > 10) {
+            throw new Exception("A nota da validação não pode ser maior que dez.");
+        }
+        if (observacao == null || observacao.isEmpty()) {
             throw new Exception("A observação da validação não pode ser vazia.");
         }
         if (tipoValidacao == null) {

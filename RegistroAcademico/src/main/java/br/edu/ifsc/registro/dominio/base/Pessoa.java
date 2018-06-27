@@ -37,13 +37,13 @@ public abstract class Pessoa extends Entidade {
     @Override
     public void validar() throws Exception {
         super.validar();
-        if (nome.isEmpty()) {
+        if (nome == null || nome.isEmpty()) {
             throw new Exception("O nome não pode ser vazio.");
         }
-        if (telefone.isEmpty()) {
+        if (telefone == null || telefone.isEmpty()) {
             throw new Exception("O telefone não pode ser vazio.");
         }
-        if (email.isEmpty()) {
+        if (email == null || email.isEmpty()) {
             throw new Exception("O email não pode ser vazio.");
         }
 

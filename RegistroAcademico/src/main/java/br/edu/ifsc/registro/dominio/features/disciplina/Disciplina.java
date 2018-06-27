@@ -48,7 +48,7 @@ public class Disciplina extends Entidade{
     @Override
     public void validar() throws Exception{
         super.validar(); //To change body of generated methods, choose Tools | Templates.
-        if (nome.isEmpty()) {
+        if (nome == null || nome.isEmpty()) {
             throw new Exception("O nome da disciplina não pode ser vazia.");
         }
         if (nome.length() > 50) {
@@ -57,7 +57,7 @@ public class Disciplina extends Entidade{
         if (cargaHoraria == 0) {
             throw new Exception("A carga horaria não pode ser zero.");
         }
-        if (sigla.isEmpty()) {
+        if (sigla == null || sigla.isEmpty()) {
             throw new Exception("A sigla da disciplina não pode ser vazia.");
         }
         if (curso == null) {

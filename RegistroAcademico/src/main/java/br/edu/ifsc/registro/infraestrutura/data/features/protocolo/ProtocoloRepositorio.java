@@ -61,7 +61,7 @@ public class ProtocoloRepositorio implements IProtocoloRepositorio {
     public Protocolo save(Protocolo entidade) throws SQLException {
         entidade.setId(DataBase.insert(INSERT,
                 entidade.getNumero(),
-                entidade.getTipoProtocolo(),
+                entidade.getTipoProtocolo().toString(),
                 entidade.getDataCadastro(),
                 entidade.getAluno().getId(),
                 entidade.getCoordenador().getId()
@@ -73,7 +73,7 @@ public class ProtocoloRepositorio implements IProtocoloRepositorio {
     public Protocolo update(Protocolo entidade) throws SQLException {
         entidade.setId(DataBase.insert(UPDATE,
                 entidade.getNumero(),
-                entidade.getTipoProtocolo(),
+                entidade.getTipoProtocolo().toString(),
                 entidade.getDataCadastro(),
                 entidade.getAluno().getId(),
                 entidade.getCoordenador().getId(),

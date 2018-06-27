@@ -31,7 +31,7 @@ public class ValidacaoRepositorio implements IValidacaoRepositorio {
             + "nota = ?, "
             + "deferido = ?, "
             + "observacao = ?, "
-            + "tipoValidacao = ? "
+            + "tipoValidacao = ?, "
             + "protocoloId = ? "
             + "WHERE id = ?";
     
@@ -62,7 +62,7 @@ public class ValidacaoRepositorio implements IValidacaoRepositorio {
                 entidade.getNota(),
                 entidade.isDeferido(),
                 entidade.getObservacao(),
-                entidade.getTipoValidacao(),
+                entidade.getTipoValidacao().toString(),
                 entidade.getProtocolo().getId()
         ));
         return entidade;
@@ -70,11 +70,11 @@ public class ValidacaoRepositorio implements IValidacaoRepositorio {
 
     @Override
     public Validacao update(Validacao entidade) throws SQLException {
-        entidade.setId(DataBase.insert(UPDATE,
+        entidade.setId(DataBase.update(UPDATE,
                 entidade.getNota(),
                 entidade.isDeferido(),
                 entidade.getObservacao(),
-                entidade.getTipoValidacao(),
+                entidade.getTipoValidacao().toString(),
                 entidade.getProtocolo().getId(),
                 entidade.getId()
         ));

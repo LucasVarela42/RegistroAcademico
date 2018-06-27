@@ -9,8 +9,6 @@ import br.edu.ifsc.registro.dominio.features.protocolo.Protocolo;
 import br.edu.ifsc.registro.dominio.features.segundaChamada.SegundaChamadaAtividadeAvaliativa;
 import br.edu.ifsc.registro.dominio.features.segundaChamada.TurnoEnum;
 import java.time.LocalDate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
@@ -69,7 +67,7 @@ public class SegundaChamadaTest {
     }
 
     @Test
-    public void dominio_segundaChamadaAtividadeAvaliativa_validacaoId0_deveFalhar() {
+    public void dominio_segundaChamadaAtividadeAvaliativa_validacaoIdZero_deveFalhar() {
         //Organização
         scaa.setDataAvaliacao(LocalDate.now().plusDays(-10));
         scaa.setId(0);

@@ -79,22 +79,22 @@ public class SegundaChamadaAtividadeAvaliativa extends Entidade {
     @Override
     public void validar() throws Exception {
         super.validar();
-        if (localProva.isEmpty()) {
+        if (localProva == null || localProva.isEmpty()) {
             throw new Exception("O local da Prova da segunda chamada não pode ser vazia.");
         }
         if (turno == null) {
             throw new Exception("O turno do protocolo não pode ser nulo.");
         }
-        if (motivoProva.isEmpty()) {
+        if (motivoProva == null || motivoProva.isEmpty()) {
             throw new Exception("O motivo da prova não pode ser vazio.");
         }
         if (dataAvaliacao.isBefore(LocalDate.now())) {
             throw new Exception("A data de avaliação não pode ser menor que a atual.");
         }
-        if (justificativaProfessor.isEmpty()) {
+        if (justificativaProfessor == null || justificativaProfessor.isEmpty()) {
             throw new Exception("A justificativa do professor não pode ser vazia.");
         }
-        if (professorAplicadorProva.isEmpty()) {
+        if (professorAplicadorProva == null || professorAplicadorProva.isEmpty()) {
             throw new Exception("O nome do professor não pode ser vazio.");
         }
         if (protocolo == null) {

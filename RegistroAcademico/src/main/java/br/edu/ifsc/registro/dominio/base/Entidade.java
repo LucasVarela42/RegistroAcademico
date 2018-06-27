@@ -20,11 +20,6 @@ public abstract class Entidade {
     public String toString() {
         return "id: " + id;
     }
-
-    public void validar() throws Exception{
-        if (id == 0) {
-            throw new Exception("Id indefinido.");
-        }
-    }
-
+    
+    public void validar() throws Exception{ }
 }

@@ -59,7 +59,7 @@ public class Protocolo extends Entidade{
     @Override
     public void validar() throws Exception {
         super.validar(); 
-        if (numero.isEmpty()) {
+        if (numero == null || numero.isEmpty()) {
             throw new Exception("O numero do protocolo não pode ser vazio.");
         }
         if (tipoProtocolo == null) {
