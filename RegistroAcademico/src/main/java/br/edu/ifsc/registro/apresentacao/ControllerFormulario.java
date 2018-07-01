@@ -11,23 +11,25 @@ import java.util.List;
  *
  * @author Lucas
  */
-public abstract class ControllerFormulario {
+public abstract class ControllerFormulario<T> {
 
     /**
      *
      */
-    public abstract void Adicionar();
+    public abstract void adicionar();
 
     /**
      *
      */
-    public abstract void Editar();
+    public abstract void editar(T obj);
 
     /**
      *
      */
-    public abstract void Remover();
+    public abstract void remover(T obj);
 
-    public abstract List carregarLista();
+    public abstract List<T> carregarLista();
+
+    public abstract void atribuirSelecionado(T obj);
 
 }

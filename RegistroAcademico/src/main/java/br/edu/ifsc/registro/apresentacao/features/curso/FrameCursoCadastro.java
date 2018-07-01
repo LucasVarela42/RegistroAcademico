@@ -11,7 +11,9 @@ import br.edu.ifsc.registro.dominio.features.curso.TipoCurso;
 import br.edu.ifsc.registro.servico.features.curso.CursoServico;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -29,11 +31,12 @@ public class FrameCursoCadastro extends javax.swing.JFrame {
         initComponents();
     }
 
-    FrameCursoCadastro(CursoServico cursoServico) {
+    public FrameCursoCadastro(CursoServico cursoServico) {
         initComponents();
         this.servico = cursoServico;
         System.out.println("Carregou FrameCurso");
         carregarTipoCurso();
+        limparCampos();
     }
 
     /**
@@ -56,6 +59,11 @@ public class FrameCursoCadastro extends javax.swing.JFrame {
         return null;
     }
 
+    private void limparCampos() {
+        txfNome.setText("");
+        cbTipoCurso.setSelectedIndex(0);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -74,6 +82,11 @@ public class FrameCursoCadastro extends javax.swing.JFrame {
         setResizable(false);
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnAdicionar.setText("Adicionar");
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -145,19 +158,31 @@ public class FrameCursoCadastro extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
-        System.out.println("Chegou no FrameCursoCadastro!!");
-        curso = new Curso();
-        curso.setNome(txfNome.getText());
-        curso.setTipoCurso(getTipoByNome(cbTipoCurso.getSelectedItem().toString()));
         try {
-            servico.add(curso);
+            if (curso == null) {
+                curso = new Curso();
+                System.out.println("Chegou no Adicionar do FrameCursoCadastro!!");
+                curso.setNome(txfNome.getText());
+                curso.setTipoCurso(getTipoByNome(cbTipoCurso.getSelectedItem().toString()));
+                servico.add(curso);
+            } else {
+                System.out.println("Chegou no Editar do FrameCursoCadastro!!");
+                curso.setNome(txfNome.getText());
+                curso.setTipoCurso(getTipoByNome(cbTipoCurso.getSelectedItem().toString()));
+                servico.update(curso);
+            }
             dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
 
-
     }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        limparCampos();
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,6 +218,31 @@ public class FrameCursoCadastro extends javax.swing.JFrame {
             }
         });
     }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    public JComboBox<String> getCbTipoCurso() {
+        return cbTipoCurso;
+    }
+
+    public void setCbTipoCurso(JComboBox<String> cbTipoCurso) {
+        this.cbTipoCurso = cbTipoCurso;
+    }
+
+    public JTextField getTxfNome() {
+        return txfNome;
+    }
+
+    public void setTxfNome(JTextField txfNome) {
+        this.txfNome = txfNome;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;

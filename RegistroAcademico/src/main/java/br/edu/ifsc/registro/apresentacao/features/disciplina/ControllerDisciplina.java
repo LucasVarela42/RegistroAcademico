@@ -5,8 +5,8 @@
  */
 package br.edu.ifsc.registro.apresentacao.features.disciplina;
 
-import br.edu.ifsc.registro.apresentacao.features.disciplina.*;
 import br.edu.ifsc.registro.apresentacao.ControllerFormulario;
+import br.edu.ifsc.registro.dominio.features.disciplina.Disciplina;
 import br.edu.ifsc.registro.servico.features.disciplina.DisciplinaServico;
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Lucas
  */
-public class ControllerDisciplina extends ControllerFormulario {
+public class ControllerDisciplina extends ControllerFormulario<Disciplina> {
 
     private DisciplinaServico servico;
     private FrameDisciplinaCadastro disciplinaCadastro;
@@ -27,35 +27,31 @@ public class ControllerDisciplina extends ControllerFormulario {
         this.servico = disciplinaServico;
     }
 
-    /**
-     *
-     */
     @Override
-    public void Adicionar() {
+    public void adicionar() {
         disciplinaCadastro = new FrameDisciplinaCadastro(servico);
         disciplinaCadastro.setVisible(true);
         System.out.println("Chegou no adicionar!!");
     }
 
-    /**
-     *
-     */
     @Override
-    public void Editar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void Remover() {
+    public void editar(Disciplina obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List carregarLista() {
+    public void remover(Disciplina obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public List<Disciplina> carregarLista() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void atribuirSelecionado(Disciplina obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

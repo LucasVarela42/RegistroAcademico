@@ -43,7 +43,7 @@ public class ConnectionDB {
             
             //Mudar usuário
             user = "root"; //User postgre = postgres | user mysql = root
-            pass = "aluno"; //Pass postgre = aluno | pass mysql = root/aluno
+            pass = "root"; //Pass postgre = aluno | pass mysql = root/aluno
             
             connection = DriverManager.getConnection(url, user, pass);
             connection.setAutoCommit(false);

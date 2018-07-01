@@ -130,7 +130,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         btnRemover = new javax.swing.JButton();
         panelPrincipal = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listPrincipal = new javax.swing.JList<>();
+        listPrincipal = new javax.swing.JList();
         jMenuBarPrincipal = new javax.swing.JMenuBar();
         jMenuCadastros = new javax.swing.JMenu();
         menuItemCurso = new javax.swing.JMenuItem();
@@ -167,6 +167,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         btnEditar.setFocusable(false);
         btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
         jToolBarCadastros.add(btnEditar);
 
         btnRemover.setText("Remover");
@@ -174,6 +179,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         btnRemover.setFocusable(false);
         btnRemover.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnRemover.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
+            }
+        });
         jToolBarCadastros.add(btnRemover);
 
         panelPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -283,8 +293,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
-        this.controller.Adicionar();
-
+        this.controller.adicionar();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void menuItemDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDisciplinaActionPerformed
@@ -338,6 +347,17 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowActivated
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+        this.controller.editar(listPrincipal.getSelectedValue());
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+        // TODO add your handling code here:
+        this.controller.remover(listPrincipal.getSelectedValue());
+        carregarListaPrincipal();
+    }//GEN-LAST:event_btnRemoverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -381,7 +401,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuCadastros;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBarCadastros;
-    private javax.swing.JList<String> listPrincipal;
+    private javax.swing.JList listPrincipal;
     private javax.swing.JMenuItem menuItemAluno;
     private javax.swing.JMenuItem menuItemCoordenador;
     private javax.swing.JMenuItem menuItemCurso;
