@@ -15,22 +15,22 @@ public enum TipoCurso {
      *
      */
     POS_GRADUACAO("Pós graduação"),
-
     /**
      *
      */
     GRADUACAO("Graduação"),
-
     /**
      *
      */
     TECNICO("Técnico");
-    
+
     private String toString;
 
     TipoCurso(String toString) {
         this.toString = toString;
     }
+
+  
 
     /**
      *
@@ -39,6 +39,5 @@ public enum TipoCurso {
     public String url() {
         return toString;
     }
-    
 
 }

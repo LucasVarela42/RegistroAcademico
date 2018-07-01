@@ -5,15 +5,16 @@
  */
 package br.edu.ifsc.registro.apresentacao.features.validacao;
 
-
 import br.edu.ifsc.registro.apresentacao.ControllerFormulario;
+import br.edu.ifsc.registro.dominio.features.validacao.Validacao;
 import br.edu.ifsc.registro.servico.features.validacao.ValidacaoServico;
+import java.util.List;
 
 /**
  *
  * @author Lucas
  */
-public class ControllerValidacao extends ControllerFormulario {
+public class ControllerValidacao extends ControllerFormulario<Validacao> {
 
     private ValidacaoServico servico;
     private FrameValidacaoCadastro validacaoCadastro;
@@ -26,29 +27,30 @@ public class ControllerValidacao extends ControllerFormulario {
         this.servico = validacaoServico;
     }
 
-    /**
-     *
-     */
     @Override
-    public void Adicionar() {
+    public void adicionar() {
         validacaoCadastro = new FrameValidacaoCadastro(servico);
         validacaoCadastro.setVisible(true);
         System.out.println("Chegou no adicionar!!");
     }
 
-    /**
-     *
-     */
     @Override
-    public void Editar() {
+    public void editar(Validacao obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     *
-     */
     @Override
-    public void Remover() {
+    public void remover(Validacao obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Validacao> carregarLista() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void atribuirSelecionado(Validacao obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

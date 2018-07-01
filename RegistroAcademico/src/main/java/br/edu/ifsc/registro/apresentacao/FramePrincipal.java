@@ -32,6 +32,7 @@ import br.edu.ifsc.registro.servico.features.disciplina.DisciplinaServico;
 import br.edu.ifsc.registro.servico.features.protocolo.ProtocoloServico;
 import br.edu.ifsc.registro.servico.features.segundaChamada.SegundaChamadaServico;
 import br.edu.ifsc.registro.servico.features.validacao.ValidacaoServico;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -67,6 +68,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private ControllerCoordenador controllerCoordenador;
     private ControllerSegundaChamada controllerSegundaChamada;
     private ControllerValidacao controllerValidacao;
+    private DefaultListModel modelLista;
 
     /**
      * Creates new form FramePrincipal
@@ -97,8 +99,17 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     }
 
+    private void carregarListaPrincipal() {
+        modelLista = new DefaultListModel();
+        for (Object object : controller.carregarLista()) {
+            modelLista.addElement(object);
+        }
+        listPrincipal.setModel(modelLista);
+    }
+
     private void CarregarCadastro(ControllerFormulario controller) {
         this.controller = controller;
+        carregarListaPrincipal();
         btnAdicionar.setEnabled(true);
         btnEditar.setEnabled(true);
         btnRemover.setEnabled(true);
@@ -119,7 +130,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         btnRemover = new javax.swing.JButton();
         panelPrincipal = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listPrincipal = new javax.swing.JList<>();
+        listPrincipal = new javax.swing.JList();
         jMenuBarPrincipal = new javax.swing.JMenuBar();
         jMenuCadastros = new javax.swing.JMenu();
         menuItemCurso = new javax.swing.JMenuItem();
@@ -131,6 +142,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         menuItemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jToolBarCadastros.setFloatable(false);
 
@@ -151,6 +167,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         btnEditar.setFocusable(false);
         btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
         jToolBarCadastros.add(btnEditar);
 
         btnRemover.setText("Remover");
@@ -158,6 +179,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         btnRemover.setFocusable(false);
         btnRemover.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnRemover.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
+            }
+        });
         jToolBarCadastros.add(btnRemover);
 
         panelPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -267,8 +293,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
-        this.controller.Adicionar();
-
+        this.controller.adicionar();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void menuItemDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDisciplinaActionPerformed
@@ -316,6 +341,23 @@ public class FramePrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_menuItemSairActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        if (modelLista != null) {
+            carregarListaPrincipal();
+        }
+    }//GEN-LAST:event_formWindowActivated
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+        this.controller.editar(listPrincipal.getSelectedValue());
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+        // TODO add your handling code here:
+        this.controller.remover(listPrincipal.getSelectedValue());
+        carregarListaPrincipal();
+    }//GEN-LAST:event_btnRemoverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -359,7 +401,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuCadastros;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBarCadastros;
-    private javax.swing.JList<String> listPrincipal;
+    private javax.swing.JList listPrincipal;
     private javax.swing.JMenuItem menuItemAluno;
     private javax.swing.JMenuItem menuItemCoordenador;
     private javax.swing.JMenuItem menuItemCurso;
