@@ -146,6 +146,7 @@ public class FrameValidacaoCadastro extends javax.swing.JFrame {
         getContentPane().add(jPanelRegisters, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed

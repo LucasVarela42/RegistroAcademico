@@ -5,12 +5,9 @@
  */
 package br.edu.ifsc.registro.apresentacao.features.curso;
 
-import br.edu.ifsc.registro.apresentacao.ControllerFormulario;
 import br.edu.ifsc.registro.dominio.features.curso.Curso;
 import br.edu.ifsc.registro.dominio.features.curso.TipoCurso;
 import br.edu.ifsc.registro.servico.features.curso.CursoServico;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -154,6 +151,7 @@ public class FrameCursoCadastro extends javax.swing.JFrame {
         getContentPane().add(jPanelRegisters, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed

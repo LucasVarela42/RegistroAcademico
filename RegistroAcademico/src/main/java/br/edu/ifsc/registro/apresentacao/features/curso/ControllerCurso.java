@@ -73,7 +73,7 @@ public class ControllerCurso extends ControllerFormulario<Curso> {
                 JOptionPane.showMessageDialog(cursoCadastro, "Selecione um curso!");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(cursoCadastro, ex.getMessage());
+            JOptionPane.showMessageDialog(cursoCadastro, "Não é possivel excluir curso vinculado!");
         }
     }
 

@@ -62,6 +62,6 @@ public class Curso extends Entidade {
 
     @Override
     public String toString() {
-        return "id=" + this.getId() + ", nome=" + nome + ", tipoCurso=" + tipoCurso;
+        return nome + ": " + tipoCurso.url();
     }
 }
