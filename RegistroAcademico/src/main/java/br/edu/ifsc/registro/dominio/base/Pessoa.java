@@ -74,7 +74,11 @@ public abstract class Pessoa extends Entidade {
         if (email == null || email.isEmpty()) {
             throw new Exception("O email não pode ser vazio.");
         }
+    }
 
+    @Override
+    public String toString() {
+        return "Nome: " + nome + ", Telefone: " + telefone + ", Email: " + email;
     }
 
 }

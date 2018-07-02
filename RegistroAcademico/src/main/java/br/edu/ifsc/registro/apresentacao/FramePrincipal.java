@@ -280,6 +280,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItemCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCursoActionPerformed
@@ -307,7 +308,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void menuItemAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAlunoActionPerformed
         // TODO add your handling code here:
         if (controllerAluno == null) {
-            controllerAluno = new ControllerAluno(alunoServico);
+            controllerAluno = new ControllerAluno(alunoServico, cursoServico);
         }
         CarregarCadastro(controllerAluno);
     }//GEN-LAST:event_menuItemAlunoActionPerformed
