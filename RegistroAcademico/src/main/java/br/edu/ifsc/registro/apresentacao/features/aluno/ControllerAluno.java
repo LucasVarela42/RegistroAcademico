@@ -26,6 +26,7 @@ public class ControllerAluno extends ControllerFormulario<Aluno> {
     /**
      *
      * @param alunoServico
+     * @param cursoServico
      */
     public ControllerAluno(AlunoServico alunoServico, CursoServico cursoServico) {
         this.servico = alunoServico;
@@ -44,6 +45,7 @@ public class ControllerAluno extends ControllerFormulario<Aluno> {
 
     /**
      *
+     * @param obj
      */
     @Override
     public void editar(Aluno obj) {
@@ -59,6 +61,7 @@ public class ControllerAluno extends ControllerFormulario<Aluno> {
 
     /**
      *
+     * @param obj
      */
     @Override
     public void remover(Aluno obj) {
@@ -79,6 +82,10 @@ public class ControllerAluno extends ControllerFormulario<Aluno> {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Aluno> carregarLista() {
         try {
@@ -89,6 +96,10 @@ public class ControllerAluno extends ControllerFormulario<Aluno> {
         return null;
     }
 
+    /**
+     *
+     * @param obj
+     */
     @Override
     public void atribuirSelecionado(Aluno obj) {
         alunoCadastro.setAluno(obj);

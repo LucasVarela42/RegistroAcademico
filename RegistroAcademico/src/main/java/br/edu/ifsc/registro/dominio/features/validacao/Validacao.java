@@ -118,4 +118,10 @@ public class Validacao extends Entidade {
             throw new Exception("O protocolo da validação não pode ser nula.");
         }
     }
+    
+    @Override
+    public String toString() {
+        return "Protocolo Número: " + protocolo.getNumero() + ", Tipo da validação : " + tipoValidacao.url() + ", é deferido? " + deferido;
+    }
+    
 }

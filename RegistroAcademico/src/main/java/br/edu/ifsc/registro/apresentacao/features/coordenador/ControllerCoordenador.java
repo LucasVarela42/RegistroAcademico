@@ -26,6 +26,7 @@ public class ControllerCoordenador extends ControllerFormulario<Coordenador> {
     /**
      *
      * @param coordenadorServico
+     * @param cursoServico
      */
     public ControllerCoordenador(CoordenadorServico coordenadorServico, CursoServico cursoServico) {
         this.servico = coordenadorServico;
@@ -44,6 +45,7 @@ public class ControllerCoordenador extends ControllerFormulario<Coordenador> {
 
     /**
      *
+     * @param obj
      */
     @Override
     public void editar(Coordenador obj) {
@@ -59,6 +61,7 @@ public class ControllerCoordenador extends ControllerFormulario<Coordenador> {
 
     /**
      *
+     * @param obj
      */
     @Override
     public void remover(Coordenador obj) {
@@ -79,6 +82,10 @@ public class ControllerCoordenador extends ControllerFormulario<Coordenador> {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Coordenador> carregarLista() {
         try {
@@ -89,6 +96,10 @@ public class ControllerCoordenador extends ControllerFormulario<Coordenador> {
         return null;
     }
 
+    /**
+     *
+     * @param obj
+     */
     @Override
     public void atribuirSelecionado(Coordenador obj) {
         coordenadorCadastro.setCoordenador(obj);

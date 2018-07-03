@@ -31,6 +31,9 @@ public class ControllerSegundaChamada extends ControllerFormulario<SegundaChamad
     /**
      *
      * @param segundaChamadaServico
+     * @param protocoloServico
+     * @param alunoServico
+     * @param coordenadorServico
      */
     public ControllerSegundaChamada(
             SegundaChamadaServico segundaChamadaServico,
@@ -48,13 +51,17 @@ public class ControllerSegundaChamada extends ControllerFormulario<SegundaChamad
      */
     @Override
     public void adicionar() {
-        segundaChamadaCadastro = new FrameSegundaChamadaCadastro(servico, protocoloServico, alunoServico, coordenadorServico);
+        segundaChamadaCadastro = new FrameSegundaChamadaCadastro(servico,
+                protocoloServico,
+                alunoServico,
+                coordenadorServico);
         segundaChamadaCadastro.setVisible(true);
         System.out.println("Chegou no adicionar!!");
     }
 
     /**
      *
+     * @param obj
      */
     @Override
     public void editar(SegundaChamadaAtividadeAvaliativa obj) {
@@ -70,6 +77,7 @@ public class ControllerSegundaChamada extends ControllerFormulario<SegundaChamad
 
     /**
      *
+     * @param obj
      */
     @Override
     public void remover(SegundaChamadaAtividadeAvaliativa obj) {
@@ -90,6 +98,10 @@ public class ControllerSegundaChamada extends ControllerFormulario<SegundaChamad
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<SegundaChamadaAtividadeAvaliativa> carregarLista() {
         try {
@@ -100,6 +112,10 @@ public class ControllerSegundaChamada extends ControllerFormulario<SegundaChamad
         return null;
     }
 
+    /**
+     *
+     * @param obj
+     */
     @Override
     public void atribuirSelecionado(SegundaChamadaAtividadeAvaliativa obj) {
         segundaChamadaCadastro.setSegundaChamada(obj);

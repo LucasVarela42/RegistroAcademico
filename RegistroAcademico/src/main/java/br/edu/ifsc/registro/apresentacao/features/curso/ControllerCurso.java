@@ -42,6 +42,7 @@ public class ControllerCurso extends ControllerFormulario<Curso> {
 
     /**
      *
+     * @param obj
      */
     @Override
     public void editar(Curso obj) {
@@ -57,6 +58,7 @@ public class ControllerCurso extends ControllerFormulario<Curso> {
 
     /**
      *
+     * @param obj
      */
     @Override
     public void remover(Curso obj) {
@@ -77,6 +79,10 @@ public class ControllerCurso extends ControllerFormulario<Curso> {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Curso> carregarLista() {
         try {
@@ -87,6 +93,10 @@ public class ControllerCurso extends ControllerFormulario<Curso> {
         return null;
     }
 
+    /**
+     *
+     * @param obj
+     */
     @Override
     public void atribuirSelecionado(Curso obj) {
         cursoCadastro.setCurso(obj);

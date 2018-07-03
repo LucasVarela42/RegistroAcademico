@@ -119,6 +119,11 @@ public class FrameSegundaChamadaCadastro extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *
+     * @param nome
+     * @return
+     */
     public TurnoEnum getTurnoByNome(String nome) {
         for (TurnoEnum value : TurnoEnum.values()) {
             if (nome.equals(value.url())) {
@@ -163,7 +168,7 @@ public class FrameSegundaChamadaCadastro extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de curso");
+        setTitle("Cadastro de Segunda Chamada");
         setResizable(false);
 
         btnCancelar.setText("Cancelar");
@@ -425,90 +430,178 @@ public class FrameSegundaChamadaCadastro extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @return
+     */
     public SegundaChamadaAtividadeAvaliativa getSegundaChamada() {
         return segundaChamada;
     }
 
+    /**
+     *
+     * @param segundaChamada
+     */
     public void setSegundaChamada(SegundaChamadaAtividadeAvaliativa segundaChamada) {
         this.segundaChamada = segundaChamada;
     }
 
+    /**
+     *
+     * @return
+     */
     public Protocolo getProtocolo() {
         return protocolo;
     }
 
+    /**
+     *
+     * @param protocolo
+     */
     public void setProtocolo(Protocolo protocolo) {
         this.protocolo = protocolo;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextArea getTxaJustificativaProfessor() {
         return TxaJustificativaProfessor;
     }
 
+    /**
+     *
+     * @param TxaJustificativaProfessor
+     */
     public void setTxaJustificativaProfessor(JTextArea TxaJustificativaProfessor) {
         this.TxaJustificativaProfessor = TxaJustificativaProfessor;
     }
 
+    /**
+     *
+     * @return
+     */
     public JComboBox getCbAlunoProtocolo() {
         return cbAlunoProtocolo;
     }
 
+    /**
+     *
+     * @param cbAlunoProtocolo
+     */
     public void setCbAlunoProtocolo(JComboBox cbAlunoProtocolo) {
         this.cbAlunoProtocolo = cbAlunoProtocolo;
     }
 
+    /**
+     *
+     * @return
+     */
     public JComboBox getCbCoordenadorProtocolo() {
         return cbCoordenadorProtocolo;
     }
 
+    /**
+     *
+     * @param cbCoordenadorProtocolo
+     */
     public void setCbCoordenadorProtocolo(JComboBox cbCoordenadorProtocolo) {
         this.cbCoordenadorProtocolo = cbCoordenadorProtocolo;
     }
 
+    /**
+     *
+     * @return
+     */
     public JComboBox getCbTurno() {
         return cbTurno;
     }
 
+    /**
+     *
+     * @param cbTurno
+     */
     public void setCbTurno(JComboBox cbTurno) {
         this.cbTurno = cbTurno;
     }
 
+    /**
+     *
+     * @return
+     */
     public JFormattedTextField getTxfDataProva() {
         return txfDataProva;
     }
 
+    /**
+     *
+     * @param txfDataProva
+     */
     public void setTxfDataProva(JFormattedTextField txfDataProva) {
         this.txfDataProva = txfDataProva;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxfLocalProva() {
         return txfLocalProva;
     }
 
+    /**
+     *
+     * @param txfLocalProva
+     */
     public void setTxfLocalProva(JTextField txfLocalProva) {
         this.txfLocalProva = txfLocalProva;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxfMotivoProva() {
         return txfMotivoProva;
     }
 
+    /**
+     *
+     * @param txfMotivoProva
+     */
     public void setTxfMotivoProva(JTextField txfMotivoProva) {
         this.txfMotivoProva = txfMotivoProva;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxfNumeroProtocolo() {
         return txfNumeroProtocolo;
     }
 
+    /**
+     *
+     * @param txfNumeroProtocolo
+     */
     public void setTxfNumeroProtocolo(JTextField txfNumeroProtocolo) {
         this.txfNumeroProtocolo = txfNumeroProtocolo;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxfProfessorAplicadorProva() {
         return txfProfessorAplicadorProva;
     }
 
+    /**
+     *
+     * @param txfProfessorAplicadorProva
+     */
     public void setTxfProfessorAplicadorProva(JTextField txfProfessorAplicadorProva) {
         this.txfProfessorAplicadorProva = txfProfessorAplicadorProva;
     }

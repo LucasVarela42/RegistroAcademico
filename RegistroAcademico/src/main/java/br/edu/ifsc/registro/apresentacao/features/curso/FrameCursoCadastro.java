@@ -28,6 +28,10 @@ public class FrameCursoCadastro extends javax.swing.JFrame {
         initComponents();
     }
 
+    /**
+     *
+     * @param cursoServico
+     */
     public FrameCursoCadastro(CursoServico cursoServico) {
         initComponents();
         this.servico = cursoServico;
@@ -47,6 +51,11 @@ public class FrameCursoCadastro extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *
+     * @param nome
+     * @return
+     */
     public TipoCurso getTipoByNome(String nome) {
         for (TipoCurso value : TipoCurso.values()) {
             if (nome.equals(value.url())) {
@@ -75,7 +84,7 @@ public class FrameCursoCadastro extends javax.swing.JFrame {
         cbTipoCurso = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de curso");
+        setTitle("Cadastro de Curso");
         setResizable(false);
 
         btnCancelar.setText("Cancelar");
@@ -217,26 +226,50 @@ public class FrameCursoCadastro extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @return
+     */
     public Curso getCurso() {
         return curso;
     }
 
+    /**
+     *
+     * @param curso
+     */
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
 
+    /**
+     *
+     * @return
+     */
     public JComboBox<String> getCbTipoCurso() {
         return cbTipoCurso;
     }
 
+    /**
+     *
+     * @param cbTipoCurso
+     */
     public void setCbTipoCurso(JComboBox<String> cbTipoCurso) {
         this.cbTipoCurso = cbTipoCurso;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxfNome() {
         return txfNome;
     }
 
+    /**
+     *
+     * @param txfNome
+     */
     public void setTxfNome(JTextField txfNome) {
         this.txfNome = txfNome;
     }

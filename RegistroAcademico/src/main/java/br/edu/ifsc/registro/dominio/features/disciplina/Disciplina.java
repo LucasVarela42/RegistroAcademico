@@ -100,4 +100,9 @@ public class Disciplina extends Entidade{
             throw new Exception("A disciplina deve ser vinculada a um curso.");
         }
     }
+    
+    @Override
+    public String toString() {
+        return "Disciplina: " + nome + ", Carga horária: " + cargaHoraria + ", Sigla: " + sigla + ", Curso: " + curso.getNome();
+    }
 }

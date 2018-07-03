@@ -83,7 +83,7 @@ public class FrameCoordenadorCadastro extends javax.swing.JFrame {
         txfFone = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de curso");
+        setTitle("Cadastro de Coordenador");
         setResizable(false);
 
         btnCancelar.setText("Cancelar");
@@ -257,42 +257,82 @@ public class FrameCoordenadorCadastro extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @return
+     */
     public Coordenador getCoordenador() {
         return coordenador;
     }
 
+    /**
+     *
+     * @param coordenador
+     */
     public void setCoordenador(Coordenador coordenador) {
         this.coordenador = coordenador;
     }
 
+    /**
+     *
+     * @return
+     */
     public JComboBox getCbCurso() {
         return cbCurso;
     }
 
+    /**
+     *
+     * @param cbCurso
+     */
     public void setCbCurso(JComboBox cbCurso) {
         this.cbCurso = cbCurso;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxfEmail() {
         return txfEmail;
     }
 
+    /**
+     *
+     * @param txfEmail
+     */
     public void setTxfEmail(JTextField txfEmail) {
         this.txfEmail = txfEmail;
     }
 
+    /**
+     *
+     * @return
+     */
     public JFormattedTextField getTxfFone() {
         return txfFone;
     }
 
+    /**
+     *
+     * @param txfFone
+     */
     public void setTxfFone(JFormattedTextField txfFone) {
         this.txfFone = txfFone;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxfNome() {
         return txfNome;
     }
 
+    /**
+     *
+     * @param txfNome
+     */
     public void setTxfNome(JTextField txfNome) {
         this.txfNome = txfNome;
     }

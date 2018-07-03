@@ -5,9 +5,16 @@
  */
 package br.edu.ifsc.registro.apresentacao.features.disciplina;
 
-import br.edu.ifsc.registro.apresentacao.features.disciplina.*;
+import br.edu.ifsc.registro.dominio.features.curso.Curso;
 import br.edu.ifsc.registro.dominio.features.disciplina.Disciplina;
+import br.edu.ifsc.registro.servico.features.curso.CursoServico;
 import br.edu.ifsc.registro.servico.features.disciplina.DisciplinaServico;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
 
 /**
  *
@@ -17,6 +24,7 @@ public class FrameDisciplinaCadastro extends javax.swing.JFrame {
 
     private Disciplina disciplina;
     private DisciplinaServico servico;
+    private CursoServico cursoServico;
 
     /**
      * Creates new form FrameDisciplinaCadastro
@@ -25,10 +33,31 @@ public class FrameDisciplinaCadastro extends javax.swing.JFrame {
         initComponents();
     }
 
-    FrameDisciplinaCadastro(DisciplinaServico disciplinaServico) {
+    FrameDisciplinaCadastro(DisciplinaServico disciplinaServico, CursoServico cursoServico) {
         initComponents();
         this.servico = disciplinaServico;
+        this.cursoServico = cursoServico;
         System.out.println("Carregou FrameDisciplina");
+        carregarCurso();
+        limparCampos();
+    }
+
+    private void carregarCurso() {
+        try {
+            List<Curso> cursos = cursoServico.getAll();
+            for (Curso curso : cursos) {
+                cbCurso.addItem(curso);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
+    }
+
+    private void limparCampos() {
+        txfNome.setText("");
+        txfSigla.setText("");
+        spCargaHoraria.setValue(0);
+        cbCurso.setSelectedIndex(0);
     }
 
     /**
@@ -47,17 +76,22 @@ public class FrameDisciplinaCadastro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txfNome = new javax.swing.JTextField();
-        cbCurso = new javax.swing.JComboBox<>();
+        cbCurso = new javax.swing.JComboBox();
         txfSigla = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         spCargaHoraria = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de curso");
+        setTitle("Cadastro de Disciplina");
         setResizable(false);
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnAdicionar.setText("Adicionar");
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,16 +146,16 @@ public class FrameDisciplinaCadastro extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelRegistersLayout.createSequentialGroup()
-                        .addComponent(txfSigla, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txfSigla, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(spCargaHoraria))
+                        .addComponent(spCargaHoraria, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
                     .addComponent(cbCurso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(txfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
         jPanelRegistersLayout.setVerticalGroup(
             jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,17 +163,17 @@ public class FrameDisciplinaCadastro extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txfNome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txfSigla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfSigla)
                     .addComponent(jLabel4)
-                    .addComponent(spCargaHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spCargaHoraria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cbCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbCurso))
                 .addContainerGap())
         );
 
@@ -151,8 +185,34 @@ public class FrameDisciplinaCadastro extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
-        System.out.println("Chegou no FrameDisciplinaCadastro!!");
+        try {
+            if (disciplina == null) {
+                disciplina = new Disciplina();
+                System.out.println("Chegou no Adicionar do FrameDisciplinaCadastro!!");
+                disciplina.setNome(txfNome.getText());
+                disciplina.setSigla(txfSigla.getText());
+                disciplina.setCargaHoraria((int) spCargaHoraria.getValue());
+                disciplina.setCurso((Curso) cbCurso.getSelectedItem());
+                servico.add(disciplina);
+            } else {
+                System.out.println("Chegou no Editar do FrameDisciplinaCadastro!!");
+                 disciplina.setNome(txfNome.getText());
+                disciplina.setSigla(txfSigla.getText());
+                disciplina.setCargaHoraria((int) spCargaHoraria.getValue());
+                disciplina.setCurso((Curso) cbCurso.getSelectedItem());
+                servico.update(disciplina);
+            }
+            dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
     }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        limparCampos();
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,10 +250,91 @@ public class FrameDisciplinaCadastro extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @return
+     */
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    /**
+     *
+     * @param disciplina
+     */
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public JComboBox getCbCurso() {
+        return cbCurso;
+    }
+
+    /**
+     *
+     * @param cbCurso
+     */
+    public void setCbCurso(JComboBox cbCurso) {
+        this.cbCurso = cbCurso;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public JSpinner getSpCargaHoraria() {
+        return spCargaHoraria;
+    }
+
+    /**
+     *
+     * @param spCargaHoraria
+     */
+    public void setSpCargaHoraria(JSpinner spCargaHoraria) {
+        this.spCargaHoraria = spCargaHoraria;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public JTextField getTxfNome() {
+        return txfNome;
+    }
+
+    /**
+     *
+     * @param txfNome
+     */
+    public void setTxfNome(JTextField txfNome) {
+        this.txfNome = txfNome;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public JTextField getTxfSigla() {
+        return txfSigla;
+    }
+
+    /**
+     *
+     * @param txfSigla
+     */
+    public void setTxfSigla(JTextField txfSigla) {
+        this.txfSigla = txfSigla;
+    }
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<String> cbCurso;
+    private javax.swing.JComboBox cbCurso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

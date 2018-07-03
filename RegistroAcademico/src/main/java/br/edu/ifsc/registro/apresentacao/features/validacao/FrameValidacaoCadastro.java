@@ -5,8 +5,26 @@
  */
 package br.edu.ifsc.registro.apresentacao.features.validacao;
 
+import br.edu.ifsc.registro.dominio.features.aluno.Aluno;
+import br.edu.ifsc.registro.dominio.features.coordenador.Coordenador;
+import br.edu.ifsc.registro.dominio.features.protocolo.Protocolo;
+import br.edu.ifsc.registro.dominio.features.protocolo.TipoProtocolo;
+import br.edu.ifsc.registro.dominio.features.validacao.TipoValidacao;
 import br.edu.ifsc.registro.dominio.features.validacao.Validacao;
+import br.edu.ifsc.registro.servico.features.aluno.AlunoServico;
+import br.edu.ifsc.registro.servico.features.coordenador.CoordenadorServico;
+import br.edu.ifsc.registro.servico.features.protocolo.ProtocoloServico;
 import br.edu.ifsc.registro.servico.features.validacao.ValidacaoServico;
+import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.List;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -16,6 +34,10 @@ public class FrameValidacaoCadastro extends javax.swing.JFrame {
 
     private Validacao validacao;
     private ValidacaoServico servico;
+    private Protocolo protocolo;
+    private ProtocoloServico protocoloServico;
+    private AlunoServico alunoServico;
+    private CoordenadorServico coordenadorServico;
 
     /**
      * Creates new form FrameValidacaoCadastro
@@ -24,10 +46,88 @@ public class FrameValidacaoCadastro extends javax.swing.JFrame {
         initComponents();
     }
 
-    FrameValidacaoCadastro(ValidacaoServico validacaoServico) {
+    FrameValidacaoCadastro(ValidacaoServico validacaoServico, ProtocoloServico protocoloServico,
+            AlunoServico alunoServico,
+            CoordenadorServico coordenadorServico) {
         initComponents();
         this.servico = validacaoServico;
+        this.protocoloServico = protocoloServico;
+        this.alunoServico = alunoServico;
+        this.coordenadorServico = coordenadorServico;
         System.out.println("Carregou FrameValidacao");
+        carregarAluno();
+        carregarCoordenador();
+        carregarTipoValidacao();
+        limparCampos();
+        gerarNumeroProtocolo();
+    }
+
+    private void gerarNumeroProtocolo() {
+        int instante = Instant.now().hashCode();
+        if (instante < 0) {
+            instante = instante * (-1);
+        }
+        txfNumeroProtocolo.setText(String.valueOf(instante));
+    }
+
+    private Protocolo gerarProtocolo() {
+        protocolo = new Protocolo();
+        protocolo.setNumero(txfNumeroProtocolo.getText());
+        protocolo.setTipoProtocolo(TipoProtocolo.VALIDACAO);
+        protocolo.setDataCadastro(LocalDate.now());
+        protocolo.setAluno((Aluno) cbAlunoProtocolo.getSelectedItem());
+        protocolo.setCoordenador((Coordenador) cbCoordenadorProtocolo.getSelectedItem());
+
+        return protocolo;
+    }
+
+    private void limparCampos() {
+        txfNumeroProtocolo.setText("");
+        cbAlunoProtocolo.setSelectedIndex(0);
+        cbCoordenadorProtocolo.setSelectedIndex(0);
+        cbTipoValidacao.setSelectedIndex(0);
+    }
+
+    private void carregarAluno() {
+        try {
+            List<Aluno> alunos = alunoServico.getAll();
+            for (Aluno aluno : alunos) {
+                cbAlunoProtocolo.addItem(aluno);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
+    }
+
+    private void carregarCoordenador() {
+        try {
+            List<Coordenador> coordenadores = coordenadorServico.getAll();
+            for (Coordenador coordenador : coordenadores) {
+                cbCoordenadorProtocolo.addItem(coordenador);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
+    }
+
+    private void carregarTipoValidacao() {
+        for (TipoValidacao value : TipoValidacao.values()) {
+            cbTipoValidacao.addItem(value.url());
+        }
+    }
+
+    /**
+     *
+     * @param nome
+     * @return
+     */
+    public TipoValidacao getTipoValidacaoByNome(String nome) {
+        for (TipoValidacao value : TipoValidacao.values()) {
+            if (nome.equals(value.url())) {
+                return value;
+            }
+        }
+        return null;
     }
 
     /**
@@ -45,25 +145,30 @@ public class FrameValidacaoCadastro extends javax.swing.JFrame {
         jPanelRegisters = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cbTipoValidacao = new javax.swing.JComboBox<>();
+        cbTipoValidacao = new javax.swing.JComboBox();
         spNota = new javax.swing.JSpinner();
         chkDeferida = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TxaObservacao = new javax.swing.JTextArea();
         jPanelProtocolo = new javax.swing.JPanel();
-        cbAlunoProtocolo = new javax.swing.JComboBox<>();
+        cbAlunoProtocolo = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        cbCoordenadorProtocolo = new javax.swing.JComboBox<>();
+        cbCoordenadorProtocolo = new javax.swing.JComboBox();
         txfNumeroProtocolo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de curso");
+        setTitle("Cadastro de Validação");
         setResizable(false);
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnAdicionar.setText("Adicionar");
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +208,11 @@ public class FrameValidacaoCadastro extends javax.swing.JFrame {
         spNota.setEnabled(false);
 
         chkDeferida.setText("Validação deferida?");
+        chkDeferida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkDeferidaActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Observação:");
 
@@ -214,8 +324,55 @@ public class FrameValidacaoCadastro extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
-        System.out.println("Chegou no FrameValidacaoCadastro!!");
+        try {
+            if (validacao == null) {
+                validacao = new Validacao();
+                System.out.println("Chegou no Adicionar do FrameValidacaoCadastro!!");
+                validacao.setObservacao(TxaObservacao.getText());
+                validacao.setTipoValidacao(getTipoValidacaoByNome(cbTipoValidacao.getSelectedItem().toString()));
+
+                if (chkDeferida.isSelected()) {
+                    spNota.setEnabled(true);
+                }
+                validacao.setNota((int) spNota.getValue());
+                validacao.setDeferido(chkDeferida.isSelected());
+
+                protocolo = protocoloServico.add(gerarProtocolo());
+                validacao.setProtocolo(protocolo);
+
+                servico.add(validacao);
+            } else {
+                System.out.println("Chegou no Editar do FrameValidacaoCadastro!!");
+                validacao.setObservacao(TxaObservacao.getText());
+                validacao.setTipoValidacao(getTipoValidacaoByNome(cbTipoValidacao.getSelectedItem().toString()));
+
+                validacao.setNota((int) spNota.getValue());
+                validacao.setDeferido(chkDeferida.isSelected());
+
+                protocolo = protocoloServico.update(protocolo);
+                validacao.setProtocolo(protocolo);
+                servico.update(validacao);
+            }
+            dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
     }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        limparCampos();
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void chkDeferidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkDeferidaActionPerformed
+        // TODO add your handling code here:
+        if (chkDeferida.isSelected()) {
+            spNota.setEnabled(true);
+        } else{
+            spNota.setEnabled(false);
+        }
+    }//GEN-LAST:event_chkDeferidaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,13 +424,158 @@ public class FrameValidacaoCadastro extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @return
+     */
+    public Validacao getValidacao() {
+        return validacao;
+    }
+
+    /**
+     *
+     * @param validacao
+     */
+    public void setValidacao(Validacao validacao) {
+        this.validacao = validacao;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public JTextArea getTxaObservacao() {
+        return TxaObservacao;
+    }
+
+    /**
+     *
+     * @param TxaObservacao
+     */
+    public void setTxaObservacao(JTextArea TxaObservacao) {
+        this.TxaObservacao = TxaObservacao;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public JComboBox getCbAlunoProtocolo() {
+        return cbAlunoProtocolo;
+    }
+
+    /**
+     *
+     * @param cbAlunoProtocolo
+     */
+    public void setCbAlunoProtocolo(JComboBox cbAlunoProtocolo) {
+        this.cbAlunoProtocolo = cbAlunoProtocolo;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public JComboBox getCbCoordenadorProtocolo() {
+        return cbCoordenadorProtocolo;
+    }
+
+    /**
+     *
+     * @param cbCoordenadorProtocolo
+     */
+    public void setCbCoordenadorProtocolo(JComboBox cbCoordenadorProtocolo) {
+        this.cbCoordenadorProtocolo = cbCoordenadorProtocolo;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public JComboBox getCbTipoValidacao() {
+        return cbTipoValidacao;
+    }
+
+    /**
+     *
+     * @param cbTipoValidacao
+     */
+    public void setCbTipoValidacao(JComboBox cbTipoValidacao) {
+        this.cbTipoValidacao = cbTipoValidacao;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public JCheckBox getChkDeferida() {
+        return chkDeferida;
+    }
+
+    /**
+     *
+     * @param chkDeferida
+     */
+    public void setChkDeferida(JCheckBox chkDeferida) {
+        this.chkDeferida = chkDeferida;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public JSpinner getSpNota() {
+        return spNota;
+    }
+
+    /**
+     *
+     * @param spNota
+     */
+    public void setSpNota(JSpinner spNota) {
+        this.spNota = spNota;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public JTextField getTxfNumeroProtocolo() {
+        return txfNumeroProtocolo;
+    }
+
+    /**
+     *
+     * @param txfNumeroProtocolo
+     */
+    public void setTxfNumeroProtocolo(JTextField txfNumeroProtocolo) {
+        this.txfNumeroProtocolo = txfNumeroProtocolo;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Protocolo getProtocolo() {
+        return protocolo;
+    }
+
+    /**
+     *
+     * @param protocolo
+     */
+    public void setProtocolo(Protocolo protocolo) {
+        this.protocolo = protocolo;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea TxaObservacao;
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<String> cbAlunoProtocolo;
-    private javax.swing.JComboBox<String> cbCoordenadorProtocolo;
-    private javax.swing.JComboBox<String> cbTipoValidacao;
+    private javax.swing.JComboBox cbAlunoProtocolo;
+    private javax.swing.JComboBox cbCoordenadorProtocolo;
+    private javax.swing.JComboBox cbTipoValidacao;
     private javax.swing.JCheckBox chkDeferida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

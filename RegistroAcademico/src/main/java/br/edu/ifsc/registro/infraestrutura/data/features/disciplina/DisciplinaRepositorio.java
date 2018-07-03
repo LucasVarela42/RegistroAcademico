@@ -29,6 +29,7 @@ public class DisciplinaRepositorio implements IDisciplinaRepositorio {
     
     private final String GET_ALL = "SELECT "
             + "d.id, "
+            + "d.nome, "
             + "d.cargaHoraria, "
             + "d.sigla, "
             + "d.cursoId, "
@@ -39,6 +40,7 @@ public class DisciplinaRepositorio implements IDisciplinaRepositorio {
     
     private final String GET = "SELECT "
             + "d.id, "
+            + "d.nome, "
             + "d.cargaHoraria, "
             + "d.sigla, "
             + "d.cursoId, "
@@ -75,7 +77,7 @@ public class DisciplinaRepositorio implements IDisciplinaRepositorio {
      */
     @Override
     public Disciplina update(Disciplina entidade) throws SQLException {
-        entidade.setId(DataBase.insert(UPDATE, 
+        entidade.setId(DataBase.update(UPDATE, 
                 entidade.getNome(),
                 entidade.getCargaHoraria(),
                 entidade.getSigla(),
@@ -99,13 +101,13 @@ public class DisciplinaRepositorio implements IDisciplinaRepositorio {
             while (rs.next()) {
                 Disciplina d = new Disciplina();
                 d.setId(rs.getInt("id"));
-                d.setNome(rs.getString("nome"));
+                d.setNome(rs.getString("d.nome"));
                 d.setCargaHoraria(rs.getInt("cargaHoraria"));
                 d.setSigla(rs.getString("sigla"));
                 
                 Curso c = new Curso();
                 c.setId(rs.getInt("cursoId"));
-                c.setNome(rs.getString("nome"));
+                c.setNome(rs.getString("c.nome"));
                 c.setTipoCurso(TipoCurso.valueOf(rs.getString("tipoCurso")));
                 d.setCurso(c);
 
@@ -135,13 +137,13 @@ public class DisciplinaRepositorio implements IDisciplinaRepositorio {
             if (rs.next()) {
                 Disciplina d = new Disciplina();
                 d.setId(rs.getInt("id"));
-                d.setNome(rs.getString("nome"));
+                d.setNome(rs.getString("d.nome"));
                 d.setCargaHoraria(rs.getInt("cargaHoraria"));
                 d.setSigla(rs.getString("sigla"));
                 
                 Curso c = new Curso();
                 c.setId(rs.getInt("cursoId"));
-                c.setNome(rs.getString("nome"));
+                c.setNome(rs.getString("c.nome"));
                 c.setTipoCurso(TipoCurso.valueOf(rs.getString("tipoCurso")));
                 d.setCurso(c);
                 

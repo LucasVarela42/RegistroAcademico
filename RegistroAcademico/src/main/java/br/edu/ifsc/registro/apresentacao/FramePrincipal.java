@@ -300,7 +300,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void menuItemDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDisciplinaActionPerformed
         // TODO add your handling code here:
         if (controllerDisciplina == null) {
-            controllerDisciplina = new ControllerDisciplina(disciplinaServico);
+            controllerDisciplina = new ControllerDisciplina(disciplinaServico, cursoServico);
         }
         CarregarCadastro(controllerDisciplina);
     }//GEN-LAST:event_menuItemDisciplinaActionPerformed
@@ -332,7 +332,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void menuItemValidacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemValidacaoActionPerformed
         // TODO add your handling code here:
         if (controllerValidacao == null) {
-            controllerValidacao = new ControllerValidacao(validacaoServico);
+            controllerValidacao = new ControllerValidacao(validacaoServico, protocoloServico, alunoServico, coordenadorServico);
         }
         CarregarCadastro(controllerValidacao);
     }//GEN-LAST:event_menuItemValidacaoActionPerformed
