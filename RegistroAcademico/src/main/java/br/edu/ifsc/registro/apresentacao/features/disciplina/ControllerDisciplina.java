@@ -108,5 +108,10 @@ public class ControllerDisciplina extends ControllerFormulario<Disciplina> {
         disciplinaCadastro.getSpCargaHoraria().setValue(obj.getCargaHoraria());
         disciplinaCadastro.getCbCurso().setSelectedItem(obj.getCurso());
     }
+    
+    @Override
+    public String ObtemTipoCadastro() {
+        return "Cadastro de Disciplina";
+    }
 
 }

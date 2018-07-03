@@ -125,5 +125,10 @@ public class ControllerValidacao extends ControllerFormulario<Validacao> {
         validacaoCadastro.getCbAlunoProtocolo().setSelectedItem(obj.getProtocolo().getAluno());
         validacaoCadastro.getCbCoordenadorProtocolo().setSelectedItem(obj.getProtocolo().getCoordenador());
     }
+    
+    @Override
+    public String ObtemTipoCadastro() {
+        return "Cadastro de Validação";
+    }
 
 }

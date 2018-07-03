@@ -109,4 +109,9 @@ public class ControllerAluno extends ControllerFormulario<Aluno> {
         alunoCadastro.getCbCurso().setSelectedItem(obj.getCurso());
     }
 
+    @Override
+    public String ObtemTipoCadastro() {
+        return "Cadastro de Aluno";
+    }
+
 }

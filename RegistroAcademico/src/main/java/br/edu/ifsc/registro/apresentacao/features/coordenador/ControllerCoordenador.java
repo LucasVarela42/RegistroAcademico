@@ -108,5 +108,10 @@ public class ControllerCoordenador extends ControllerFormulario<Coordenador> {
         coordenadorCadastro.getTxfEmail().setText(obj.getEmail());
         coordenadorCadastro.getCbCurso().setSelectedItem(obj.getCursoCoordenacao());
     }
+    
+    @Override
+    public String ObtemTipoCadastro() {
+        return "Cadastro de Coordenador";
+    }
 
 }

@@ -31,5 +31,7 @@ public abstract class ControllerFormulario<T> {
     public abstract List<T> carregarLista();
 
     public abstract void atribuirSelecionado(T obj);
+    
+    public abstract String ObtemTipoCadastro();
 
 }

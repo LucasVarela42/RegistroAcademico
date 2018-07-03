@@ -103,5 +103,10 @@ public class ControllerCurso extends ControllerFormulario<Curso> {
         cursoCadastro.getTxfNome().setText(obj.getNome());
         cursoCadastro.getCbTipoCurso().setSelectedIndex(obj.getTipoCurso().ordinal());
     }
+    
+    @Override
+    public String ObtemTipoCadastro() {
+        return "Cadastro de Curso";
+    }
 
 }

@@ -108,6 +108,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void CarregarCadastro(ControllerFormulario controller) {
         this.controller = controller;
         carregarListaPrincipal();
+        lblTipoCadastro.setText(controller.ObtemTipoCadastro());
         btnAdicionar.setEnabled(true);
         btnEditar.setEnabled(true);
         btnRemover.setEnabled(true);
@@ -126,6 +127,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         btnAdicionar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnRemover = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
+        lblTipoCadastro = new javax.swing.JLabel();
         panelPrincipal = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listPrincipal = new javax.swing.JList();
@@ -183,6 +186,13 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
         });
         jToolBarCadastros.add(btnRemover);
+        jToolBarCadastros.add(jSeparator1);
+
+        lblTipoCadastro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTipoCadastro.setText("[tipo cadastro]");
+        lblTipoCadastro.setToolTipText("");
+        lblTipoCadastro.setEnabled(false);
+        jToolBarCadastros.add(lblTipoCadastro);
 
         panelPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -399,7 +409,9 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBarPrincipal;
     private javax.swing.JMenu jMenuCadastros;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar jToolBarCadastros;
+    private javax.swing.JLabel lblTipoCadastro;
     private javax.swing.JList listPrincipal;
     private javax.swing.JMenuItem menuItemAluno;
     private javax.swing.JMenuItem menuItemCoordenador;

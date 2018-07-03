@@ -132,5 +132,10 @@ public class ControllerSegundaChamada extends ControllerFormulario<SegundaChamad
         segundaChamadaCadastro.getCbAlunoProtocolo().setSelectedItem(obj.getProtocolo().getAluno());
         segundaChamadaCadastro.getCbCoordenadorProtocolo().setSelectedItem(obj.getProtocolo().getCoordenador());
     }
+    
+    @Override
+    public String ObtemTipoCadastro() {
+        return "Cadastro de Segunda Chamada";
+    }
 
 }
