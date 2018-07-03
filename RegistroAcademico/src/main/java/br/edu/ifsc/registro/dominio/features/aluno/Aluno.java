@@ -41,7 +41,7 @@ public class Aluno extends Pessoa {
     
     @Override
     public String toString() {
-        return super.toString() + " Curso: " + curso.getNome();
+        return super.toString() + ", Curso: " + curso.getNome();
     }
 
 }

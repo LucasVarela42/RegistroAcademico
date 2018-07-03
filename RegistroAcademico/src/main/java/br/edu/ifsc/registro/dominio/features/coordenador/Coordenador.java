@@ -38,4 +38,9 @@ public class Coordenador extends Pessoa {
             throw new Exception("O coordenador deve ser vinculado a um curso.");
         }
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Curso: " + cursoCoordenacao.getNome();
+    }
 }

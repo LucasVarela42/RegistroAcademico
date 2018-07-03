@@ -316,7 +316,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void menuItemCoordenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCoordenadorActionPerformed
         // TODO add your handling code here:
         if (controllerCoordenador == null) {
-            controllerCoordenador = new ControllerCoordenador(coordenadorServico);
+            controllerCoordenador = new ControllerCoordenador(coordenadorServico, cursoServico);
         }
         CarregarCadastro(controllerCoordenador);
     }//GEN-LAST:event_menuItemCoordenadorActionPerformed
