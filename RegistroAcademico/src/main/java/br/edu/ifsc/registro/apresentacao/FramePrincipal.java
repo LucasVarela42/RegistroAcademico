@@ -324,7 +324,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void menuItemSegundaChamadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSegundaChamadaActionPerformed
         // TODO add your handling code here:
         if (controllerSegundaChamada == null) {
-            controllerSegundaChamada = new ControllerSegundaChamada(segundaChamadaServico);
+            controllerSegundaChamada = new ControllerSegundaChamada(segundaChamadaServico, protocoloServico, alunoServico, coordenadorServico);
         }
         CarregarCadastro(controllerSegundaChamada);
     }//GEN-LAST:event_menuItemSegundaChamadaActionPerformed

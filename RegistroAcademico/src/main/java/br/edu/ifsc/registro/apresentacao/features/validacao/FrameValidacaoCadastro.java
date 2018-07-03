@@ -51,6 +51,13 @@ public class FrameValidacaoCadastro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TxaObservacao = new javax.swing.JTextArea();
+        jPanelProtocolo = new javax.swing.JPanel();
+        cbAlunoProtocolo = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        cbCoordenadorProtocolo = new javax.swing.JComboBox<>();
+        txfNumeroProtocolo = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de curso");
@@ -93,6 +100,7 @@ public class FrameValidacaoCadastro extends javax.swing.JFrame {
         jLabel2.setText("Tipo da Validação");
 
         spNota.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        spNota.setEnabled(false);
 
         chkDeferida.setText("Validação deferida?");
 
@@ -102,12 +110,61 @@ public class FrameValidacaoCadastro extends javax.swing.JFrame {
         TxaObservacao.setRows(5);
         jScrollPane1.setViewportView(TxaObservacao);
 
+        jPanelProtocolo.setBorder(javax.swing.BorderFactory.createTitledBorder("Protocolo"));
+
+        jLabel7.setText("Aluno");
+
+        jLabel8.setText("Coordenador");
+
+        txfNumeroProtocolo.setEnabled(false);
+
+        jLabel9.setText("Número");
+
+        javax.swing.GroupLayout jPanelProtocoloLayout = new javax.swing.GroupLayout(jPanelProtocolo);
+        jPanelProtocolo.setLayout(jPanelProtocoloLayout);
+        jPanelProtocoloLayout.setHorizontalGroup(
+            jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelProtocoloLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProtocoloLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbAlunoProtocolo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txfNumeroProtocolo)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProtocoloLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbCoordenadorProtocolo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanelProtocoloLayout.setVerticalGroup(
+            jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProtocoloLayout.createSequentialGroup()
+                .addGroup(jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txfNumeroProtocolo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbAlunoProtocolo)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(cbCoordenadorProtocolo))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanelRegistersLayout = new javax.swing.GroupLayout(jPanelRegisters);
         jPanelRegisters.setLayout(jPanelRegistersLayout);
         jPanelRegistersLayout.setHorizontalGroup(
             jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelRegistersLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
                 .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelRegistersLayout.createSequentialGroup()
@@ -116,20 +173,26 @@ public class FrameValidacaoCadastro extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbTipoValidacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanelRegistersLayout.createSequentialGroup()
                                 .addComponent(spNota, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(chkDeferida)))))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
+            .addGroup(jPanelRegistersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelProtocolo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanelRegistersLayout.setVerticalGroup(
             jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelRegistersLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRegistersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbTipoValidacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbTipoValidacao)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -140,7 +203,7 @@ public class FrameValidacaoCadastro extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         getContentPane().add(jPanelRegisters, java.awt.BorderLayout.CENTER);
@@ -208,14 +271,21 @@ public class FrameValidacaoCadastro extends javax.swing.JFrame {
     private javax.swing.JTextArea TxaObservacao;
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JComboBox<String> cbAlunoProtocolo;
+    private javax.swing.JComboBox<String> cbCoordenadorProtocolo;
     private javax.swing.JComboBox<String> cbTipoValidacao;
     private javax.swing.JCheckBox chkDeferida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelButtons;
+    private javax.swing.JPanel jPanelProtocolo;
     private javax.swing.JPanel jPanelRegisters;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner spNota;
+    private javax.swing.JTextField txfNumeroProtocolo;
     // End of variables declaration//GEN-END:variables
 }

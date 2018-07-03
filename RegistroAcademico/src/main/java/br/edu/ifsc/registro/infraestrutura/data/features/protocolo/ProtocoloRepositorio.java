@@ -83,7 +83,7 @@ public class ProtocoloRepositorio implements IProtocoloRepositorio {
      */
     @Override
     public Protocolo update(Protocolo entidade) throws SQLException {
-        entidade.setId(DataBase.insert(UPDATE,
+        entidade.setId(DataBase.update(UPDATE,
                 entidade.getNumero(),
                 entidade.getTipoProtocolo().toString(),
                 entidade.getDataCadastro(),

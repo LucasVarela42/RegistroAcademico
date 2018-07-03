@@ -5,9 +5,27 @@
  */
 package br.edu.ifsc.registro.apresentacao.features.segundaChamada;
 
-
+import br.edu.ifsc.registro.dominio.features.aluno.Aluno;
+import br.edu.ifsc.registro.dominio.features.coordenador.Coordenador;
+import br.edu.ifsc.registro.dominio.features.protocolo.Protocolo;
+import br.edu.ifsc.registro.dominio.features.protocolo.TipoProtocolo;
 import br.edu.ifsc.registro.dominio.features.segundaChamada.SegundaChamadaAtividadeAvaliativa;
+import br.edu.ifsc.registro.dominio.features.segundaChamada.TurnoEnum;
+import br.edu.ifsc.registro.servico.features.aluno.AlunoServico;
+import br.edu.ifsc.registro.servico.features.coordenador.CoordenadorServico;
+import br.edu.ifsc.registro.servico.features.protocolo.ProtocoloServico;
 import br.edu.ifsc.registro.servico.features.segundaChamada.SegundaChamadaServico;
+import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -16,7 +34,11 @@ import br.edu.ifsc.registro.servico.features.segundaChamada.SegundaChamadaServic
 public class FrameSegundaChamadaCadastro extends javax.swing.JFrame {
 
     private SegundaChamadaAtividadeAvaliativa segundaChamada;
+    private Protocolo protocolo;
     private SegundaChamadaServico servico;
+    private ProtocoloServico protocoloServico;
+    private AlunoServico alunoServico;
+    private CoordenadorServico coordenadorServico;
 
     /**
      * Creates new form FrameSegundaChamadaCadastro
@@ -25,10 +47,85 @@ public class FrameSegundaChamadaCadastro extends javax.swing.JFrame {
         initComponents();
     }
 
-    FrameSegundaChamadaCadastro(SegundaChamadaServico segundaChamadaServico) {
+    FrameSegundaChamadaCadastro(
+            SegundaChamadaServico segundaChamadaServico,
+            ProtocoloServico protocoloServico,
+            AlunoServico alunoServico,
+            CoordenadorServico coordenadorServico) {
         initComponents();
         this.servico = segundaChamadaServico;
+        this.protocoloServico = protocoloServico;
+        this.alunoServico = alunoServico;
+        this.coordenadorServico = coordenadorServico;
         System.out.println("Carregou FrameSegundaChamada");
+        carregarAluno();
+        carregarCoordenador();
+        carregarTurno();
+        limparCampos();
+        gerarNumeroProtocolo();
+    }
+
+    private void gerarNumeroProtocolo() {
+        int instante = Instant.now().hashCode();
+        if (instante < 0) {
+            instante = instante * (-1);
+        }
+        txfNumeroProtocolo.setText(String.valueOf(instante));
+    }
+
+    private Protocolo gerarProtocolo() {
+        protocolo = new Protocolo();
+        protocolo.setNumero(txfNumeroProtocolo.getText());
+        protocolo.setTipoProtocolo(TipoProtocolo.RECONHECIMENTO_DE_SABERES);
+        protocolo.setDataCadastro(LocalDate.now());
+        protocolo.setAluno((Aluno) cbAlunoProtocolo.getSelectedItem());
+        protocolo.setCoordenador((Coordenador) cbCoordenadorProtocolo.getSelectedItem());
+
+        return protocolo;
+    }
+
+    private void limparCampos() {
+        txfNumeroProtocolo.setText("");
+        cbAlunoProtocolo.setSelectedIndex(0);
+        cbCoordenadorProtocolo.setSelectedIndex(0);
+        cbTurno.setSelectedIndex(0);
+    }
+
+    private void carregarAluno() {
+        try {
+            List<Aluno> alunos = alunoServico.getAll();
+            for (Aluno aluno : alunos) {
+                cbAlunoProtocolo.addItem(aluno);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
+    }
+
+    private void carregarCoordenador() {
+        try {
+            List<Coordenador> coordenadores = coordenadorServico.getAll();
+            for (Coordenador coordenador : coordenadores) {
+                cbCoordenadorProtocolo.addItem(coordenador);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
+    }
+
+    private void carregarTurno() {
+        for (TurnoEnum value : TurnoEnum.values()) {
+            cbTurno.addItem(value.url());
+        }
+    }
+
+    public TurnoEnum getTurnoByNome(String nome) {
+        for (TurnoEnum value : TurnoEnum.values()) {
+            if (nome.equals(value.url())) {
+                return value;
+            }
+        }
+        return null;
     }
 
     /**
@@ -47,7 +144,7 @@ public class FrameSegundaChamadaCadastro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txfLocalProva = new javax.swing.JTextField();
-        cbTurno = new javax.swing.JComboBox<>();
+        cbTurno = new javax.swing.JComboBox();
         txfMotivoProva = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -57,12 +154,24 @@ public class FrameSegundaChamadaCadastro extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TxaJustificativaProfessor = new javax.swing.JTextArea();
+        jPanelProtocolo = new javax.swing.JPanel();
+        cbAlunoProtocolo = new javax.swing.JComboBox();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        cbCoordenadorProtocolo = new javax.swing.JComboBox();
+        txfNumeroProtocolo = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de curso");
         setResizable(false);
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnAdicionar.setText("Adicionar");
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +185,7 @@ public class FrameSegundaChamadaCadastro extends javax.swing.JFrame {
         jPanelButtonsLayout.setHorizontalGroup(
             jPanelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelButtonsLayout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
+                .addContainerGap(147, Short.MAX_VALUE)
                 .addComponent(btnAdicionar)
                 .addGap(18, 18, 18)
                 .addComponent(btnCancelar)
@@ -112,6 +221,55 @@ public class FrameSegundaChamadaCadastro extends javax.swing.JFrame {
         TxaJustificativaProfessor.setRows(5);
         jScrollPane1.setViewportView(TxaJustificativaProfessor);
 
+        jPanelProtocolo.setBorder(javax.swing.BorderFactory.createTitledBorder("Protocolo"));
+
+        jLabel7.setText("Aluno");
+
+        jLabel8.setText("Coordenador");
+
+        txfNumeroProtocolo.setEnabled(false);
+
+        jLabel9.setText("Número");
+
+        javax.swing.GroupLayout jPanelProtocoloLayout = new javax.swing.GroupLayout(jPanelProtocolo);
+        jPanelProtocolo.setLayout(jPanelProtocoloLayout);
+        jPanelProtocoloLayout.setHorizontalGroup(
+            jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelProtocoloLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProtocoloLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbAlunoProtocolo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txfNumeroProtocolo)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProtocoloLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbCoordenadorProtocolo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanelProtocoloLayout.setVerticalGroup(
+            jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProtocoloLayout.createSequentialGroup()
+                .addGroup(jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txfNumeroProtocolo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbAlunoProtocolo)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelProtocoloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(cbCoordenadorProtocolo))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanelRegistersLayout = new javax.swing.GroupLayout(jPanelRegisters);
         jPanelRegisters.setLayout(jPanelRegistersLayout);
         jPanelRegistersLayout.setHorizontalGroup(
@@ -119,52 +277,60 @@ public class FrameSegundaChamadaCadastro extends javax.swing.JFrame {
             .addGroup(jPanelRegistersLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txfProfessorAplicadorProva, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelRegistersLayout.createSequentialGroup()
-                            .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txfMotivoProva)
-                                .addComponent(cbTurno, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txfLocalProva, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txfDataProva, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelRegistersLayout.createSequentialGroup()
+                        .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txfMotivoProva)
+                            .addComponent(cbTurno, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txfLocalProva, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txfDataProva, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)))
+                    .addGroup(jPanelRegistersLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                            .addComponent(txfProfessorAplicadorProva, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))))
+                .addGap(26, 26, 26))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRegistersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelProtocolo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanelRegistersLayout.setVerticalGroup(
             jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelRegistersLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRegistersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txfLocalProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txfLocalProva))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txfDataProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txfDataProva))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txfMotivoProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txfMotivoProva))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelRegistersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cbTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbTurno))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txfProfessorAplicadorProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txfProfessorAplicadorProva)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
 
@@ -176,8 +342,46 @@ public class FrameSegundaChamadaCadastro extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
-        System.out.println("Chegou no FrameSegundaChamadaCadastro!!");
+        try {
+            if (segundaChamada == null) {
+                segundaChamada = new SegundaChamadaAtividadeAvaliativa();
+                System.out.println("Chegou no Adicionar do FrameSegundaChamadaCadastro!!");
+                segundaChamada.setLocalProva(txfLocalProva.getText());
+                segundaChamada.setTurno(getTurnoByNome(cbTurno.getSelectedItem().toString()));
+                segundaChamada.setMotivoProva(txfMotivoProva.getText());
+                segundaChamada.setDataAvaliacao(LocalDate.parse(txfDataProva.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                segundaChamada.setJustificativaProfessor(TxaJustificativaProfessor.getText());
+                segundaChamada.setProfessorAplicadorProva(txfProfessorAplicadorProva.getText());
+
+                protocolo = protocoloServico.add(gerarProtocolo());
+                segundaChamada.setProtocolo(protocolo);
+
+                servico.add(segundaChamada);
+            } else {
+                System.out.println("Chegou no Editar do FrameSegundaChamadaCadastro!!");
+                protocolo = segundaChamada.getProtocolo();
+                segundaChamada.setLocalProva(txfLocalProva.getText());
+                segundaChamada.setTurno(getTurnoByNome(cbTurno.getSelectedItem().toString()));
+                segundaChamada.setMotivoProva(txfMotivoProva.getText());
+                segundaChamada.setDataAvaliacao(LocalDate.parse(txfDataProva.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                segundaChamada.setJustificativaProfessor(TxaJustificativaProfessor.getText());
+                segundaChamada.setProfessorAplicadorProva(txfProfessorAplicadorProva.getText());
+
+                protocolo = protocoloServico.update(protocolo);
+                segundaChamada.setProtocolo(protocolo);
+                servico.update(segundaChamada);
+            }
+            dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
     }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        limparCampos();
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,23 +425,119 @@ public class FrameSegundaChamadaCadastro extends javax.swing.JFrame {
         });
     }
 
+    public SegundaChamadaAtividadeAvaliativa getSegundaChamada() {
+        return segundaChamada;
+    }
+
+    public void setSegundaChamada(SegundaChamadaAtividadeAvaliativa segundaChamada) {
+        this.segundaChamada = segundaChamada;
+    }
+
+    public Protocolo getProtocolo() {
+        return protocolo;
+    }
+
+    public void setProtocolo(Protocolo protocolo) {
+        this.protocolo = protocolo;
+    }
+
+    public JTextArea getTxaJustificativaProfessor() {
+        return TxaJustificativaProfessor;
+    }
+
+    public void setTxaJustificativaProfessor(JTextArea TxaJustificativaProfessor) {
+        this.TxaJustificativaProfessor = TxaJustificativaProfessor;
+    }
+
+    public JComboBox getCbAlunoProtocolo() {
+        return cbAlunoProtocolo;
+    }
+
+    public void setCbAlunoProtocolo(JComboBox cbAlunoProtocolo) {
+        this.cbAlunoProtocolo = cbAlunoProtocolo;
+    }
+
+    public JComboBox getCbCoordenadorProtocolo() {
+        return cbCoordenadorProtocolo;
+    }
+
+    public void setCbCoordenadorProtocolo(JComboBox cbCoordenadorProtocolo) {
+        this.cbCoordenadorProtocolo = cbCoordenadorProtocolo;
+    }
+
+    public JComboBox getCbTurno() {
+        return cbTurno;
+    }
+
+    public void setCbTurno(JComboBox cbTurno) {
+        this.cbTurno = cbTurno;
+    }
+
+    public JFormattedTextField getTxfDataProva() {
+        return txfDataProva;
+    }
+
+    public void setTxfDataProva(JFormattedTextField txfDataProva) {
+        this.txfDataProva = txfDataProva;
+    }
+
+    public JTextField getTxfLocalProva() {
+        return txfLocalProva;
+    }
+
+    public void setTxfLocalProva(JTextField txfLocalProva) {
+        this.txfLocalProva = txfLocalProva;
+    }
+
+    public JTextField getTxfMotivoProva() {
+        return txfMotivoProva;
+    }
+
+    public void setTxfMotivoProva(JTextField txfMotivoProva) {
+        this.txfMotivoProva = txfMotivoProva;
+    }
+
+    public JTextField getTxfNumeroProtocolo() {
+        return txfNumeroProtocolo;
+    }
+
+    public void setTxfNumeroProtocolo(JTextField txfNumeroProtocolo) {
+        this.txfNumeroProtocolo = txfNumeroProtocolo;
+    }
+
+    public JTextField getTxfProfessorAplicadorProva() {
+        return txfProfessorAplicadorProva;
+    }
+
+    public void setTxfProfessorAplicadorProva(JTextField txfProfessorAplicadorProva) {
+        this.txfProfessorAplicadorProva = txfProfessorAplicadorProva;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea TxaJustificativaProfessor;
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<String> cbTurno;
+    private javax.swing.JComboBox cbAlunoProtocolo;
+    private javax.swing.JComboBox cbCoordenadorProtocolo;
+    private javax.swing.JComboBox cbTurno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelButtons;
+    private javax.swing.JPanel jPanelProtocolo;
     private javax.swing.JPanel jPanelRegisters;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JFormattedTextField txfDataProva;
     private javax.swing.JTextField txfLocalProva;
     private javax.swing.JTextField txfMotivoProva;
+    private javax.swing.JTextField txfNumeroProtocolo;
     private javax.swing.JTextField txfProfessorAplicadorProva;
     // End of variables declaration//GEN-END:variables
 }

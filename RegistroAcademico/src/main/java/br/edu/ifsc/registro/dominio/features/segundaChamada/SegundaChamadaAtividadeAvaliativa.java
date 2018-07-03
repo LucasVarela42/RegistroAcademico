@@ -159,4 +159,11 @@ public class SegundaChamadaAtividadeAvaliativa extends Entidade {
             throw new Exception("O protocolo da segunda chamada não pode ser nulo.");
         }
     }
+
+    @Override
+    public String toString() {
+        return "Protocolo Número: " + protocolo.getNumero() + ", Turno: " + turno.url() + ", Data da Avaliacao: " + dataAvaliacao;
+    }
+    
+    
 }
