@@ -75,7 +75,6 @@ public class FramePrincipal extends javax.swing.JFrame {
      */
     public FramePrincipal() {
         initComponents();
-
         this.cursoRepositorio = new CursoRepositorio();
         this.cursoServico = new CursoServico(cursoRepositorio);
 
@@ -96,7 +95,6 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         this.validacaoRepositorio = new ValidacaoRepositorio();
         this.validacaoServico = new ValidacaoServico(validacaoRepositorio, protocoloRepositorio);
-
     }
 
     private void carregarListaPrincipal() {
